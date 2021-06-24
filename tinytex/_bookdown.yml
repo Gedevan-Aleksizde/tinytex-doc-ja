@@ -3,9 +3,10 @@ output_dir: "../docs"
 delete_merged_file: true
 rmd_files:
     - 'index.Rmd'
-    - 'faq.Rmd'
     - 'r.Rmd'
-#    - 'pain.Rmd'
+    - 'addendum-ja.Rmd'
+    - 'faq.Rmd'
+    - 'pain.Rmd'
     - 'cn.Rmd'
 history: https://github.com/Gedevan-Aleksizde/tinytex-doc-ja/commits/master/source/%s
 edit: https://github.com/Gedevan-Aleksizde/tinytex-doc-ja/edit/master/source/%s

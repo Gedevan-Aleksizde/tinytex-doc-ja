@@ -93,7 +93,7 @@ chmod -R g+wx ~/.TinyTeX/bin
 `~/.TinyTeX` を他の場所に移動したいなら, FAQ\@ref(change-directory)にあるを見てください. そしてフォルダを移動したあとに,  `/usr/local/bin` にあるシンボリックリンクが新しい場所を正しく参照するように `sudo` で `tlmgr path add` を実行することを忘れないでください.
 
 
-## 私は Linux 管理者です. 上記のアプローチで TinyTeX をインストールし `/usr/local/bin` にシンボリックリンクを追加しました. root 権限のないユーザーに自分で LaTeX パッケージをインストールしてもらうにはどうしたよいですか?
+## 私は Linux 管理者です. 上記のアプローチで TinyTeX をインストールし `/usr/local/bin` にシンボリックリンクを追加しました. root 権限のないユーザーに自分で LaTeX パッケージをインストールしてもらうにはどうしたよいですか? {#non-root-package-installation}
 
 root 権限のないユーザは通常の方法では, TinyTeX のルートディレクトリ (デフォルトでは `~/.TinyTeX`, `~` は**あなた自身の**ホームディレクトリを意味します) に書き込み権限を持つグループに登録されない限り, `tlmgr install` コマンドでパッケージをインストールすることができません. このような場合は TinyTeX のシステム全体に対してインストールされた TinyTeX を修正することができます.
 
@@ -208,7 +208,7 @@ TL_INSTALLED_PKGS=$(tlmgr info --list --only-installed --data name | tr '\n' ' '
 tlmgr install $TL_INSTALLED_PKGS
 ```
 
-## R パッケージの tikzDevice の使用にはどの LaTeX パッケージが必要ですか?
+## R パッケージの tikzDevice の使用にはどの LaTeX パッケージが必要ですか? {#faq-tikz}
 
 グラフィックデバイスの `tikzDevice::tikz()` を使用するにはこれらの LaTeX パッケージが必要です.
 

@@ -42,7 +42,7 @@ LaTeX の失敗のよくある原因は LaTeX パッケージが足りないこ�
 
 LaTeX を PDF にコンパイルするときにエラーが起こったなら, 問題が解消されるまで以下のような段階を1つづつ踏んでください.
 
-1. [R と LaTeX パッケージを全て更新する](/en/2017/05/when-in-doubt-upgrade/):
+1. [R と LaTeX パッケージを全て更新する](https://yihui.org/en/2017/05/when-in-doubt-upgrade/):
 
     ```{r, eval=F}
     update.packages(ask = FALSE, checkBuilt = TRUE)
@@ -71,7 +71,7 @@ LaTeX を PDF にコンパイルするときにエラーが起こったなら, �
 
     あなたができること, そしてもしかするとすべきことなのは, デバッグを終えたあとにこのオプションを削除することです (もはや完全なログを読む必要はなく, LaTeX を静かにさせるため
 
-1. 上記いずれも効果がなかったら, [このガイド](/issue/)に従って問題を報告してください.^[**訳注**: こちらの窓口は当然ながら英語 (中国語も可?) での対応となります. 日本語の質問フォーラムとして[スタック・オーバーフロー日本語版](https://ja.stackoverflow.com/questions/tagged/latex)や, [TeX Wiki のフォーラム](https://oku.edu.mie-u.ac.jp/tex/), [teratail ](https://teratail.com/tags/LaTeX) がありますが, 日本語ユーザの間でかならずしもTinyTeXが知られているとは限らないことに注意してください.] あなたがとても忙しい場合, 問題の報告に際してもっとも重要なもの, 「**必要最小限の再現例**」を忘れないでください.
+1. 上記いずれも効果がなかったら, [このガイド](https://yihui.org/issue/)に従って問題を報告してください.^[**訳注**: こちらの窓口は当然ながら英語 (中国語も可?) での対応となります. 日本語の質問フォーラムとして[スタック・オーバーフロー日本語版](https://ja.stackoverflow.com/questions/tagged/latex)や, [TeX Wiki のフォーラム](https://oku.edu.mie-u.ac.jp/tex/), [teratail ](https://teratail.com/tags/LaTeX) がありますが, 日本語ユーザの間でかならずしもTinyTeXが知られているとは限らないことに注意してください.] あなたがとても忙しい場合, 問題の報告に際してもっとも重要なもの, 「**必要最小限の再現例**」を忘れないでください.
 
 ## その他の LaTeX ディストリビューション
 
