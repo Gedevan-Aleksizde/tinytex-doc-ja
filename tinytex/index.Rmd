@@ -18,6 +18,34 @@ github-repo: Gedevan-Aleksizde/knitr-doc-ja
 knitr::opts_chunk$set(eval=F)
 ```
 
+```{r index-setup, include=F, eval=T}
+require(knitr)
+include_graphics_url <- function(url, quiet = T, ifexists = "skip" , ...){
+  if(knitr::is_latex_output()){
+      nm <- basename(url)
+    if(file.exists(nm)){
+      arg <- paste("-O", nm)
+    } else {
+      arg <- NULL
+    }
+    if(ifexists == "skip" && file.exists(nm)){
+    
+    } else {
+      system(paste("wget", if(quiet) "-q" else "", url, arg))
+    }
+    knitr::include_graphics(nm, ...)
+  } else {
+    knitr::include_graphics(url, ...)
+  }
+}
+updated_time <- format(Sys.time(), '%Y/%m/%d %H:%M:%S %Z')
+original_time <- format(as.POSIXct(system('cd ../yihui && git log -1 --pretty=format:%ci content/tinytex', intern = T)), '%Y/%m/%d %H:%M:%S %Z')
+```
+
+---
+date: "ver. 1.0 (`r updated_time`, 本家の更新確認時刻: [`r original_time`](https://github.com/rbind/yihui/tree/master/content/tinytex))"
+---
+
 # TinyTeX {#tinytex}
 
 ::::::{.infobox .caution data-latex="{caution}"}
