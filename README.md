@@ -14,7 +14,7 @@ https://gedevan-aleksizde.github.io/tinytex-doc-ja/
     Rによる美麗で柔軟そして高速な動的レポート生成](https://gedevan-aleksizde.github.io/knitr-doc-ja/index.html)』
     / “[knitr: Elegant, flexible, and fast dynamic report generation
     with R](https://yihui.org/knitr/)”
--   "[R Markdown クックブック](https://gedevan-aleksizde.github.io/rmarkdown-cookbook/)"
+-   『[R Markdown クックブック](https://gedevan-aleksizde.github.io/rmarkdown-cookbook/)』/"[R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/)"
 -   "[R Markdown: The Definitive
     Guide](https://bookdown.org/yihui/rmarkdown/)"
     ([近日翻訳予定](https://github.com/Gedevan-Aleksizde/rmarkdown-book))
