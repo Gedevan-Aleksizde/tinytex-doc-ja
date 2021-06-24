@@ -1,0 +1,282 @@
+# FAQ {#faq}
+
+よくある (?) 質問 
+
+オリジナルのページ: https://yihui.org/tinytex/faq/
+
+オリジナルの最終更新日: 2017/12/02
+
+----
+
+このよくある質問リストでは, 好奇心のある方に TinyTeX の技術的詳細について説明したり, システム管理者でない人に向けて TinyTeX をインストールしたり使用したりする代わりの方法を説明したりします.
+
+
+## TeX Live のどのバージョンがインストールされるのですか?
+
+デフォルトでは, Windows, macOS, Linux の最新の動作バージョン, そして他のプラットフォームでも (動作の有無にかかわらず) 最新のバージョンです. ここでの「動作」とは, いくつかの R Markdown 文書を PDF にコンパイルする基本的なテストをパスした TinyTeX のバージョンです. もし古いバージョンをインストールしている場合, 次の FAQ を読んでください.
+
+現在の最新バージョンをインストールできて, このバージョンが十分に安定しているなら将来もアップグレードしない選択ができることを覚えておいてください. ただし, これは現在の TeX Live バージョンが凍結 (年単位で凍結されます) されて以降は LaTeX パッケージをインストールすることもアップデートすることもできないことに注意してください.
+
+TODO: 日本語ユーザにとって後方互換性は重要. なにか追加サポートが必要
+
+## TinyTeX のビルド済みバイナリはありますか?
+
+はい, あります. 2020年9月から TinyTeX のビルド済みバイナリパッケージの提供を始めています. それらは [`yihui/tinytex-releases`](https://github.com/yihui/tinytex-releases) で見ることができます. 2名の TeX Live 開発者に TeX Live のライセンスについて教えてもらったのでこれが可能となりました. それ以前はこのライセンスは私にとって複雑で, バイナリパッケージとして再配布することをためらっていました. これが可能であると知ってからは AppVeyor 上でビルドし GitHub リリースとして公開しています.
+
+
+## TinyTeX のサイズはどれくらいですか? {#faq-tinytex-size}
+
+macOS と Linux では gzip 圧縮で 61 MB, Windows では zip 圧縮で 94 MBです. これでもまだ大きすぎると思うかもしれませんが, [Basic TeX インストーラ](https://www.tug.org/mactex/morepackages.html) のサイズが macOS ではおよそ 80 MB に, Windows では [MiKTeX インストーラ](https://miktex.org/download) がおよそ 235 MB になることを考えてみてください.
+
+TinyTeX の軽量さはクラウド上で (たとえば Travis CI で意図的にテストするとき) インストールするときにとても便利でしょう. ダウンロードとインストールはほんの数秒しかかかりません.
+
+もちろん, TinyTeX のサイズは追加で LaTeX パッケージをインストールするたびに増加します. 極端な話, 全てのパッケージをインストールしたいかもしれません (どのパッケージが足りないのかを把握する必要を排除してしまうために). そうしたい場合でも, R ではこのように実行します.
+
+```{r, eval=F}
+tinytex::tlmgr_install('scheme-full')
+```
+
+コマンドラインで同様の操作はこうなります
+
+```sh
+tlmgr install scheme-full
+tlmgr path add
+```
+
+数ギガバイトぶんのパッケージをダウンロードしインストールする必要があるため, これはかなり時間がかかります
+
+## TinyTeX はどうやって作られたのですか? 巨大な TeX Live のサイズをどうやって削減したのですか?
+
+TinyTeX を理解する最善の方法は TUGBoat の "[TinyTeX: A lightweight, cross-platform, and easy-to-maintain LaTeX distribution based on TeX Live](https://tug.org/TUGboat/Contents/contents40-1.html)" を読むことです. あるいは代わりに `tools` ディレクトリにある[ソースを読む](https://github.com/yihui/tinytex/)こともできます. 基本的に TinyTeX は, [tinytex.profile](https://github.com/yihui/tinytex/blob/master/tools/tinytex.profile) (`./install-tl -profile=tinytex.profile`) というプロファイルで TeX Live のインストールを自動化しています. このファイルは最初にインストールされる `infraonly` スキームを指定しているだけです. このスキームがあるので LaTeX のドキュメントは一切コンパイルできませんが, 最も重要なユーティリティである `tlmgr` (TeX Live マネージャ) だけは含まれます. この時点での全体のサイズは (UNIX系では) 1 MB 未満です.
+
+それから `tlmgr` で基本的なパッケージをさらにいくつかインストールします (これは [pkgs-custom.txt](https://github.com/yihui/tinytex/blob/master/tools/pkgs-custom.txt) で定義されています). これらのパッケージがあればほとんどの R Markdown 文書を PDF にコンパイルすることができます. 全体のサイズはおよそ 61 MB になります.
+
+TinyTeX には少数の LaTeX パッケージを含めているだけであるという点は, TinyTeX が比較的小さなサイズである2つの理由のうちの1つです. もう1つの理由は, パッケージのソースファイルとドキュメントファイルを除外している点です. `tinytex.profile` にこのような2つオプションが書かれているのがわかるでしょう.
+
+```config
+option_doc 0
+option_src 0
+```
+
+なぜソースファイルを排除したのか? これらはエンドユーザにとって役に立つ場面がなさそうだからです. あなたは LaTeX のソースコードを読みますか? あなたが開発者や上級者ユーザでないならおそらく読んでないでしょう.
+
+なぜドキュメントを排除したのか? 正直に答えてください, あなたは [StackExchange](https://tex.stackexchange.com) で答えを探したことが何度ありますか, パッケージのドキュメントを読んだことが何度ありますか? 完全なドキュメントがあっても, あなたはコンピュータのどこにそのファイルがあるのかすら知らないでしょう. ドキュメントのファイルはディスクの容量を多く占有し, 平均レベルのユーザはほとんど読まないと私は思っています. ゆえに同梱しません. web ブラウザのアドレスバーが最も便利なドキュメントです. キーワードをタイプし, 検索してください.
+
+パッケージのソースとドキュメントを本当に欲しいのなら, [CTAN](https://ctan.org) で見つけることができます. あるいは `tlmgr installl --reinstall --with-doc --with-src <パッケージ名>` というコマンドでソースとドキュメントを再インストールできます. ([Norbert Preining の指摘](https://github.com/yihui/tinytex/pull/236#issuecomment-690789472) に感謝します)
+
+TeX Live のサイズに影響するそれ以外の主な要因として, フォントパッケージがあります. フォントパッケージは大抵の場合は他の LaTeX パッケージよりずっと大きいのですが, `pdflatex` を使わない限り役に立つことがありません. こういった場合では, サイズの小さな TeX Live ディストリビューションをさらに削減することができます.
+
+インストールされたパッケージ全てのサイズを `tlmgr info --list --only-installed --data name,size` というコマンドで得ることができます. R パッケージの **tinytex** をインストールしているなら, `tinytex::tl_sizes()` を使うこともできます. 例えばフォントパッケージの **lm** (Latin modern) はおよそ 42 MB もあります!
+
+## 私は Linux システムの管理者です. システム使用者全員が使えるように TinyTeX をインストールするにはどうしたらいいですか? {#sys-install}
+
+まずインストールスクリプトに2つのオプション `--admin --no-path` を追加してください.
+
+```sh
+wget -qO- "https://yihui.org/tinytex/install-unx.sh" | sh -s - --admin --no-path
+```
+
+これは TinyTeX を `~/.TinyTeX` にインストールします. この時点では root 権限は**不要**です. それからシステムの利用者全員が TeX Live の実行ファイル (例: `xelatex` や `lualatex`) を使えるように `sudo` で `/usr/local/bin` にシンボリックリンクを追加する必要があります.
+    
+```sh
+sudo ~/.TinyTeX/bin/*/tlmgr path add
+```
+
+`~/.TinyTex` にデフォルトで `700` のパーミッションが設定される[システムも中にはあります](https://github.com/yihui/tinytex/issues/37). これは他のユーザは TinyTeX を使用できないことを意味します (このディレクトリ内では読み込み・書き込み・実行いずれの権限もありません). `chown` を使用してこのディレクトリのオーナやグループを変更し, 書き込み権限 (さらに `bin` への実行権限) を付与するとよいでしょう. これが例です.
+
+```sh
+chown -R root:staff ~/.TinyTeX
+chmod -R g+w ~/.TinyTeX
+chmod -R g+wx ~/.TinyTeX/bin
+```
+
+`~/.TinyTeX` を他の場所に移動したいなら, FAQ\@ref(change-directory)にあるを見てください. そしてフォルダを移動したあとに,  `/usr/local/bin` にあるシンボリックリンクが新しい場所を正しく参照するように `sudo` で `tlmgr path add` を実行することを忘れないでください.
+
+
+## 私は Linux 管理者です. 上記のアプローチで TinyTeX をインストールし `/usr/local/bin` にシンボリックリンクを追加しました. root 権限のないユーザーに自分で LaTeX パッケージをインストールしてもらうにはどうしたよいですか?
+
+root 権限のないユーザは通常の方法では, TinyTeX のルートディレクトリ (デフォルトでは `~/.TinyTeX`, `~` は**あなた自身の**ホームディレクトリを意味します) に書き込み権限を持つグループに登録されない限り, `tlmgr install` コマンドでパッケージをインストールすることができません. このような場合は TinyTeX のシステム全体に対してインストールされた TinyTeX を修正することができます.
+
+TinyTeX ディレクトリへの書き込み権限がない人たちには, TeX Live の[ユーザーモード](https://www.tug.org/texlive/doc/tlmgr.html#USER-MODE) があり, これはユーザーごとに texmf ツリーを管理することができます. 例えばシステムディレクトリの代わりに, そのユーザーのホームディレクトリにパッケージをインストールできます. TinyTeX があれば, ユーザーレベルの texmf ツリーは `~/.TinyTeX/texmf-home` にあります (TeX Live の用語としては, `TEXMFHOME` 環境変数となります. `~` は**あなた自身の**ホームディレクトリを意味します).
+
+ユーザが最初にすべきことは, このツリーを初期化すること (`TEXMFHOME` がまだ作成されていないなら作ること) です. 以下を一度実行するだけです.
+    
+```sh
+tlmgr init-usertree
+```
+
+それからパッケージをインストールする時には, ユーザは常に `--usermode` オプションを付けなければなりません. 例えば以下のように.
+
+```sh
+tlmgr --usermode install koma-script xcolor
+```
+
+R ユーザなら, 上記のコマンドは以下の R の命令文と同じです.
+    
+```{r, eval=F}
+tinytex::tlmgr('init-usertree')  # これも最初に一度実行するだけです
+tinytex::tlmgr_install(c('koma-script', 'xcolor'), usermode = TRUE)
+```
+    
+しかし, TeX Live のユーザーモードは実際のところかなり複雑になる可能性があり, 残念なことに私はサポートしきれません. 少しだけ注意事項を挙げておきます.
+
+* 最悪のやり方はユーザが一切のパッケージをインストールできないことです. TeX Live では**再配置可能**なパッケージとそうでないものがあります. 例えば実行ファイルを含むパッケージは再配置できません (例: **metafont** パッケージは `mf` という実行ファイルを含んでいます). ユーザがこれらのパッケージを使わなければならないなら, システム管理者だけが頼りです. 良い知らせとして, こういったパッケージは小規模なので, これらを全てをシステム管理者が最初からインストールしておくという保守的な戦略がある, ということがあります. R 関数の `tinytex::tl_unrelocatable()` は再配置不可能な全てのパッケージの名前を返します. これは内部で `tlmgr info --list --data name,relocatable` を呼び出しています.
+
+* パッケージの中にはインストール後に [`updmap`](https://www.tug.org/texlive/doc/updmap.html) を実行することが必要なものもあります (例: `pdflatex` に使用するフォントパッケージ). 良い知らせは  `updmap-user` を実行できることで, 悪い知らせは (私のドキュメントの理解が正しければ) システム管理者が `updmap-sys` を実行するたびに, ユーザは `updmap-user` を再実行せねばならないことです. ユーザにとっての保守的な戦略は, 以前にはなかったフォントの問題に出くわすたびに, `updmap-user` を実行することです (R ユーザは `system2('updmap-user')` を実行できます).
+
+## 私は Debian/Ubuntu ユーザです. TeX Live が依存している他のパッケージをインストールすることを止めるにはどうしたらいいですか? TinyTeX と公式の TeX Live のパッケージを両方ともインストールしたくない (あるいは, 必要がない) です.
+
+はい, `apt-get install` は依存パッケージをインストールする時, なんらかの `texlive-*` をインストールするかもしれません (例えば, `apt-get install dvipng` は `texlive-base` もインストールするかもしれません). あなたが `apt-get` に「だまされて」 [texlive-local.deb](https://travis-bin.yihui.org/texlive-local.deb) をダウンロードしインストールしてしまう可能性があります.
+
+```sh
+wget "https://travis-bin.yihui.org/texlive-local.deb"
+sudo dpkg -i texlive-local.deb
+rm texlive-local.deb
+```
+
+このパッケージは [debian-control-texlive-in.txt](https://github.com/scottkosty/install-tl-ubuntu/blob/master/debian-control-texlive-in.txt) 上で [`equivs-build`](http://manpages.ubuntu.com/manpages/trusty/man1/equivs-build.1.html) を実行することでビルドされます (Scott Kostyshak による). 基本的に全ての `texlive` パッケージが (実際にはインストールされていないのに) インストールされているように擬態するので, あなたはどの LaTeX パッケージを自分で選ぶ完全な自由 (そして責任) を獲得します.
+
+個人的には LaTeX パッケージを全て `texlive-*` パッケージとして, そしてそれぞれに LaTeX パッケージを梱包して Linux (Debian など) で配布することを好みません. これはあなたが必要なパッケージが1つだけであっても, いくつかの他のパッケージをインストールしなければならないことを意味しています. R ユーザとして (あるいは Python なり他の言語なり) 想像してみてください, 1万を超える R パッケージが, CRAN が 20 **組** のパッケージとしてビルドされていて, あなたが必要としているのが **ggplot2** パッケージだけなのに他の関連するデータ可視化パッケージが全て強制的にインストールされてしまうとき, あなたはどうしますか? こんなことをする明らかな利点は,  (もしかすると) 毎回毎度毎度のように不足しているパッケージをインストールする必要がなくなることですが, 無駄を削ぎ落とした TeX Live ディストリビューションと, インストールするパッケージを自分で選ぶほうが私は好きです (私にとって全く難しいことではありません).
+
+**訳注**: equivs-build と同様のことは TeX Wiki のこのページ https://texwiki.texjp.org/?texlive-dummy でも紹介されています.
+
+## インストール先ディレクトリを変えることはできますか? {#change-directory}
+
+ディレクトリのパスはインストールスクリプトにハードコードされているので, TinyTeX インストール時にコマンドラインから変更することはできません. Linux macOS, Windows ではデフォルトで隠しディレクトリになるため, 私はこの場所を選びました. TeX Live はほとんどの場合でインストール場所に注意することも (要求することも) ありません. あなたが本当にディレクトリを変更したいなら, いくつかの方法があります.
+
+* ダウンロードとインストール用のスクリプトを自分で改造することができます (スクリプトはオープンソースです)
+
+* R ユーザなら, R パッケージの **tinytex** をインストールし,  `tinytex::install_tinytex()` の `dir` 引数にカスタムディレクトリを与えることができます.
+
+* あるいは TinyTeX を先にインストールしてから, 好きな場所にフォルダごと移動させます (USB スティックに移動することもできます). TinyTeX が TinyTeX が TeX Live の**ポータブル**版だという理由です. この方法のトリッキーなところは, `PATH` 変数に対処することです. `tlmgr path add` を実行する必要がありますが, デフォルトのインストール場所から移動すると `tlmgr` は `PATH` にはありません. そこで, `tlmgr` をフルパスで実行しなければなりません. これが例です.
+
+```sh
+# Linux 上で ~/.TinyTeX から /opt/tinytex に移動する想定
+/opt/tinytex/bin/*/tlmgr path add
+
+# macOS 上で ~/Library/TinyTeX から /opt/tinytex に移動する想定
+/opt/tinytex/bin/*/tlmgr path add
+
+# Windows 上で %APPDATA%\TinyTeX から C:\Software\TinyTeX に移動する想定
+"C:\Software\TinyTeX\bin\win32\tlmgr" path add
+```
+
+これが必要なのは1度だけです. FAQ \@ref(sys-install) の方法で TinyTeX をインストールしたなら, `tlmgr path add` は `sudo` で実行する必要があります.
+
+## USB ドライブや他のポータブルデバイスに TinyTeX をインストールするにはどうすればいいですか?
+
+すでに述べたように TinyTeX は TeX Live のポータブル版です. よって簡単にポータブルデバイスにコピーすることができます. あなたがする必要があるのは他のコンピュータにデバイスを挿してから `tlmgr path add` を実行することだけです. ここでもポータブルデバイスの `tlmgr` のフルパスが必要です (FAQ \@ref(change-directory)を見てください). このコマンドを実行してアプリケーションを再起動すれば, フルパスなしで `tlmgr` を実行できるはずです.
+
+あなたが R ユーザなら上記のステップは以下の2つの関数でできます.
+
+    
+```{r, eval=F}
+# インストール済みの TinyTeX をどこにコピーするか
+tinytex::copy_tinytex()
+# TinyTeX がデバイスのどこにあるかを指定し, tlmgr path add を実行
+tinytex::use_tinytex()
+```
+
+あるプラットフォームでインストールした TinyYeX は, 同じプラットフォーム上でのみ動作することに注意してください. 例えば Windows 版は Windows でしか動作しません. 例えば TinyTeX の macOS 版は Windows マシンにコピーすることも使うこともできません.
+
+これは情報システム担当者やシステム管理者を介さなくていいすばらしいやり方です. LaTeX パッケージをインストールしたりアップグレードしたりするよう彼らに要求する必要がありません. 全て自分でやることができます.
+
+**訳注**: 昨今では USB ドライブを勝手に挿入することもセキュリティ面で問題視されそうな気がするので注意してください.
+
+## デフォルトのインストールパスに TeX Live の年度が含まれていないのはなぜですか?
+
+TeX Live はデフォルトでは `/usr/local/texlive/2017` のように年度で名付けたフォルダにインストールされます (MacTeX でもそうです). 普通のユーザにとってはこれにあまり意味がないと私は思っています. TeX Live の開発者以外に, 同一のコンピュータに TeX Live の複数のバージョンをインストールしたい人がいるでしょうか? TeX Live の完全版は巨大であり, 毎年のようにディスク容量を食いつぶすようなことは, あなたもきっと望んでないでしょう.
+
+繰り返しますが, TinyTeX のインストール場所を変更したいなら, あなたにはそれが可能です.
+
+ある TinyTeX ユーザが, 自分はこのことに気づかずに毎年 TeX Live (MacTeX) をインストールしていた, と私に教えてくれました. TinyTeX を試しに使ってみなかったら, これらの  `/usr/local/texlive/2015`, `.../2016`, and `.../2017`, といった複数の TinyTeX フォルダが合計で 15GB にもなっていたことに気づかなかったことでしょう. このことは私の推測の裏付けになります. ユーザはしょっちゅう, 過去のバージョンのアンインストールや上書きをせずに TeX Live の新バージョンをインストールしていることを知らず, このモンスターは毎年ごとに大きく成長しています. そう, 今日ではディスク容量は安上がりですが, それは無駄遣いしてもよいということを意味しません.
+
+## 数年前にインストールしたTinyTeXをアップグレードするにはどうすればいいですか? "tlmgr: Remote repository is newer than local (2017 < 2018)" のようなメッセージが出てきました.
+
+インストールスクリプトが常に最新版をインストールしているように, TinyTeX を再度インストールすることができます. しかし現在インストールされている LaTeX パッケージは失われます. これらのパッケージも再インストールしたいなら,  この R 関数を使うとよいでしょう.
+
+```{r, eval=F}
+tinytex::reinstall_tinytex()
+```
+
+R を使用していないなら, パッケージのリストを取得し, あとでインストールできます.
+
+```sh
+TL_INSTALLED_PKGS=$(tlmgr info --list --only-installed --data name | tr '\n' ' ')
+# この後ホームページに書いた方法で TinyTeX を再インストールします.
+# TinyTeX を再インストールしたら, 以下でパッケージも再インストールします
+tlmgr install $TL_INSTALLED_PKGS
+```
+
+## R パッケージの tikzDevice の使用にはどの LaTeX パッケージが必要ですか?
+
+グラフィックデバイスの `tikzDevice::tikz()` を使用するにはこれらの LaTeX パッケージが必要です.
+
+```sh
+tlmgr install pgf preview xcolor
+```
+
+## `tlmgr` を実行するたびに "not verified: gpg unavailable" という警告が現れます. この警告はどうやったら表示されなくなりますか?
+
+この文が示すように, あなたのシステムに `gpg` (GnuPG) がありません.
+
+```
+tlmgr: package repository http://example.org/.../tlnet (not verified: gpg unavailable)
+```
+
+Windows と macOS で TeX Live を使用しているなら, `gpg` をインストールする最も簡単な方法は http://www.preining.info/tlgpg/ です. "one-time installation" で十分です.
+
+:::{.infobox .memo data-latex="{memo}"}
+
+**訳注**:  2021/6/24 時点に確認した限りでは, "one-time installation" は以下を実行するだけで十分らしいです. `sudo` をつけるべきかどうかは, これ以前の項目を参考にしてください (翻訳者は未確認です)
+
+```sh
+tlmgr --repository http://www.texlive.info/tlgpg/ install tlgpg
+```
+
+また, Windows/macOS ユーザでないならばこれは**不要**です. 通常の方法で GnuPG をインストールするだけで十分です.
+
+:::
+
+
+## HTTP/HTTPS/FTP プロキシで TinyTeX/LaTeX パッケージをインストールするにはどうすればいいですか?
+
+`~/.wgetrc` ファイル (`~` はあなたのホームディレクトリを表しています) を作成し, 変数 `http_proxy`, `https_proxy`, あるいは `ftp_proxy` を設定するとよいでしょう. 例えばこのように.
+    
+```config
+http_proxy=http://user:password@proxy.example.com:8001/
+```
+    
+詳細は [tug.org のこのページ](https://www.tug.org/texlive/acquire-netinstall.html)と [`wget` のドキュメント](https://www.gnu.org/software/wget/manual/html_node/Proxies.html)を見てください.
+
+## macOS で Homebrew を使って TinyTeX をインストールすることはできますか?
+
+できます. ただし明確な利点はありませんから, 私としてはこの方法はお勧めしません.
+
+```sh
+brew install -v yihui/tinytex/tinytex
+```
+
+Formula は GitHub レポジトリ [yihui/homebrew-tinytex](https://github.com/yihui/homebrew-tinytex) にあります. この方法を使わなければならないなら, 以下2点の注意事項に留意すべきです.
+
+* Homebrew は TeX Live のシンボリックリンクを管理し (`brew link tinytex` で), `/usr/local/bin` 以下にリンクを作成します. このコマンドで `tlmgr path add` と同じ場所にシンボリックリンクが作られるので, インストール後に `tlmgr path add` を実行しないほうがよいです. (`tlmgr install` で) **metafont** のようなバイナリを含む TeX Live パッケージ (`mf` を含んでいます) をインストールしたときには, 以下を実行すべきです.
+
+    ```sh
+    brew postinstall tinytex && brew unlink tinytex && brew link tinytex
+    ```
+
+* Homebrew で **tinytex** を更新した後は (`brew update && brew upgrade` によって), すでに自分でインストールした LaTeX パッケージはもはや使用できず, 再インストールする必要があります. 解決法の1つとして `brew pin tinytex` でこの formula を将来にわたって更新させないようにします (実際, アップグレードの必要はありません). 別の解決法は, formula の HEAD 版を使用することです.
+    
+    ```sh
+    brew cleanup -s
+    brew remove tinytex
+    brew install -v --HEAD tinytex
+    ```
+
+    これらの問題がとても複雑だと感じたら (実際複雑です), ホームページ (\@ref(tinytex)節) に書いてあるような macOS に TinyTeX をインストールする簡単な手順にしたがってください.
+
+## ここで説明されているコマンドをコマンドウィンドウ (ターミナル) を開いて実行するにはどうすればいいですか?
+
+Linux ユーザに対してはこの質問の回答をしません.^[**訳注**: ディストリビューションによって異なりますし, デスクトップ環境ならばおそらく自明でしょう.] macOS ユーザに対しては `Command + Space` で Spotlight 検索を立ち上げ, `Terminal` とタイプしてください. 結果の最初が `Terminal.app` となっているはずです. それだけです. Windows ユーザの場合, タスクバー上の Windows のアイコンを右クリックして `Widnwos PowerShell` を選んでください
+
+あなたが[RStudio](https://www.rstudio.com) ユーザならば, より簡単です. v1.1 以降の RStudio には[ターミナルのビルトインサポート](https://blog.rstudio.com/2017/08/11/rstudio-v1-1-preview-terminal/) があるので, RStudio 内でターミナルを開くことができます.

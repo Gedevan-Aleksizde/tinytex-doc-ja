@@ -1,0 +1,19 @@
+rmdja::gitbook_ja:
+  keep_md: no
+  css: header.css
+  config:
+    fontsettings:
+      family: serif
+    toc:
+      collapse: none
+      before: '<li><p style="text-align:center;"><a href="index.html"><img src="../yuhui/static/images/logo-tinytex.png" style="display: inline-block; max-width:80px; max-height:80px; width: auto; height: auto;"></a></p></li>'
+      after: "<p style='text-align:center;display:block;margin: 0 auto;'><img src='https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png'></p><li><a href='https://bookdown.org' target='_blank'>Published with bookdown</a></li>"
+    sharing:
+      github: yes
+      twitter: yes
+      facebook: no
+      all: ['facebook', 'linkedin', 'instapaper', 'weibo', 'vk']
+rmdja::pdf_book_ja:
+  keep_tex: yes
+  block_style: tcolorbox
+  extract_media: yes

@@ -1,0 +1,210 @@
+---
+title: "TinyTeX 非公式日本語版ドキュメント"
+date: "`r format(Sys.Date(), '%Y/%m/%d')`"
+site: bookdown::bookdown_site
+author: 
+  - Xie, Yihui (Author)
+  - "Katagiri, Satoshi^[twitter id: ill_identified] (Translator)"
+subtitle: 軽量・クロスプラットフォーム・ポータブル・メンテナンスも容易な TeX Live ベースの LaTeX ディストリビューション
+documentclass: bxjsreport
+link-citations: yes
+linkcolor: blue
+citecolor: blue
+urlcolor: magenta
+github-repo: Gedevan-Aleksizde/knitr-doc-ja
+---
+
+```{r include=F}
+knitr::opts_chunk$set(eval=F)
+```
+
+# TinyTeX {#tinytex}
+
+::::::{.infobox .caution data-latex="{caution}"}
+
+**注意**
+
+このドキュメントは Xie, Yihui 氏による TinyTeX のドキュメントの翻訳であり, CC BY-NC-SA 4.0 (クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際) ライセンスで提供されています. Yihui 氏によるオリジナルは https://yihui.org/tinytex/ で読むことができます.
+
+:::{}
+
+This is an unofficial Japanese translation of Yihui’s TinyTeX documentation, which is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). The original documentation by Yihui is [here](https://yihui.org/tinytex/).
+
+:::
+
+::::::
+
+\newpage
+
+TinyTEX は TeX Live を元にした軽量 (macOS/Linux ではおよそ 61 Mb, Windows では(g)zip圧縮して 94 Mb) なカスタム LaTeX ディストリビューションですが, ほとんどの場面, 特にRユーザーにとってよく機能します. LaTeX パッケージが足りないという問題に直面しても, あなたが何をすべきかはとても明快です (実際Rユーザは何もする必要がありません). **実際に必要なのは LaTeX パッケージをインスールするだけです**.
+
+![Hao Zhu \@haozhu233 による TinyTeX ロゴ](../yihui/static/images/logo-tinytex.png)
+
+現在 TinyTeX はRユーザーにとって最善です. その他のユーザも使うことができます. LaTeX パッケージが自動的にインストールされず, 手動でする必要がありますが. あるいはありとあらゆるパッケージをインストールすることもできます (やり方は FAQ \@ref(faq-tinytex-size) 参照) が, その数は数千にもなることに注意してください.
+
+TinyTeX のインストールまたは動作には管理者権限が**不要**です. これは `sudo` も 情シス担当者の助けもなくてよいということです. フラッシュドライブから TinyTeX を起動することすら可能です.
+
+
+
+## R ユーザへ
+
+R パッケージの **tinytex** (\@ref(r)節) がラッパ関数を提供しているので R ユーザにとって TinyTeX のインストールと保守は簡単です (備考: 太い小文字で **tinytex** といえば R パッケージをさし, キャメルケースで TinyTeX といえば LaTeX ディストリビューションを意味することとします). **tinytex** を使って TinyTeX をインストールできます.
+
+```{r, eval=F}
+install.packages('tinytex')
+tinytex::install_tinytex()
+# アンインストールするときは tinytex::uninstall_tinytex() を実行
+```
+
+R Markdown 文書を PDF にコンパイルするために, 以下の他に知るべきことは何もありません.
+
+R Markdown 文書を PDF にコンパイルするためには, 使用したい LaTeX エンジンに応じて, **tinytex** の `pdflatex()`, `xelatex()`, `lualatex()` のいずれかの関数を呼び出します. これらの関数が, 必要なのにインストールされていない LaTeX パッケージを検出すると, デフォルトでは自動的に欠落したパッケージをインストールします.
+
+```{r, eval=F}
+writeLines(c(
+ '\\documentclass{article}',
+ '\\begin{document}', 'Hello world!', '\\end{document}'
+), 'test.tex')
+tinytex::pdflatex('test.tex')
+```
+
+普通の R ユーザーが知るべきことは以上です. あなたが開発者なら, `tinytex:::install_yihui_pkgs()` で[いくつかのパッケージ](https://github.com/yihui/tinytex/blob/master/tools/pkgs-yihui.txt)をインストールしたいと思うかもしれません. この関数は CRAN のパッケージの多くの PDF ビネットをビルドするのに必要な関数をインストールすることで, あなたがパッケージを探す手間を[省いてくれます](https://github.com/yihui/tinytex/issues/135).
+
+R を使用していないなら, 知る必要があることがもう1つあります. `tlmgr` コマンドです.
+
+## Rユーザ以外へ
+
+TinyTeX はあなたがコマンドラインを使用することを怖がっていないことを想定しています. もし苦手意識があるなら, 代わりに他の普及している LaTeX ディストリビューションを使ってください. 実際のところ, 知る必要があるのは `tlmgr` コマンドだけです. どうか過剰に恐れないでください.
+
+
+### インストール
+
+TinyTeX のバイナリパッケージは1月ごとに, GitHub レポジトリ https://github.com/yihui/tinytex-releases としてリリースされています.
+
+Linux ユーザの場合は TinyTeX は `$HOME/.TinyTeX` にインストールされ, 実行ファイル (`xelatex`, `lualatex` など) のシンボリックリンクは `$HOME/bin` に作成されます. このパスは通常 `PATH` 環境変数に存在するはずです.^[もしそうでなかったらどうするか, Linux ユーザなら `PATH` に追加する方法を知っていることでしょう!]
+
+```sh
+wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh
+```
+
+macOS ユーザの場合は, `/usr/local/bin` への書き込み権限がないなら, TeX Live の実行ファイルのシンボリックリンクを `/usr/local/bin` に貼るために以下のコマンドを実行したほうがいいかもしれません(理由は[これ](https://github.com/yihui/tinytex/issues/188)).^[**訳注**: リンク先はこの記述の経緯が書かれているだけです.]
+
+```sh
+sudo chown -R $(whoami) /usr/local/bin
+```
+
+TinyTeX は macOS では `~/Library/TinyTeX` にインストールされます.
+
+```sh
+curl -sL "https://yihui.org/tinytex/install-bin-unix.sh" | sh
+```
+
+Windows ユーザの場合, バッチファイル [install-bin-windows.bat](https://yihui.org/tinytex/install-bin-windows.bat) を保存し (リンクを開いて `Ctrl + S`), ファイルをダブルクリックしてください.^[アンチウィルスソフトがいずれかの `*.dll` ファイルに対して警告を発するかもしれませんが, 私は Windows の専門家ではありません. 決断はあなたに委ねます.] PowerShell ([少なくともバージョン 3.0 以降](https://docs.microsoft.com/en-us/powershell/scripting/setup/starting-windows-powershell-on-earlier-versions-of-windows)) であることに注意してください. あなたの Windows のバージョンが古すぎてパワーシェルをインストールできない場合, [この記事](https://docs.microsoft.com/en-us/powershell/scripting/setup/starting-windows-powershell-on-earlier-versions-of-windows)に従ってインストールしてください. インストールディレクトリは `%APPDATA%/TinyTeX` で, `APPDATA` は典型的には `C:\Users\Your Name\AppData\Roaming` を指す環境変数です.^[興味があるなら, スタートメニューをクリックし, `cmd` とタイプして実行してコマンドウィンドウを開き, `echo %APPDATA%` とタイプして実行すれば実際のファイルパスが分かります.]
+
+:::{.infobox .memo data-latex="{memo}"}
+
+**訳注**: 昔の話だからかリンクが切れています. 古いバージョンの互換性に詳しい方がいたら教えてください. 最近の市販品はこれより新しいバージョンの PowerShell が最初から使えることが多いためあまり気にする必要がないとは思いますが, 現在の日本語の PowerShell のインストールに関するドキュメントは[こちら](https://docs.microsoft.com/ja-jp/powershell/scripting/install/installing-powershell?view=powershell-7.1)になります.
+
+:::
+
+代わりに Chocolatey か Scoop を使って TinyTeX をインストールすることもできます. 手順は[TinyTeX のリリース情報](https://github.com/yihui/tinytex-releases)を確認してください.
+
+TinyTeX をアンインストールするなら, ファイルマネージャ/ブラウザ等でフォルダごと消すだけです. あるいはコマンドラインで以下を実行するだけです.
+
+```sh
+# Linux の場合
+tlmgr path remove
+rm -r "~/.TinyTeX"
+
+# macOS の場合
+tlmgr path remove
+rm -r ~/Library/TinyTeX
+
+# Windows の場合
+tlmgr path remove
+rd /s /q "%APPDATA%\TinyTeX"
+```
+
+他の LaTeX ディストリビューションと TinyTEX のアンインストール方法を比べてみてください. 他のディストリビューションと比べ TinyTeX がいとも簡単にアンインストールできることをあなたはきっと評価するでしょう. これは TinyTeX が自己完結的なフォルダ構成になっているからです.
+
+
+### メンテナンス
+
+この節は R Markdown ユーザー**以外**を対象としています. R Markdown ユーザにとっては何もかも自動的に行われ, 欠落した LaTeX パッケージを手作業で探したりインストールしたりする必要はありません.
+
+LaTeX 文書をコンパイルして, このようなエラー文が流れてくるかもしれません.
+
+```
+! LaTeX Error: File `times.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+```
+
+これは基本的にはある LaTeX パッケージが足りないことを意味しています. 慌てないでください. コマンドウィンドウを開き, `tlmgr search --global --file` タイプし, その後に続けてファイル名をタイプしてください.^[ファイル名の前のスラッシュも正確に合わせてください. スラッシュがない場合, 他のパッケージがマッチするかもしれません. たとえば `chemtimes.sty` とか.] 例えば, 以下のようになります.
+
+
+```sh
+$ tlmgr search --global --file "/times.sty"
+psnfss:
+        texmf-dist/tex/latex/psnfss/times.sty
+...
+```
+
+上記のエラーログに現れた名前のファイルを含むパッケージを見つけてください. 今回は足りないパッケージは `psnfss` で,  `tlmgr install` でインストールすることができます.
+
+```sh
+tlmgr install psnfss
+```
+
+代わりの方法として, GitHub レポジトリの [yihui/latex-pass](https://github.com/yihui/latex-pass) にエラーログをアップロードするだけで, クラウド上で `tlmgr search` が実行され不足しているパッケージを教えてくれます.
+
+理解するのが難しいエラーメッセージを見つけたなら, 全てアップデートしてしまうとよいかもしれません.
+
+```sh
+tlmgr update --self --all
+tlmgr path add
+fmtutil-sys --all
+```
+
+R ユーザにとっては, これらに対応する便利関数が使用できます. いくつか例を挙げます.
+
+```r
+library(tinytex)
+tlmgr_search('/times.sty')   # times.sty を検索する
+tlmgr_install('psnfss')      # psnfss パッケージを検索する
+tlmgr_update()               # 全て更新する
+```
+
+"Remote repository newer than local" というエラーメッセージを見たら, それは TinyTeX を手動でアップグレード (再インストール) する時であることを意味しています.
+
+```r
+tinytex::reinstall_tinytex()
+```
+
+以下のようなメッセージを見ても慌てないでください. 数ヶ月待ってから, TinyTeX を再インストールするだけです.
+
+> TeX Live 2018 is frozen forever and will no longer be updated.  This happens in preparation for a new release.
+
+> If you're interested in helping to pretest the new release (when pretests are available), please read https://tug.org/texlive/pretest.html. Otherwise, just wait, and the new release will be ready in due time.
+
+
+普通のユーザにとって知るべきことは以上です. TinyTeX に関するより技術的に詳細なことを知りたいならば, \@ref(faq) 節を読んでください.
+
+## モチベーション
+
+TinyTeX の背景のモチベーションとして, LaTeX ディストリビューションとインストールと維持に関する共通の2つの問題がありました.
+
+1.比較的小さい (数百 Mb) の基本バージョンをインストールしなければならないが, そうするとはおそらくきっと頻繁に使われる LaTeX パッケージが欠落しているせいで動作しない. しかし数GBのフルバージョンをインストールしたとして, 生涯できっとそのうち1%も使わない.
+
+1. インストールとメンテナンスに関するドキュメントはしばしば初心者にとっては長すぎる. 例えば[`tlmgr` のマニュアル](https://www.tug.org/texlive/doc/tlmgr.html) は包括的な内容で有用ですが, ある `.sty` ファイルが見つからないという問題が生じた時にどうすればいいのか解決するのが難しい.
+
+1. 既存の LaTeX ディストリビューションはインストールやメンテナンスにしばしば管理者権限を要求しています. `sudo` や情シス担当に問い合わせることは大いに面倒を生んでいました.
+
+幸いにも TeX Live ベースのよい突破口がありました. TeX Live はすばらしい. クロスプラットフォームであり (そう Windows 上でも動作します), ポータブルにすることも**可能**です. 我々は単に軽量で, メンテナンスも簡単にする必要があるだけです. そこで TinyTeX の出番です.
+
+## 謝辞
+
+TinyTeX は TeX Live チームの偉大な業績なくしてありえませんでした. これに感謝したいと思います. 私は特に, ソースコードとドキュメントをインストールから省くオプションを提案してくれたことをうれしく思っています.
+
+極めて注意深く, そして忍耐強く[テスト](https://d.cosx.org/d/419672)し, さらにはとても有意義なフィードバックをくれた [Peng Zhao](http://www.pzhao.org) と [Miao Yu](https://yufree.cn) には感謝してもしきれません. [Carl Boettiger](https://www.carlboettiger.info), [TC](http://tc.rbind.io), [Ce Gao](https://github.com/gaocegege), [Xiangyun Huang](https://github.com/XiangyunHuang) にもベータテストを手伝ってもらいました. 六角形ロゴは [Hao Zhu](https://github.com/haozhu233) によるデザインです.

@@ -1,0 +1,33 @@
+book_filename: tinytex.Rmd
+output_dir: "../docs"
+delete_merged_file: true
+rmd_files:
+    - 'index.Rmd'
+    - 'faq.Rmd'
+    - 'r.Rmd'
+#    - 'pain.Rmd'
+    - 'cn.Rmd'
+history: https://github.com/Gedevan-Aleksizde/tinytex-doc-ja/commits/master/source/%s
+edit: https://github.com/Gedevan-Aleksizde/tinytex-doc-ja/edit/master/source/%s
+download: ["pdf"]
+language:
+  label:
+    fig: '図 '
+    tab: '表 '
+    eq: '式 '
+    thm: '定理 '
+    lem: '補題 '
+    cor: '系 '
+    prp: '命題 '
+    cnj: '予想 '
+    def: '定義 '
+    exm: '例 '
+    exr: '練習 '
+    proof: '証明. '
+    remark: '用例. '
+    solution: '解答. '
+  ui:
+    edit: "Edit"
+    chapter_name: ''
+    section_name: "SS "
+    appendix_name: '補遺'
