@@ -68,7 +68,7 @@ TinyTeX は TeX Live を元にした軽量 (macOS/Linux ではおよそ 61 Mb, W
 
 <center>
 
-![Hao Zhu \@haozhu233 による TinyTeX ロゴ](../yihui/static/images/logo-tinytex.png)
+![Hao Zhu \@haozhu233 による TinyTeX ロゴ](https://github.com/rbind/yihui/blob/e89f32e9f23d5271ad48261767b2326b87e83d9c/static/images/logo-tinytex.png?raw=true)
 
 </center>
 

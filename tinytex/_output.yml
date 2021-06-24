@@ -6,7 +6,7 @@ rmdja::gitbook_ja:
       family: serif
     toc:
       collapse: none
-      before: '<li><p style="text-align:center;"><a href="index.html"><img src="../yuhui/static/images/logo-tinytex.png" style="display: inline-block; max-width:80px; max-height:80px; width: auto; height: auto;"></a></p></li>'
+      before: '<li><p style="text-align:center;"><a href="index.html"><img src="https://github.com/rbind/yihui/blob/e89f32e9f23d5271ad48261767b2326b87e83d9c/static/images/logo-tinytex.png?raw=true" style="display: inline-block; max-width:80px; max-height:80px; width: auto; height: auto;"></a></p></li>'
       after: "<p style='text-align:center;display:block;margin: 0 auto;'><img src='https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png'></p><li><a href='https://bookdown.org' target='_blank'>Published with bookdown</a></li>"
     sharing:
       github: yes
