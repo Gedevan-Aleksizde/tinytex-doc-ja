@@ -215,15 +215,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="uplatex-や-upbibtex-使用者へ" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> (u)pLaTeX や (u)pBibTeX 使用者へ</h2>
-<p>これらの LaTeX エンジン (および, 頭に <code>up</code> とついているもの概ね全て) は日本で独自に開発されてきたものであるため, <strong>tinytex</strong> や <strong>rmarkdown</strong> パッケージではオプションとしてあまり考慮されていません. LaTeX ディストリビューションとしては TeX Live と同様に使うことができます.</p>
-<p><strong>rmarkdown</strong> で使用したい場合は翻訳者の開発した <strong>rmdja</strong> パッケージのヘルプやドキュメントを参考にしてください.</p>
-<p><strong>tinytex</strong> パッケージで (u)pLaTeX/(u)pBibTeX による処理を <code>xelatex()</code> や <code>pdflatex()</code> のように呼び出したい場合, <code>latexmk()</code> を使用します. TeX Wiki の<a href="https://texwiki.texjp.org/?Latexmk">このページ</a> に掲載されている <code>.latexmkrc</code> ファイルを作成し<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a>, 作業フォルダに置いた上で, 以下のようなコマンドを実行します.</p>
+<p>LaTeX ディストリビューションとしては TinyTeX でも TeX Live と同様に (u)pLaTeX や (u)pBibTeX を使うことができます. しかしこれらの LaTeX エンジン (および, 頭に <code>up</code> とついているもの概ね全て) は日本で独自に開発されてきたものであるため, <strong>tinytex</strong> や <strong>rmarkdown</strong> パッケージではオプションとしてあまり考慮されていません.</p>
+<p><strong>rmarkdown</strong> を使用する場合, 基本的に XeLaTeX または LuaLaTeX を使用して日本語文書をコンパイルしたほうが簡単です. ただし従来の pLaTeX と異なり, bxjs/ltjs シリーズの文書クラスを使用したほうが品質の良い日本語文書を作成できます. 日本語文書のための設定に関する詳細は翻訳者の開発した <a href="https://github.com/Gedevan-Aleksizde/rmdja"><strong>rmdja</strong> パッケージ</a>のヘルプやドキュメントや, <a href="https://rpubs.com/ktgrstsh/755893" class="uri">https://rpubs.com/ktgrstsh/755893</a> を参考にしてください. <strong>rmdja</strong> には試験的ですが (u)pLaTeX を使用する機能もあります.</p>
+<p>一方で, 以降は <strong>rmarkdown</strong> ではなく従来の LaTeX ディストリビューションの代わりとして <strong>tinytex</strong> を使いたい場合の解説をします. まず, 日本語環境を想定していないため文献引用もデフォルトでは BibTeX が呼び出されるため, (u)pBibTeX を想定したファイルを使用しているとハングアップの原因となります. <strong>tinytex</strong> パッケージで (u)pLaTeX/(u)pBibTeX による処理を <code>xelatex()</code> や <code>pdflatex()</code> のように呼び出したい場合, <code>latexmk()</code> を使用します. TeX Wiki の<a href="https://texwiki.texjp.org/?Latexmk">このページ</a> に掲載されている <code>.latexmkrc</code> ファイルを作成し<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a>, 作業フォルダに置いた上で, 以下のようなコマンドを実行します.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb18-1"><a href="addendum-ja.html#cb18-1"></a>tinytex<span class="sc">::</span><span class="fu">latexmk</span>(<span class="st">&quot;&lt;あなたのファイル&gt;.tex&quot;</span>, <span class="at">engine =</span> <span class="st">&quot;latex&quot;</span>,</span>
 <span id="cb18-2"><a href="addendum-ja.html#cb18-2"></a>  <span class="at">bib_engine =</span> <span class="st">&quot;bibtex&quot;</span>, <span class="at">engine_args =</span> <span class="st">&quot;-latex=uplatex -gg -pdfdvi&quot;</span>,</span>
 <span id="cb18-3"><a href="addendum-ja.html#cb18-3"></a>  <span class="at">emulation =</span> F, <span class="at">clean =</span> F)</span></code></pre></div>
 <p>ここで <code>.latexmkrc</code> の設定を忘れていると, <code>bibtex</code> の処理でハングアップしてしまうため, おかしいと思ったら早めに <code>bibtex</code> を強制終了してください (最初はタスクスケジューラなどを見ながら試すといいかもしれません).</p>
 <p>また, この方法では <strong>tinytex</strong> の<strong>不足パッケージ自動インストール機能が無効</strong>であることに注意してください.</p>
 <p>これは現在一般的な <code>dvipdfmx</code> を利用して PDF を生成する場合です. 例えば <code>dvips</code> を使用する場合は別のオプションが必要になりますが, それは latexmk の使い方としてご自身で調べてください.</p>
+<p>また, BibTeX 問題を回避する別の方法として <code>bib_engine = "biber"</code> を指定することで Biber (BibLaTeX) エンジンを使えばこの問題は起こりませんが, BibLaTeX には日本語に適した文献スタイルファイルがまだほとんど用意されていない, という問題があります (エラーが発生することは少ないと思いますが姓名の表記順などが考慮されていません).</p>
 </div>
 <div id="既存の-tex-live-使用者と後方互換性について" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> 既存の TeX Live 使用者と後方互換性について</h2>
@@ -233,14 +234,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="パッケージの自動インストール機能の限界について" class="section level2" number="3.4">
 <h2><span class="header-section-number">3.4</span> パッケージの自動インストール機能の限界について</h2>
-<p>TinyTeX のパッケージ自動インストール機能は, LaTe 文書のコンパイル時のエラーログから, ファイルが足りないというエラーメッセージをパターンマッチングで検出し, 必要なパッケージを探索しています. よってエラーメッセージが特殊なものである場合はうまく動作しません.</p>
+<p>TinyTeX のパッケージ自動インストール機能は, LaTeX 文書のコンパイル時のエラーログから, ファイルが足りないというエラーメッセージをパターンマッチングで検出し, 必要なパッケージを探索しています. よってエラーメッセージが特殊なものである場合はうまく動作しません.</p>
 <p>日本語ユーザでありがちなケースとして, 例えば以下のようなケースがあります.</p>
 <ol style="list-style-type: decimal">
-<li><code>luajs*</code> および <code>bxjs*</code> シリーズの文書クラスを使用している場合,</li>
+<li><code>ltjs*</code> および <code>bxjs*</code> シリーズの文書クラスを使用している場合,</li>
 <li><code>haranoaji</code> などの日本語フォントパッケージを使用している (かつ通常のフォントとしてインストールしていない) 場合</li>
 <li>先述の (u)pBibTeX を使用する場合</li>
 </ol>
-<p>最後の (3) は残念ながら根本的な解決はできませんが, エラーログファイルを <code>tinytex::parse_install()</code> に与えることで不足パッケージの自動解析および自動インストールをさせることができます.</p>
+<p>(1, 2) はうまくいかなかったという報告が以前ありましたが, 正確な原因は特定できていません. 現在は問題なく動作するかもしれません. 最後の (3) は残念ながら根本的な解決はできませんが, エラーログファイルを <code>tinytex::parse_install()</code> に与えることで不足パッケージの自動解析および自動インストールをさせることができます.</p>
 <p>もしうまく動作しない場合のために, 以下に XeLaTeX/LuaLaTeX を使用した日本語文書作成によく使用されるパッケージをまとめてインストールするコマンドを用意しました.</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb19-1"><a href="addendum-ja.html#cb19-1"></a>tinytex<span class="sc">::</span><span class="fu">tlmgr_install</span>(<span class="fu">c</span>(<span class="st">&quot;bxjscls&quot;</span>, <span class="st">&quot;luatexja&quot;</span>, <span class="st">&quot;zxjatype&quot;</span>, <span class="st">&quot;zxjafont&quot;</span>,</span>
 <span id="cb19-2"><a href="addendum-ja.html#cb19-2"></a>  <span class="st">&quot;haranoaji&quot;</span>, <span class="st">&quot;jlreq&quot;</span>))</span></code></pre></div>
