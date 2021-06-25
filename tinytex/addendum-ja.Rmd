@@ -72,7 +72,7 @@ tinytex::tlmgr_install(c("bxjscls", "luatexja", "zxjatype", "zxjafont", "haranoa
 また, 本文 (FAQ\@ref(faq-tikz)) でも触れられているように, R の **tikzDevice** を使用する際もこのエラーにハマりがちです.
 
 ```{r eval=F}
-tinytex::tlmgr_install(c("pdf", "preview", "xcolor"))
+tinytex::tlmgr_install(c("pgf", "preview", "xcolor"))
 ```
 
 ## CTAN や TeX Live に登録されていないパッケージのインストール方法について
