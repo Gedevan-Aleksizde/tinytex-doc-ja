@@ -64,7 +64,7 @@ This is an unofficial Japanese translation of Yihui’s TinyTeX documentation, w
 
 \newpage
 
-TinyTeX は TeX Live を元にした軽量 (macOS/Linux ではおよそ 61 Mb, Windows では(g)zip圧縮して 94 Mb) なカスタム LaTeX ディストリビューションですが, ほとんどの場面, 特にRユーザーにとってよく機能します. LaTeX パッケージが足りないという問題に直面しても, あなたが何をすべきかはとても明快です (実際Rユーザは何もする必要がありません). **実際に必要なのは LaTeX パッケージをインスールするだけです**.
+TinyTeX は TeX Live を元にした軽量 (macOS/Linux ではおよそ 61 Mb, Windows では(g)zip圧縮して 94 Mb) なカスタム LaTeX ディストリビューションですが, ほとんどの場面, 特にRユーザーにとってよく機能します. LaTeX パッケージが足りないという問題に直面しても, あなたが何をすべきかはとても明快です (実際Rユーザは何もする必要がありません). **あなたが実際に必要な LaTeX パッケージをインスールするだけです**.
 
 <center>
 
