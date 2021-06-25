@@ -94,10 +94,10 @@ R Markdown 文書を PDF にコンパイルするためには, 使用したい L
 
 ```{r, eval=F}
 writeLines(c(
- '\\documentclass{article}',
- '\\begin{document}', 'Hello world!', '\\end{document}'
+ '\\documentclass[lualatex,ja=standard,haranoaji]{bxjsarticle}',
+ '\\begin{document}', 'ハロー日本語文書!', '\\end{document}'
 ), 'test.tex')
-tinytex::pdflatex('test.tex')
+tinytex::lualatex('test.tex')
 ```
 
 普通の R ユーザーが知るべきことは以上です. あなたが開発者なら, `tinytex:::install_yihui_pkgs()` で[いくつかのパッケージ](https://github.com/yihui/tinytex/blob/master/tools/pkgs-yihui.txt)をインストールしたいと思うかもしれません. この関数は CRAN のパッケージの多くの PDF ビネットをビルドするのに必要な関数をインストールすることで, あなたがパッケージを探す手間を[省いてくれます](https://github.com/yihui/tinytex/issues/135).
