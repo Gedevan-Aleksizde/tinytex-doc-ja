@@ -1,0 +1,2139 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
+%
+\documentclass[
+  xelatex,ja=standard,jafont=noto]{bxjsreport}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex,ifpdf,ifthen}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+
+% japanese font setting
+% if the preset is specified
+\ifxetex
+  \usepackage{xeCJKfntef}
+\fi
+\ifluatex
+  \usepackage{luatexja}
+  \usepackage[,noto]{luatexja-preset}
+\fi
+
+  \IfFileExists{pxrubrica.sty}{\usepackage{pxrubrica}}{}
+\ifluatex
+  \ltjsetparameter{%
+    jacharrange={-2,-3},
+    alxspmode={`/,allow},
+    alxspmode={`#,allow},
+    alxspmode={92,allow}
+  }
+\fi
+
+
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\ifpdf
+  \IfFileExists{microtype.sty}{% use microtype if available
+    \usepackage[]{microtype}
+    \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+  }{}
+\fi
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={TinyTeX 非公式日本語版ドキュメント},
+  pdfauthor={Xie, Yihui (Author); Katagiri, Satoshi (Translator)},
+  colorlinks=true,
+  linkcolor=blue,
+  filecolor=Maroon,
+  citecolor=blue,
+  urlcolor=magenta,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+% for compatible with kableExtra package functions.
+\usepackage{longtable,booktabs,dcolumn}
+%\usepackage{longtable,booktabs,dcolumn,array,multirow,wrapfig,float,colortbl,pdflscape,tabu,threeparttable,threeparttablex,makecell}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+
+
+% compatible mukti-columns macro
+% by "R Markdown Cookbook" Sec. 5.8
+\newenvironment{cols}[1][]{}{}
+\newenvironment{col}[1]{\begin{minipage}{#1}\ignorespaces}{%
+\end{minipage}
+\ifhmode\unskip\fi
+\aftergroup\useignorespacesandallpars}
+\def\useignorespacesandallpars#1\ignorespaces\fi{%
+#1\fi\ignorespacesandallpars}
+\makeatletter
+\def\ignorespacesandallpars{%
+\@ifnextchar\par
+{\expandafter\ignorespacesandallpars\@gobble}%
+{}%
+}
+\makeatother
+%-------
+
+
+% ---- XeLaTeX 専用のあれ ----
+\ifxetex
+  \usepackage{letltxmacro}
+  \setlength{\XeTeXLinkMargin}{1pt}
+  \LetLtxMacro\SavedIncludeGraphics\includegraphics
+  \def\includegraphics#1#{% #1 catches optional stuff (star/opt. arg.)
+    \IncludeGraphicsAux{#1}%
+  }%
+  \newcommand*{\IncludeGraphicsAux}[2]{%
+    \XeTeXLinkBox{%
+      \SavedIncludeGraphics#1{#2}%
+    }%
+  }%
+\fi
+
+% ---- custom blocks ----
+\makeatletter
+\newenvironment{kframe}{%
+\medskip{}
+\setlength{\fboxsep}{.8em}
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\makeatletter
+\@ifundefined{Shaded}{
+}{\renewenvironment{Shaded}{\begin{kframe}}{\end{kframe}}}
+\makeatother
+
+
+% --- custom blocks ---
+
+% ---- redefine quote format as modern
+\setlength{\fboxsep}{.8em}
+\usepackage{framed}
+\definecolor{quotebarcolor}{rgb}{0.2,0.2,0.2}
+\renewenvironment{quote}{\def\FrameCommand{{\color{quotebarcolor}{\vrule width 3pt}}\hspace{10pt}}\MakeFramed{\advance\hsize-\width\FrameRestore}}{\endMakeFramed}
+% ----
+% ---- tcolobox settings by the Cookbook Sec.9.6.2
+\usepackage{tcolorbox}
+% \newenvironment{blackbox}{\definecolor{shadecolor}{rgb}{0, 0, 0}\color{white}\begin{shaded}}{\end{shaded}}
+% \newtcolorbox{blackbox}{colback=black,colframe=orange,coltext=white,boxsep=5pt,arc=4pt}
+\newtcolorbox{greyblock}{colback=gray!20,colframe=orange,coltext=black,boxsep=5pt,arc=4pt}
+\newenvironment{infobox}[1]{\begin{itemize}\renewcommand{\labelitemi}{\raisebox{-.7\height}[0pt][0pt]{%
+  {\setkeys{Gin}{width=3em,keepaspectratio}\includegraphics{_latex/_img/#1}}}}
+  \setlength{\fboxsep}{1em}
+  \begin{greyblock}
+  \item
+  }{\end{greyblock}\end{itemize}
+}
+% ----
+
+% for block/block2 engine
+\newenvironment{memo}{\begin{infobox}{memo}}{\end{infobox}}
+\newenvironment{caution}{\begin{infobox}{caution}}{\end{infobox}}
+\newenvironment{important}{\begin{infobox}{important}}{\end{infobox}}
+\newenvironment{tip}{\begin{infobox}{tip}}{\end{infobox}}
+\newenvironment{warning}{\begin{infobox}{warning}}{\end{infobox}}
+% ---- custom block over ----
+
+% --- for soft wrapping in code block
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},breaklines,breakanywhere}
+% ----
+
+% ---- font style-changing macro for convenient ----
+\ifdefined\mcfamily
+  \newcommand{\textserif}[1]{{\rmfamily\mcfamily #1}}
+\else
+  \newcommand{\textserif}[1]{{\rmfamily #1}}
+\fi
+\ifdefined\gtfamily
+  \newcommand{\textsans}[1]{{\sffamily\gtfamily #1}}
+\else
+  \newcommand{\textsans}[1]{{\sffamily #1}}
+\fi
+% ----
+
+% ---- user-defined preamble here ----
+% ---- user-defined preamble over ----
+
+\usepackage[style=jauthoryear,natbib=true]{biblatex}
+
+
+\title{TinyTeX 非公式日本語版ドキュメント}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{軽量・クロスプラットフォーム・ポータブル・メンテナンスも容易な
+TeX Live ベースの LaTeX ディストリビューション}
+\author{Xie, Yihui (Author) \and Katagiri, Satoshi\footnote{twitter id:
+  ill\_identified} (Translator)}
+\date{ver. 1.2.2 (2021/07/16 18:02:49 JST, 本家の更新確認時刻:
+\href{https://github.com/rbind/yihui/tree/master/content/tinytex}{2021/06/06
+22:28:33 JST})}
+\usepackage{bxtexlogo}
+\colorlet{shadecolor}{gray!20}
+
+\usepackage{fmtcount}
+\ifdefined\theFancyVerbLine\renewcommand{\theFancyVerbLine}{\small \padzeroes[2]{\decimal{FancyVerbLine}}}\fi % adjust row number position
+\IfFileExists{bxcoloremoji.sty}{\usepackage{bxcoloremoji}}{}
+
+
+
+
+\begin{document}
+\maketitle
+
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\hypertarget{tinytex}{%
+\chapter{TinyTeX}\label{tinytex}}
+
+\begin{infobox}{caution}
+
+\textbf{注意}
+
+このドキュメントは Xie, Yihui 氏による TinyTeX
+のドキュメントの翻訳であり, CC BY-NC-SA 4.0 (クリエイティブ・コモンズ
+表示 - 非営利 - 継承 4.0 国際) ライセンスで提供されています. Yihui
+氏によるオリジナルは \url{https://yihui.org/tinytex/}
+で読むことができます.
+
+This is an unofficial Japanese translation of Yihui's TinyTeX
+documentation, which is licensed under
+\href{https://creativecommons.org/licenses/by-nc-sa/4.0/}{CC BY-NC-SA
+4.0}. The original documentation by Yihui is
+\href{https://yihui.org/tinytex/}{here}.
+
+\end{infobox}
+
+\newpage
+
+TinyTeX は TeX Live を元にした軽量 (macOS/Linux ではおよそ 61 Mb,
+Windows では(g)zip圧縮して 94 Mb) なカスタム LaTeX
+ディストリビューションですが, ほとんどの場面,
+特にRユーザーにとってよく機能します. LaTeX
+パッケージが足りないという問題に直面しても,
+あなたが何をすべきかはとても明快です
+(実際Rユーザは何もする必要がありません). \textbf{あなたが実際に必要な
+LaTeX パッケージをインストールするだけです}.
+
+\begin{figure}
+\centering
+\includegraphics{15c2850da53a2f8d8a1a30aa003bda21155e16ec.png}
+\caption{Hao Zhu @haozhu233 による TinyTeX ロゴ}
+\end{figure}
+
+現在 TinyTeX はRユーザーにとって最善です.
+その他のユーザも使うことができます. LaTeX
+パッケージが自動的にインストールされず, 手動でする必要がありますが.
+あるいはありとあらゆるパッケージをインストールすることもできます
+(やり方は FAQ \ref{faq-tinytex-size} 参照) が,
+その数は数千にもなることに注意してください.
+
+TinyTeX のインストールまたは動作には管理者権限が\textbf{不要}です.
+これは \texttt{sudo} も 情シス担当者の助けもなくてよいということです.
+フラッシュドライブから TinyTeX を起動することすら可能です.
+
+\hypertarget{r-ux30e6ux30fcux30b6ux3078}{%
+\section{R ユーザへ}\label{r-ux30e6ux30fcux30b6ux3078}}
+
+R パッケージの \textbf{tinytex} (\ref{r}節)
+がラッパ関数を提供しているので R ユーザにとって TinyTeX
+のインストールと保守は簡単です (備考: 太い小文字で \textbf{tinytex}
+といえば R パッケージをさし, キャメルケースで TinyTeX といえば LaTeX
+ディストリビューションを意味することとします). \textbf{tinytex} を使って
+TinyTeX をインストールできます.
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"tinytex"}\NormalTok{)}
+\NormalTok{tinytex}\SpecialCharTok{::}\FunctionTok{install\_tinytex}\NormalTok{()}
+\CommentTok{\# アンインストールするときは tinytex::uninstall\_tinytex() を実行}
+\end{Highlighting}
+\end{Shaded}
+
+R Markdown 文書を PDF にコンパイルするために,
+以下の他に知るべきことは何もありません.
+
+R Markdown 文書を PDF にコンパイルするためには, 使用したい LaTeX
+エンジンに応じて, \textbf{tinytex} の \texttt{pdflatex()},
+\texttt{xelatex()}, \texttt{lualatex()} のいずれかの関数を呼び出します.
+これらの関数が, 必要なのにインストールされていない LaTeX
+パッケージを検出すると,
+デフォルトでは自動的に欠落したパッケージをインストールします.
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\FunctionTok{writeLines}\NormalTok{(}\FunctionTok{c}\NormalTok{(}
+  \StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{documentclass[lualatex,ja=standard,haranoaji]\{bxjsarticle\}"}\NormalTok{,}
+  \StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{begin\{document\}"}\NormalTok{, }\StringTok{"ハロー日本語文書!"}\NormalTok{, }\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{end\{document\}"}
+\NormalTok{), }\StringTok{"test.tex"}\NormalTok{)}
+\NormalTok{tinytex}\SpecialCharTok{::}\FunctionTok{lualatex}\NormalTok{(}\StringTok{"test.tex"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+普通の R ユーザーが知るべきことは以上です. あなたが開発者なら,
+\texttt{tinytex:::install\_yihui\_pkgs()}
+で\href{https://github.com/yihui/tinytex/blob/master/tools/pkgs-yihui.txt}{いくつかのパッケージ}をインストールしたいと思うかもしれません.
+この関数は CRAN のパッケージの多くの PDF
+ビネットをビルドするのに必要な関数をインストールすることで,
+あなたがパッケージを探す手間を\href{https://github.com/yihui/tinytex/issues/135}{省いてくれます}.
+
+R を使用していないなら, 知る必要があることがもう1つあります.
+\texttt{tlmgr} コマンドです.
+
+\hypertarget{rux30e6ux30fcux30b6ux4ee5ux5916ux3078}{%
+\section{Rユーザ以外へ}\label{rux30e6ux30fcux30b6ux4ee5ux5916ux3078}}
+
+TinyTeX
+はあなたがコマンドラインを使用することを怖がっていないことを想定しています.
+もし苦手意識があるなら, 代わりに他の普及している LaTeX
+ディストリビューションを使ってください. 実際のところ, 知る必要があるのは
+\texttt{tlmgr} コマンドだけです. どうか過剰に恐れないでください.
+
+\hypertarget{ux30a4ux30f3ux30b9ux30c8ux30fcux30eb}{%
+\subsection{インストール}\label{ux30a4ux30f3ux30b9ux30c8ux30fcux30eb}}
+
+TinyTeX のバイナリパッケージは1月ごとに, GitHub レポジトリ
+\url{https://github.com/yihui/tinytex-releases}
+としてリリースされています.
+
+Linux ユーザの場合は TinyTeX は \texttt{\$HOME/.TinyTeX}
+にインストールされ, 実行ファイル (\texttt{xelatex}, \texttt{lualatex}
+など) のシンボリックリンクは \texttt{\$HOME/bin} に作成されます.
+このパスは通常 \texttt{PATH} 環境変数に存在するはずです.\footnote{もしそうでなかったらどうするか,
+  Linux ユーザなら \texttt{PATH} に追加する方法を知っていることでしょう!}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{wget} \AttributeTok{{-}qO{-}} \StringTok{"https://yihui.org/tinytex/install{-}bin{-}unix.sh"} \KeywordTok{|} \FunctionTok{sh}
+\end{Highlighting}
+\end{Shaded}
+
+macOS ユーザの場合は, \texttt{/usr/local/bin}
+への書き込み権限がないなら, TeX Live
+の実行ファイルのシンボリックリンクを \texttt{/usr/local/bin}
+に貼るために以下のコマンドを実行したほうがいいかもしれません(理由は\href{https://github.com/yihui/tinytex/issues/188}{これ}).\footnote{\textbf{訳注}:
+  リンク先はこの記述の経緯が書かれているだけです.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sudo}\NormalTok{ chown }\AttributeTok{{-}R} \VariableTok{$(}\FunctionTok{whoami}\VariableTok{)}\NormalTok{ /usr/local/bin}
+\end{Highlighting}
+\end{Shaded}
+
+TinyTeX は macOS では \texttt{\textasciitilde{}/Library/TinyTeX}
+にインストールされます.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{curl} \AttributeTok{{-}sL} \StringTok{"https://yihui.org/tinytex/install{-}bin{-}unix.sh"} \KeywordTok{|} \FunctionTok{sh}
+\end{Highlighting}
+\end{Shaded}
+
+Windows ユーザの場合, バッチファイル
+\href{https://yihui.org/tinytex/install-bin-windows.bat}{install-bin-windows.bat}
+を保存し (リンクを開いて \texttt{Ctrl\ +\ S}),
+ファイルをダブルクリックしてください.\footnote{アンチウィルスソフトがいずれかの
+  \texttt{*.dll} ファイルに対して警告を発するかもしれませんが, 私は
+  Windows の専門家ではありません. 決断はあなたに委ねます.} PowerShell
+(\href{https://docs.microsoft.com/en-us/powershell/scripting/setup/starting-windows-powershell-on-earlier-versions-of-windows}{少なくともバージョン
+3.0 以降}) であることに注意してください. あなたの Windows
+のバージョンが古すぎてパワーシェルをインストールできない場合,
+\href{https://docs.microsoft.com/en-us/powershell/scripting/setup/starting-windows-powershell-on-earlier-versions-of-windows}{この記事}に従ってインストールしてください.
+インストールディレクトリは \texttt{\%APPDATA\%/TinyTeX} で,
+\texttt{APPDATA} は典型的には
+\texttt{C:\textbackslash{}Users\textbackslash{}Your\ Name\textbackslash{}AppData\textbackslash{}Roaming}
+を指す環境変数です.\footnote{興味があるなら,
+  スタートメニューをクリックし, \texttt{cmd}
+  とタイプして実行してコマンドウィンドウを開き,
+  \texttt{echo\ \%APPDATA\%}
+  とタイプして実行すれば実際のファイルパスが分かります.}
+
+\begin{infobox}{memo}
+\textbf{訳注}: 昔の話だからかリンクが切れています.
+古いバージョンの互換性に詳しい方がいたら教えてください.
+最近の市販品はこれより新しいバージョンの PowerShell
+が最初から使えることが多いためあまり気にする必要がないとは思いますが,
+現在の日本語の PowerShell
+のインストールに関するドキュメントは\href{https://docs.microsoft.com/ja-jp/powershell/scripting/install/installing-powershell?view=powershell-7.1}{こちら}になります.
+
+\end{infobox}
+
+代わりに Chocolatey か Scoop を使って TinyTeX
+をインストールすることもできます.
+手順は\href{https://github.com/yihui/tinytex-releases}{TinyTeX
+のリリース情報}を確認してください.
+
+TinyTeX をアンインストールするなら,
+ファイルマネージャ/ブラウザ等でフォルダごと消すだけです.
+あるいはコマンドラインで以下を実行するだけです.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Linux の場合}
+\ExtensionTok{tlmgr}\NormalTok{ path remove}
+\FunctionTok{rm} \AttributeTok{{-}r} \StringTok{"\textasciitilde{}/.TinyTeX"}
+
+\CommentTok{\# macOS の場合}
+\ExtensionTok{tlmgr}\NormalTok{ path remove}
+\FunctionTok{rm} \AttributeTok{{-}r}\NormalTok{ \textasciitilde{}/Library/TinyTeX}
+
+\CommentTok{\# Windows の場合}
+\ExtensionTok{tlmgr}\NormalTok{ path remove}
+\ExtensionTok{rd}\NormalTok{ /s /q }\StringTok{"\%APPDATA\%\textbackslash{}TinyTeX"}
+\end{Highlighting}
+\end{Shaded}
+
+他の LaTeX ディストリビューションと TinyTEX
+のアンインストール方法を比べてみてください.
+他のディストリビューションと比べ TinyTeX
+がいとも簡単にアンインストールできることをあなたはきっと評価するでしょう.
+これは TinyTeX が自己完結的なフォルダ構成になっているからです.
+
+\hypertarget{ux30e1ux30f3ux30c6ux30caux30f3ux30b9}{%
+\subsection{メンテナンス}\label{ux30e1ux30f3ux30c6ux30caux30f3ux30b9}}
+
+この節は R Markdown ユーザー\textbf{以外}を対象としています. R Markdown
+ユーザにとっては何もかも自動的に行われ, 欠落した LaTeX
+パッケージを手作業で探したりインストールしたりする必要はありません.
+
+LaTeX 文書をコンパイルして,
+このようなエラー文が流れてくるかもしれません.
+
+\begin{verbatim}
+! LaTeX Error: File `times.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+\end{verbatim}
+
+これは基本的にはある LaTeX パッケージが足りないことを意味しています.
+慌てないでください. コマンドウィンドウを開き,
+\texttt{tlmgr\ search\ -\/-global\ -\/-file} タイプし,
+その後に続けてファイル名をタイプしてください.\footnote{ファイル名の前のスラッシュも正確に合わせてください.
+  スラッシュがない場合, 他のパッケージがマッチするかもしれません.
+  たとえば \texttt{chemtimes.sty} とか.} 例えば,
+以下のようになります.\footnote{\textbf{訳注}: TeX Live
+  に登録されているファイルパスに対して正規表現マッチで検索するため,
+  ファイル名を完全一致で検索したい場合はこのようにスラッシュを頭に付けます.
+  正規表現では \texttt{.} は任意の1字のマッチングと解釈されるため,
+  さらに万全を期すならば, \texttt{/times\textbackslash{}.sty}
+  となります.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{$}\NormalTok{ tlmgr search }\AttributeTok{{-}{-}global} \AttributeTok{{-}{-}file} \StringTok{"/times.sty"}
+\ExtensionTok{psnfss:}
+        \ExtensionTok{texmf{-}dist/tex/latex/psnfss/times.sty}
+\ExtensionTok{...}
+\end{Highlighting}
+\end{Shaded}
+
+上記のエラーログに現れた名前のファイルを含むパッケージを見つけてください.
+今回は足りないパッケージは \texttt{psnfss} で, \texttt{tlmgr\ install}
+でインストールすることができます.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{tlmgr}\NormalTok{ install psnfss}
+\end{Highlighting}
+\end{Shaded}
+
+代わりの方法として, GitHub レポジトリの
+\href{https://github.com/yihui/latex-pass}{yihui/latex-pass}
+にエラーログをアップロードするだけで, クラウド上で
+\texttt{tlmgr\ search} が実行され不足しているパッケージを教えてくれます.
+
+理解するのが難しいエラーメッセージを見つけたなら,
+全てアップデートしてしまうとよいかもしれません.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{tlmgr}\NormalTok{ update }\AttributeTok{{-}{-}self} \AttributeTok{{-}{-}all}
+\ExtensionTok{tlmgr}\NormalTok{ path add}
+\ExtensionTok{fmtutil{-}sys} \AttributeTok{{-}{-}all}
+\end{Highlighting}
+\end{Shaded}
+
+R ユーザにとっては, これらに対応する便利関数が使用できます.
+いくつか例を挙げます.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tinytex)}
+\FunctionTok{tlmgr\_search}\NormalTok{(}\StringTok{\textquotesingle{}/times.sty\textquotesingle{}}\NormalTok{)   }\CommentTok{\# times.sty を検索する}
+\FunctionTok{tlmgr\_install}\NormalTok{(}\StringTok{\textquotesingle{}psnfss\textquotesingle{}}\NormalTok{)      }\CommentTok{\# psnfss パッケージを検索する}
+\FunctionTok{tlmgr\_update}\NormalTok{()               }\CommentTok{\# 全て更新する}
+\end{Highlighting}
+\end{Shaded}
+
+``Remote repository newer than local'' というエラーメッセージを見たら,
+それは TinyTeX を手動でアップグレード (再インストール)
+する時であることを意味しています.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tinytex}\SpecialCharTok{::}\FunctionTok{reinstall\_tinytex}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+以下のようなメッセージを見ても慌てないでください. 数ヶ月待ってから,
+TinyTeX を再インストールするだけです.
+
+\begin{quote}
+TeX Live 2018 is frozen forever and will no longer be updated. This
+happens in preparation for a new release.
+\end{quote}
+
+\begin{quote}
+If you're interested in helping to pretest the new release (when
+pretests are available), please read
+\url{https://tug.org/texlive/pretest.html}. Otherwise, just wait, and
+the new release will be ready in due time.
+\end{quote}
+
+普通のユーザにとって知るべきことは以上です. TinyTeX
+に関するより技術的に詳細なことを知りたいならば, \ref{faq}
+節を読んでください.
+
+\hypertarget{ux30e2ux30c1ux30d9ux30fcux30b7ux30e7ux30f3}{%
+\section{モチベーション}\label{ux30e2ux30c1ux30d9ux30fcux30b7ux30e7ux30f3}}
+
+TinyTeX の背景のモチベーションとして, LaTeX
+ディストリビューションとインストールと維持に関する共通の2つの問題がありました.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  比較的小さい (数百 Mb)
+  の基本バージョンをインストールしなければならないが,
+  そうするとはおそらくきっと頻繁に使われる LaTeX
+  パッケージが欠落しているせいで動作しない.
+  しかし数GBのフルバージョンをインストールしたとして,
+  生涯できっとそのうち1\%も使わない.
+\item
+  インストールとメンテナンスに関するドキュメントはしばしば初心者にとっては長すぎる.
+  例えば\href{https://www.tug.org/texlive/doc/tlmgr.html}{\texttt{tlmgr}
+  のマニュアル} は包括的な内容で有用ですが, ある \texttt{.sty}
+  ファイルが見つからないという問題が生じた時にどうすればいいのか解決するのが難しい.
+\item
+  既存の LaTeX
+  ディストリビューションはインストールやメンテナンスにしばしば管理者権限を要求しています.
+  \texttt{sudo}
+  や情シス担当に問い合わせることは大いに面倒を生んでいました.
+\end{enumerate}
+
+幸いにも TeX Live ベースのよい突破口がありました. TeX Live はすばらしい.
+クロスプラットフォームであり (そう Windows 上でも動作します),
+ポータブルにすることも\textbf{可能}です. 我々は単に軽量で,
+メンテナンスも簡単にする必要があるだけです. そこで TinyTeX の出番です.
+
+\hypertarget{ux8b1dux8f9e}{%
+\section{謝辞}\label{ux8b1dux8f9e}}
+
+TinyTeX は TeX Live チームの偉大な業績なくしてありえませんでした.
+これに感謝したいと思います. 私は特に,
+ソースコードとドキュメントをインストールから省くオプションを提案してくれたことをうれしく思っています.
+
+極めて注意深く,
+そして忍耐強く\href{https://d.cosx.org/d/419672}{テスト}し,
+さらにはとても有意義なフィードバックをくれた
+\href{http://www.pzhao.org}{Peng Zhao} と \href{https://yufree.cn}{Miao
+Yu} には感謝してもしきれません.
+\href{https://www.carlboettiger.info}{Carl Boettiger},
+\href{http://tc.rbind.io}{TC}, \href{https://github.com/gaocegege}{Ce
+Gao}, \href{https://github.com/XiangyunHuang}{Xiangyun Huang}
+にもベータテストを手伝ってもらいました. 六角形ロゴは
+\href{https://github.com/haozhu233}{Hao Zhu} によるデザインです.
+
+\hypertarget{r}{%
+\chapter{\texorpdfstring{R パッケージとしての
+\textbf{tinytex}}{R パッケージとしての tinytex}}\label{r}}
+
+TinyTeX を管理し, LaTeX 文書をコンパイルするヘルパー関数について
+
+オリジナルのページ: \url{https://yihui.org/tinytex/r/}
+
+オリジナルの更新日: 2017/12/03
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+CRAN または GitHub から \textbf{tinytex}
+パッケージをインストールできます.
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\CommentTok{\# CRAN 版}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"tinytex"}\NormalTok{)}
+
+\CommentTok{\# Github 上の開発版}
+\NormalTok{remotes}\SpecialCharTok{::}\FunctionTok{install\_github}\NormalTok{(}\StringTok{"yihui/tinytex"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+パッケージは主に2種類の関数の集合からなります. TinyTeX を管理する関数と,
+LaTeX 文書を PDF にコンパイルするのを助ける関数です.
+
+\hypertarget{tinytex-ux3092ux7ba1ux7406ux3059ux308b}{%
+\section{TinyTeX
+を管理する}\label{tinytex-ux3092ux7ba1ux7406ux3059ux308b}}
+
+\texttt{tlmgr\_*} シリーズの関数は TeX Live
+を管理するためのユーティリティコマンドである \texttt{tlmgr}
+を呼び出します. 例えば LaTeX パッケージのインストールと更新です.
+\texttt{?tinytex::tlmgr} でドキュメントの完全版を見てください.
+\texttt{tlmgr\_search()}, \texttt{tlmgr\_install()},
+\texttt{tlmgr\_update()} は TeX Live
+を自分で管理したい場合に最もよく使う関数です.
+
+\hypertarget{latex-ux6587ux66f8ux3092ux30b3ux30f3ux30d1ux30a4ux30ebux3059ux308b}{%
+\section{LaTeX
+文書をコンパイルする}\label{latex-ux6587ux66f8ux3092ux30b3ux30f3ux30d1ux30a4ux30ebux3059ux308b}}
+
+LaTeX の「最高に愛すべき」機能は, PDFを取得するのにしょっちゅう,
+相互参照 (例えば索引や引用文献リスト)
+があるときに文書を複数回コンパイルしなければならないことです.
+
+LaTeX の失敗のよくある原因は LaTeX パッケージが足りないことです.
+どのパッケージが欠けているかがすぐには分からないことがあります
+(いくつかのパッケージは複数の \texttt{*.sty} や \texttt{*.cls}
+ファイルを含んでいます). あなたがパッケージ化された TeX Live
+を使っているなら, この問題は悪化する可能性があります. 例えば
+Debian/Ubuntu では LaTeX パッケージはグループ分けされ, それぞれ異なる
+Debian パッケージとしてビルドされるので LaTeX
+パッケージが1つ欠けていただけでも, あなたが必要としているものに加え,
+不要な多くのパッケージを含んでいるかもしれない巨大な Debian
+パッケージをインストールしなければなりません.
+
+\textbf{tinytex} の \texttt{latexmk()}
+関数はこれら2つの問題を自動的に解決しようとします. 指定された LaTeX
+エンジン (\texttt{pdflatex}, \texttt{xelatex},
+\texttt{lualatex})\footnote{\textbf{訳注}:
+  日本語ユーザはまだあまり使うことがないかもしれませんが, 最近 (v0.3.1)
+  は \texttt{tectonic} もサポートしています.} を使用し, デフォルトで
+LaTeX 文書を3回コンパイルします\footnote{\textbf{訳注}:
+  文献引用と数式やセクション番号といった相互参照を含んだ, 典型的な LaTeX
+  によるレポート・学術論文ならば3回で十分です.}. また,
+デフォルトで不足しているパッケージをインストールしようとします.
+この関数は足りないパッケージを \texttt{tinytex::parse\_packages()}
+関数を介して LaTeX ログ からインストールしようとします.
+
+文書をコンパイルする最大回数を変えることも,
+不足パッケージの自動インストールを無効化することもできます. 詳しくは
+\texttt{?tinytex::latexmk} を見てください.\footnote{\textbf{訳注}:
+  それぞれ \texttt{min\_times}/\texttt{max\_times} と
+  \texttt{install\_packages} で指定できます.}
+
+\texttt{pdflatex()}, \texttt{xelatex()}, \texttt{lualatex()}
+という3つの関数は \texttt{latexmk()} ベースのラッパ関数です. 例えば
+\texttt{pdflatex()} は基本的に
+\texttt{latexmk(engine\ =\ \textquotesingle{}pdflatex\textquotesingle{},\ emulation\ =\ TRUE)}
+と同じです.
+
+その実装はぎこちないです. ソースコードを読まないでください.
+将来的にも改善されることはないでしょう. LaTeX
+に対して十分に時間を費やしてきましたし,
+この洗練されていない実装によって多くの時間を節約するべきでしょう.
+「最善は善の敵」というやつです.
+
+\hypertarget{ux30c7ux30d0ux30c3ux30b0}{%
+\section{デバッグ}\label{ux30c7ux30d0ux30c3ux30b0}}
+
+LaTeX を PDF にコンパイルするときにエラーが起こったなら,
+問題が解消されるまで以下のような段階を1つづつ踏んでください.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \href{https://yihui.org/en/2017/05/when-in-doubt-upgrade/}{R と LaTeX
+  パッケージを全て更新する}:
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\FunctionTok{update.packages}\NormalTok{(}\AttributeTok{ask =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{checkBuilt =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{tinytex}\SpecialCharTok{::}\FunctionTok{tlmgr\_update}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+\item
+  LaTeX パッケージの更新時に ``tlmgr: Remote repository is newer than
+  local (2018 \textless{} 2019)'' のようなエラーが発生したら,
+  それはあなたの TinyTeX が古すぎることを意味します.
+  以下のようにして新しいバージョンを再インストールしてください.
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\NormalTok{tinytex}\SpecialCharTok{::}\FunctionTok{reinstall\_tinytex}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+\item
+  更新でも再インストールでも問題を解決できないなら,
+  文書をコンパイルする前に以下のように R のオプションを設定してください:
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\FunctionTok{options}\NormalTok{(}\AttributeTok{tinytex.verbose =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+  これで問題のデバッグをする助けになる追加のメッセージが表示されます. R
+  Markdown と RStudio の \texttt{knit} ボタンを使用しているなら R
+  Markdown 文書のコードチャンク内でこのオプションを設定すべきです.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\end{Highlighting}
+\end{Shaded}
+
+  あなたができること, そしてもしかするとすべきことなのは,
+  デバッグを終えたあとにこのオプションを削除することです
+  (もはや完全なログを読む必要はなく, LaTeX を静かにさせるため
+\item
+  上記いずれも効果がなかったら,
+  \href{https://yihui.org/issue/}{このガイド}に従って問題を報告してください.\footnote{\textbf{訳注}:
+    こちらの窓口は当然ながら英語 (中国語も可?) での対応となります.
+    日本語の質問フォーラムとして\href{https://ja.stackoverflow.com/questions/tagged/latex}{スタック・オーバーフロー日本語版}や,
+    \href{https://oku.edu.mie-u.ac.jp/tex/}{TeX Wiki のフォーラム},
+    \href{https://teratail.com/tags/LaTeX}{teratail} がありますが,
+    日本語ユーザの間でかならずしもTinyTeXが知られているとは限らないことに注意してください.}
+  あなたがとても忙しい場合, 問題の報告に際してもっとも重要なもの,
+  「\textbf{必要最小限の再現例}」を忘れないでください.
+\end{enumerate}
+
+\hypertarget{ux305dux306eux4ed6ux306e-latex-ux30c7ux30a3ux30b9ux30c8ux30eaux30d3ux30e5ux30fcux30b7ux30e7ux30f3}{%
+\section{その他の LaTeX
+ディストリビューション}\label{ux305dux306eux4ed6ux306e-latex-ux30c7ux30a3ux30b9ux30c8ux30eaux30d3ux30e5ux30fcux30b7ux30e7ux30f3}}
+
+(当然ながら) \textbf{tinyte} パッケージは TinyTeX
+との組み合わせで最もよく動いてくれるはずですが, TinyTeX
+と完全に不可分なわけではありません. 特に以下に注意してください.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  LaTeX
+  文書の相互参照が解決するまで数回にわたって自動コンパイルする機能はどの
+  LaTeX ディストリビューションでも有効です. お望みなら Windows 上で
+  MiKTeX を使うこともできます.\footnote{\textbf{訳注}:
+    日本語コミュニティでは Windows に対しては従来
+    \href{http://w32tex.org/}{W32TeX} がよく使われていると思います.
+    これも最近のバージョンは TeX Live をベースにしているため,
+    概ねうまく動作するはずです. Windows 上での従来の TeX
+    事情はこちらを参考に:
+    \url{https://texwiki.texjp.org/?Microsoft\%20Windows}}
+\item
+  LaTeX
+  の不足しているパッケージを自動インストールする機能はディストリビューションが
+  TeX Live であることが必要です (TinyTeX は TeX Live のカスタム版なので
+  TinyTeX でも動作することを思い出してください).
+  パッケージをインストールできるようにするには \texttt{tlmgr\ install}
+  も必要です. システム管理者によってインストールされた TeX Live や
+  TinyTeX のコピーを使用しているなら,
+  あなたには変更する権限が与えられておらず, この機能は使えません.
+  あなたが自分のPCにTinyTeXをインストールしているなら,
+  できる公算が大きいです. この機能は MiKTeX ユーザには使えませんが,
+  MikTeX 自体も不足パッケージを自動インストールできるため,
+  そもそも必要ないでしょう.
+\end{enumerate}
+
+\hypertarget{addendum-ja}{%
+\chapter{訳注: 日本語ユーザへの補足説明}\label{addendum-ja}}
+
+\begin{infobox}{important}
+このページは日本語ユーザ特有の事情を考慮し,
+翻訳者の独断で補足説明として挿入しています.
+
+\end{infobox}
+
+\hypertarget{tex-live-ux306bux3064ux3044ux3066}{%
+\section{TeX Live について}\label{tex-live-ux306bux3064ux3044ux3066}}
+
+公式ガイドの和訳版をご覧ください.
+
+\url{https://www.tug.org/texlive/doc/texlive-ja/texlive-ja.pdf}
+
+\hypertarget{tinytex-ux306eux8efdux91cfux3055ux306bux3064ux3044ux3066}{%
+\section{TinyTeX
+の軽量さについて}\label{tinytex-ux306eux8efdux91cfux3055ux306bux3064ux3044ux3066}}
+
+日本語文書作成には独自のパッケージをそれなりに必要とするため,
+残念ながら意外とファイルサイズが大きくなることがあります.
+しかしそれでも1GBを超えることはあまりないと思いますし, TeX Live
+のように過年度版が不要であることに気づかないでいると年々肥大化する,
+ということもありません.
+
+\hypertarget{uplatex-ux3084-upbibtex-ux4f7fux7528ux8005ux3078}{%
+\section{(u)pLaTeX や (u)pBibTeX
+使用者へ}\label{uplatex-ux3084-upbibtex-ux4f7fux7528ux8005ux3078}}
+
+LaTeX ディストリビューションとしては TinyTeX でも TeX Live と同様に
+(u)pLaTeX や (u)pBibTeX を使うことができます. しかしこれらの LaTeX
+エンジン (および, 頭に \texttt{up} とついているもの概ね全て)
+は日本で独自に開発されてきたものであるため, \textbf{tinytex} や
+\textbf{rmarkdown}
+パッケージではオプションとしてあまり考慮されていません.
+
+\textbf{rmarkdown} を使用する場合, 基本的に XeLaTeX または LuaLaTeX
+を使用して日本語文書をコンパイルしたほうが簡単です. ただし従来の pLaTeX
+と異なり, bxjs/ltjs
+シリーズの文書クラスを使用したほうが品質の良い日本語文書を作成できます.
+日本語文書のための設定に関する詳細は翻訳者の開発した
+\href{https://github.com/Gedevan-Aleksizde/rmdja}{\textbf{rmdja}
+パッケージ}のヘルプやドキュメントや,
+\url{https://rpubs.com/ktgrstsh/755893} を参考にしてください.
+\textbf{rmdja} には試験的ですが (u)pLaTeX を使用する機能もあります.
+
+一方で, 以降は \textbf{rmarkdown} ではなく従来の LaTeX
+ディストリビューションの代わりとして \textbf{tinytex}
+を使いたい場合の解説をします. まず,
+日本語環境を想定していないため文献引用もデフォルトでは BibTeX
+が呼び出されるため, (u)pBibTeX
+を想定したファイルを使用しているとハングアップの原因となります.
+\textbf{tinytex} パッケージで (u)pLaTeX/(u)pBibTeX による処理を
+\texttt{xelatex()} や \texttt{pdflatex()} のように呼び出したい場合,
+\texttt{latexmk()} を使用します. TeX Wiki
+の\href{https://texwiki.texjp.org/?Latexmk}{このページ} に掲載されている
+\texttt{.latexmkrc} ファイルを作成し\footnote{もしうまく動作しない場合は
+  \textbf{rmdja}
+  パッケージに内蔵してある\href{https://github.com/Gedevan-Aleksizde/rmdja/blob/master/inst/resources/latexmk/.latexmkrc}{ファイル}
+  をコピーしてください.}, 作業フォルダに置いた上で,
+以下のようなコマンドを実行します.
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\NormalTok{tinytex}\SpecialCharTok{::}\FunctionTok{latexmk}\NormalTok{(}
+  \StringTok{"\textless{}あなたのファイル\textgreater{}.tex"}\NormalTok{,}
+  \AttributeTok{engine =} \StringTok{"latex"}\NormalTok{,}
+  \AttributeTok{bib\_engine =} \StringTok{"bibtex"}\NormalTok{,}
+  \AttributeTok{engine\_args =} \StringTok{"{-}latex=uplatex {-}gg {-}pdfdvi"}\NormalTok{,}
+  \AttributeTok{emulation =}\NormalTok{ F,}
+  \AttributeTok{clean =}\NormalTok{ F}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+ここで \texttt{.latexmkrc} の設定を忘れていると, \texttt{bibtex}
+の処理でハングアップしてしまうため, おかしいと思ったら早めに
+\texttt{bibtex} を強制終了してください
+(最初はタスクスケジューラなどを見ながら試すといいかもしれません).
+
+また, この方法では \textbf{tinytex}
+の\textbf{不足パッケージ自動インストール機能が無効}であることに注意してください.
+
+これは現在一般的な \texttt{dvipdfmx} を利用して PDF を生成する場合です.
+例えば \texttt{dvips} を使用する場合は別のオプションが必要になりますが,
+それは latexmk の使い方としてご自身で調べてください.
+
+また, BibTeX 問題を回避する別の方法として
+\texttt{bib\_engine\ =\ "biber"} を指定することで Biber (BibLaTeX)
+エンジンを使えばこの問題は起こりませんが, BibLaTeX
+には日本語に適した文献スタイルファイルがまだほとんど用意されていない,
+という問題があります
+(エラーが発生することは少ないと思いますが姓名の表記順などが考慮されていません).
+
+\hypertarget{ux65e2ux5b58ux306e-tex-live-ux4f7fux7528ux8005ux3068ux5f8cux65b9ux4e92ux63dbux6027ux306bux3064ux3044ux3066}{%
+\section{既存の TeX Live
+使用者と後方互換性について}\label{ux65e2ux5b58ux306e-tex-live-ux4f7fux7528ux8005ux3068ux5f8cux65b9ux4e92ux63dbux6027ux306bux3064ux3044ux3066}}
+
+本文でも述べられているように, TeX Live をすでにインストールしている方は,
+R パッケージの \textbf{tinytex}
+で提供される関数をそのまま使うことができます. むしろこの状態で
+\texttt{tinytex::install\_tinytex()}
+を使用してインストールすると競合が発生してしまいます.
+もし誤ってインストールしてしまった場合は, TinyTeX
+のインストールディレクトリ　(場所がわからない場合は FAQ
+\ref{change-directory}参照) をまるごと削除してください.
+
+TinyTeX のディストリビューションは TeX Live と同様,
+年々更新されています. よって古いバージョンは自動的に凍結されていくため,
+環境を維持したい場合は注意してください. 例えば最近ですと,
+次のような問題が取り沙汰されています.
+\url{https://acetaminophen.hatenablog.com/entry/2021/06/18/022108}
+
+このような場合は, 究極的には自衛手段として TinyTeX
+のフォルダのバックアップを取ることになると思います.
+
+\hypertarget{ux30d1ux30c3ux30b1ux30fcux30b8ux306eux81eaux52d5ux30a4ux30f3ux30b9ux30c8ux30fcux30ebux6a5fux80fdux306eux9650ux754cux306bux3064ux3044ux3066}{%
+\section{パッケージの自動インストール機能の限界について}\label{ux30d1ux30c3ux30b1ux30fcux30b8ux306eux81eaux52d5ux30a4ux30f3ux30b9ux30c8ux30fcux30ebux6a5fux80fdux306eux9650ux754cux306bux3064ux3044ux3066}}
+
+TinyTeX のパッケージ自動インストール機能は, LaTeX
+文書のコンパイル時のエラーログから,
+ファイルが足りないというエラーメッセージをパターンマッチングで検出し,
+必要なパッケージを探索しています.
+よってエラーメッセージが特殊なものである場合はうまく動作しません.
+
+日本語ユーザでありがちなケースとして,
+例えば以下のようなケースがあります.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \texttt{ltjs*} および \texttt{bxjs*}
+  シリーズの文書クラスを使用している場合,
+\item
+  \texttt{haranoaji} などの日本語フォントパッケージを使用している
+  (かつ通常のフォントとしてインストールしていない) 場合
+\item
+  先述の (u)pBibTeX を使用する場合
+\end{enumerate}
+
+(1, 2) はうまくいかなかったという報告が以前ありましたが,
+正確な原因は特定できていません. 現在は問題なく動作するかもしれません.
+最後の (3) は残念ながら根本的な解決はできませんが, エラーログファイルを
+\texttt{tinytex::parse\_install()}
+に与えることで不足パッケージの自動解析および自動インストールをさせることができます.
+
+もしうまく動作しない場合のために, 以下に XeLaTeX/LuaLaTeX
+を使用した日本語文書作成によく使用されるパッケージをまとめてインストールするコマンドを用意しました.
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\NormalTok{tinytex}\SpecialCharTok{::}\FunctionTok{tlmgr\_install}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"bxjscls"}\NormalTok{, }\StringTok{"luatexja"}\NormalTok{, }\StringTok{"zxjatype"}\NormalTok{, }\StringTok{"zxjafont"}\NormalTok{, }\StringTok{"haranoaji"}\NormalTok{, }\StringTok{"jlreq"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+また, 本文 (FAQ\ref{faq-tikz}) でも触れられているように, R の
+\textbf{tikzDevice} を使用する際もこのエラーにハマりがちです.
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\NormalTok{tinytex}\SpecialCharTok{::}\FunctionTok{tlmgr\_install}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"pgf"}\NormalTok{, }\StringTok{"preview"}\NormalTok{, }\StringTok{"xcolor"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{ctan-ux3084-tex-live-ux306bux767bux9332ux3055ux308cux3066ux3044ux306aux3044ux30d1ux30c3ux30b1ux30fcux30b8ux306eux30a4ux30f3ux30b9ux30c8ux30fcux30ebux65b9ux6cd5ux306bux3064ux3044ux3066}{%
+\section{CTAN や TeX Live
+に登録されていないパッケージのインストール方法について}\label{ctan-ux3084-tex-live-ux306bux767bux9332ux3055ux308cux3066ux3044ux306aux3044ux30d1ux30c3ux30b1ux30fcux30b8ux306eux30a4ux30f3ux30b9ux30c8ux30fcux30ebux65b9ux6cd5ux306bux3064ux3044ux3066}}
+
+TeX Live に登録されていないパッケージは \texttt{tlmgr} コマンドでも
+\textbf{tinytex} の関数でも検索対象ではないため,
+ダウンロードおよびインストールすることもできません. 例えば
+\href{https://github.com/zr-tex8r/BXcoloremoji}{\textbf{BXcoloremoji}}
+パッケージ,
+あるいは日本国内の学会発表・学術論文用フォーマットなどが該当します.
+また, 登録されているものと, GitHub
+などでダウンロードできる開発版とでバージョンが異なることもありえます.
+
+このような場合, \texttt{.sty} や \texttt{.cls}
+といったファイルを手動でダウンロードし, 適切な場所に置く必要があります.
+
+TeX Live の仕様として, ファイルを配置する場所はある程度自由ですが,
+管理のしやすさを考慮して FAQ \ref{non-root-package-installation}
+にあるような, \texttt{texmf-home} ディレクトリまたは,
+\texttt{texmf-local} 以下に配置することをお勧めします\footnote{参考:
+  \url{https://tex.stackexchange.com/questions/583006/where-do-i-place-my-own-sty-or-cls-files-to-get-them-working-with-tinytex}}
+(システム管理者の方は適当に工夫してください). root
+でインストールしていない場合は \texttt{texmf-local} になると思います.
+
+TinyTeX は ls-R を使用しているため\footnote{ls-R不要論を唱える方もいますが,
+  TinyTeX では残念ながら使用しているので必要です.} その後
+\texttt{mktexlsr} を実行します. R上では \texttt{system()}
+で呼び出すことができます.
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\FunctionTok{system}\NormalTok{(}\StringTok{"mktexlsr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+ただし, 例に挙げた \textbf{BXcoloremoji} パッケージは,
+\texttt{\$TEXMF/tex/latex/BXcoloremoji}
+以下に配置するように指示があります. 今回は \texttt{\$TEXMF} は
+\texttt{texmf-home}/\texttt{texmf-local} に対応させることができます.
+このように, パッケージによってはフォルダ構造に制約があるため,
+手動インストール時には注意してください.
+
+TeX のフォルダ構造の仕組みについては TeX Wiki
+の『\href{https://texwiki.texjp.org/?LaTeX\%E5\%85\%A5\%E9\%96\%80\%2F\%E5\%90\%84\%E7\%A8\%AE\%E3\%83\%91\%E3\%83\%83\%E3\%82\%B1\%E3\%83\%BC\%E3\%82\%B8\%E3\%81\%AE\%E5\%88\%A9\%E7\%94\%A8}{LaTeX入門/各種パッケージの利用}』と『\href{https://texwiki.texjp.org/?TeX\%20\%E3\%81\%AE\%E3\%83\%87\%E3\%82\%A3\%E3\%83\%AC\%E3\%82\%AF\%E3\%83\%88\%E3\%83\%AA\%E6\%A7\%8B\%E6\%88\%90}{TeX
+のディレクトリ構成}』も参考になります.
+
+\textbf{どうしてもうまく行かなかったら作業ディレクトリに毎回配置してください}.
+
+\hypertarget{faq}{%
+\chapter{FAQ}\label{faq}}
+
+よくある (?) 質問
+
+オリジナルのページ: \url{https://yihui.org/tinytex/faq/}
+
+オリジナルの最終更新日: 2017/12/02
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+このよくある質問リストでは, 好奇心のある方に TinyTeX
+の技術的詳細について説明したり, システム管理者でない人に向けて TinyTeX
+をインストールしたり使用したりする代わりの方法を説明したりします.
+
+\hypertarget{tex-live-ux306eux3069ux306eux30d0ux30fcux30b8ux30e7ux30f3ux304cux30a4ux30f3ux30b9ux30c8ux30fcux30ebux3055ux308cux308bux306eux3067ux3059ux304b}{%
+\section{TeX Live
+のどのバージョンがインストールされるのですか?}\label{tex-live-ux306eux3069ux306eux30d0ux30fcux30b8ux30e7ux30f3ux304cux30a4ux30f3ux30b9ux30c8ux30fcux30ebux3055ux308cux308bux306eux3067ux3059ux304b}}
+
+デフォルトでは, Windows, macOS, Linux の最新の動作バージョン,
+そして他のプラットフォームでも (動作の有無にかかわらず)
+最新のバージョンです. ここでの「動作」とは, いくつかの R Markdown 文書を
+PDF にコンパイルする基本的なテストをパスした TinyTeX のバージョンです.
+もし古いバージョンをインストールしている場合, 次の FAQ を読んでください.
+
+現在の最新バージョンをインストールできて,
+このバージョンが十分に安定しているなら将来もアップグレードしない選択ができることを覚えておいてください.
+ただし, これは現在の TeX Live バージョンが凍結 (年単位で凍結されます)
+されて以降は LaTeX
+パッケージをインストールすることもアップデートすることもできないことに注意してください.
+
+TODO: 日本語ユーザにとって後方互換性は重要. なにか追加サポートが必要
+
+\hypertarget{tinytex-ux306eux30d3ux30ebux30c9ux6e08ux307fux30d0ux30a4ux30caux30eaux306fux3042ux308aux307eux3059ux304b}{%
+\section{TinyTeX
+のビルド済みバイナリはありますか?}\label{tinytex-ux306eux30d3ux30ebux30c9ux6e08ux307fux30d0ux30a4ux30caux30eaux306fux3042ux308aux307eux3059ux304b}}
+
+はい, あります. 2020年9月から TinyTeX
+のビルド済みバイナリパッケージの提供を始めています. それらは
+\href{https://github.com/yihui/tinytex-releases}{\texttt{yihui/tinytex-releases}}
+で見ることができます. 2名の TeX Live 開発者に TeX Live
+のライセンスについて教えてもらったのでこれが可能となりました.
+それ以前はこのライセンスは私にとって複雑で,
+バイナリパッケージとして再配布することをためらっていました.
+これが可能であると知ってからは AppVeyor 上でビルドし GitHub
+リリースとして公開しています.
+
+\hypertarget{faq-tinytex-size}{%
+\section{TinyTeX のサイズはどれくらいですか?}\label{faq-tinytex-size}}
+
+macOS と Linux では gzip 圧縮で 61 MB, Windows では zip 圧縮で 94
+MBです. これでもまだ大きすぎると思うかもしれませんが,
+\href{https://www.tug.org/mactex/morepackages.html}{Basic TeX
+インストーラ} のサイズが macOS ではおよそ 80 MB に, Windows では
+\href{https://miktex.org/download}{MiKTeX インストーラ} がおよそ 235 MB
+になることを考えてみてください.
+
+TinyTeX の軽量さはクラウド上で (たとえば Travis CI
+で意図的にテストするとき) インストールするときにとても便利でしょう.
+ダウンロードとインストールはほんの数秒しかかかりません.
+
+もちろん, TinyTeX のサイズは追加で LaTeX
+パッケージをインストールするたびに増加します. 極端な話,
+全てのパッケージをインストールしたいかもしれません
+(どのパッケージが足りないのかを把握する必要を排除してしまうために).
+そうしたい場合でも, R ではこのように実行します.
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\NormalTok{tinytex}\SpecialCharTok{::}\FunctionTok{tlmgr\_install}\NormalTok{(}\StringTok{"scheme{-}full"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+コマンドラインで同様の操作はこうなります
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{tlmgr}\NormalTok{ install scheme{-}full}
+\ExtensionTok{tlmgr}\NormalTok{ path add}
+\end{Highlighting}
+\end{Shaded}
+
+数ギガバイトぶんのパッケージをダウンロードしインストールする必要があるため,
+これはかなり時間がかかります
+
+\hypertarget{tinytex-ux306fux3069ux3046ux3084ux3063ux3066ux4f5cux3089ux308cux305fux306eux3067ux3059ux304b-ux5de8ux5927ux306a-tex-live-ux306eux30b5ux30a4ux30baux3092ux3069ux3046ux3084ux3063ux3066ux524aux6e1bux3057ux305fux306eux3067ux3059ux304b}{%
+\section{TinyTeX はどうやって作られたのですか? 巨大な TeX Live
+のサイズをどうやって削減したのですか?}\label{tinytex-ux306fux3069ux3046ux3084ux3063ux3066ux4f5cux3089ux308cux305fux306eux3067ux3059ux304b-ux5de8ux5927ux306a-tex-live-ux306eux30b5ux30a4ux30baux3092ux3069ux3046ux3084ux3063ux3066ux524aux6e1bux3057ux305fux306eux3067ux3059ux304b}}
+
+TinyTeX を理解する最善の方法は TUGBoat の
+``\href{https://tug.org/TUGboat/Contents/contents40-1.html}{TinyTeX: A
+lightweight, cross-platform, and easy-to-maintain LaTeX distribution
+based on TeX Live}'' を読むことです. あるいは代わりに \texttt{tools}
+ディレクトリにある\href{https://github.com/yihui/tinytex/}{ソースを読む}こともできます.
+基本的に TinyTeX は,
+\href{https://github.com/yihui/tinytex/blob/master/tools/tinytex.profile}{tinytex.profile}
+(\texttt{./install-tl\ -profile=tinytex.profile}) というプロファイルで
+TeX Live のインストールを自動化しています.
+このファイルは最初にインストールされる \texttt{infraonly}
+スキームを指定しているだけです. このスキームがあるので LaTeX
+のドキュメントは一切コンパイルできませんが,
+最も重要なユーティリティである \texttt{tlmgr} (TeX Live マネージャ)
+だけは含まれます. この時点での全体のサイズは (UNIX系では) 1 MB 未満です.
+
+それから \texttt{tlmgr}
+で基本的なパッケージをさらにいくつかインストールします (これは
+\href{https://github.com/yihui/tinytex/blob/master/tools/pkgs-custom.txt}{pkgs-custom.txt}
+で定義されています). これらのパッケージがあればほとんどの R Markdown
+文書を PDF にコンパイルすることができます. 全体のサイズはおよそ 61 MB
+になります.
+
+TinyTeX には少数の LaTeX パッケージを含めているだけであるという点は,
+TinyTeX が比較的小さなサイズである2つの理由のうちの1つです.
+もう1つの理由は,
+パッケージのソースファイルとドキュメントファイルを除外している点です.
+\texttt{tinytex.profile}
+にこのような2つオプションが書かれているのがわかるでしょう.
+
+\begin{verbatim}
+option_doc 0
+option_src 0
+\end{verbatim}
+
+なぜソースファイルを排除したのか?
+これらはエンドユーザにとって役に立つ場面がなさそうだからです. あなたは
+LaTeX のソースコードを読みますか?
+あなたが開発者や上級者ユーザでないならおそらく読んでないでしょう.
+
+なぜドキュメントを排除したのか? 正直に答えてください, あなたは
+\href{https://tex.stackexchange.com}{StackExchange}
+で答えを探したことが何度ありますか,
+パッケージのドキュメントを読んだことが何度ありますか?
+完全なドキュメントがあっても,
+あなたはコンピュータのどこにそのファイルがあるのかすら知らないでしょう.
+ドキュメントのファイルはディスクの容量を多く占有し,
+平均レベルのユーザはほとんど読まないと私は思っています.
+ゆえに同梱しません. web
+ブラウザのアドレスバーが最も便利なドキュメントです.
+キーワードをタイプし, 検索してください.
+
+パッケージのソースとドキュメントを本当に欲しいのなら,
+\href{https://ctan.org}{CTAN} で見つけることができます. あるいは
+\texttt{tlmgr\ installl\ -\/-reinstall\ -\/-with-doc\ -\/-with-src\ \textless{}パッケージ名\textgreater{}}
+というコマンドでソースとドキュメントを再インストールできます.
+(\href{https://github.com/yihui/tinytex/pull/236\#issuecomment-690789472}{Norbert
+Preining の指摘} に感謝します)
+
+TeX Live のサイズに影響するそれ以外の主な要因として,
+フォントパッケージがあります. フォントパッケージは大抵の場合は他の LaTeX
+パッケージよりずっと大きいのですが, \texttt{pdflatex}
+を使わない限り役に立つことがありません. こういった場合では,
+サイズの小さな TeX Live
+ディストリビューションをさらに削減することができます.
+
+インストールされたパッケージ全てのサイズを
+\texttt{tlmgr\ info\ -\/-list\ -\/-only-installed\ -\/-data\ name,size}
+というコマンドで得ることができます. R パッケージの \textbf{tinytex}
+をインストールしているなら, \texttt{tinytex::tl\_sizes()}
+を使うこともできます. 例えばフォントパッケージの \textbf{lm} (Latin
+modern) はおよそ 42 MB もあります!
+
+\hypertarget{sys-install}{%
+\section{私は Linux システムの管理者です.
+システム使用者全員が使えるように TinyTeX
+をインストールするにはどうしたらいいですか?}\label{sys-install}}
+
+まずインストールスクリプトに2つのオプション
+\texttt{-\/-admin\ -\/-no-path} を追加してください.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{wget} \AttributeTok{{-}qO{-}} \StringTok{"https://yihui.org/tinytex/install{-}unx.sh"} \KeywordTok{|} \FunctionTok{sh} \AttributeTok{{-}s} \AttributeTok{{-}} \AttributeTok{{-}{-}admin} \AttributeTok{{-}{-}no{-}path}
+\end{Highlighting}
+\end{Shaded}
+
+これは TinyTeX を \texttt{\textasciitilde{}/.TinyTeX}
+にインストールします. この時点では root 権限は\textbf{不要}です.
+それからシステムの利用者全員が TeX Live の実行ファイル (例:
+\texttt{xelatex} や \texttt{lualatex}) を使えるように \texttt{sudo} で
+\texttt{/usr/local/bin} にシンボリックリンクを追加する必要があります.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sudo}\NormalTok{ \textasciitilde{}/.TinyTeX/bin/}\PreprocessorTok{*}\NormalTok{/tlmgr path add}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{\textasciitilde{}/.TinyTex} にデフォルトで \texttt{700}
+のパーミッションが設定される\href{https://github.com/yihui/tinytex/issues/37}{システムも中にはあります}.
+これは他のユーザは TinyTeX を使用できないことを意味します
+(このディレクトリ内では読み込み・書き込み・実行いずれの権限もありません).
+\texttt{chown} を使用してこのディレクトリのオーナやグループを変更し,
+書き込み権限 (さらに \texttt{bin} への実行権限)
+を付与するとよいでしょう. これが例です.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{chown} \AttributeTok{{-}R}\NormalTok{ root:staff \textasciitilde{}/.TinyTeX}
+\FunctionTok{chmod} \AttributeTok{{-}R}\NormalTok{ g+w \textasciitilde{}/.TinyTeX}
+\FunctionTok{chmod} \AttributeTok{{-}R}\NormalTok{ g+wx \textasciitilde{}/.TinyTeX/bin}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{\textasciitilde{}/.TinyTeX} を他の場所に移動したいなら,
+FAQ\ref{change-directory}にあるを見てください.
+そしてフォルダを移動したあとに, \texttt{/usr/local/bin}
+にあるシンボリックリンクが新しい場所を正しく参照するように \texttt{sudo}
+で \texttt{tlmgr\ path\ add} を実行することを忘れないでください.
+
+\hypertarget{non-root-package-installation}{%
+\section{\texorpdfstring{私は Linux 管理者です. 上記のアプローチで
+TinyTeX をインストールし \texttt{/usr/local/bin}
+にシンボリックリンクを追加しました. root 権限のないユーザーに自分で
+LaTeX
+パッケージをインストールしてもらうにはどうしたよいですか?}{私は Linux 管理者です. 上記のアプローチで TinyTeX をインストールし /usr/local/bin にシンボリックリンクを追加しました. root 権限のないユーザーに自分で LaTeX パッケージをインストールしてもらうにはどうしたよいですか?}}\label{non-root-package-installation}}
+
+root 権限のないユーザは通常の方法では, TinyTeX のルートディレクトリ
+(デフォルトでは \texttt{\textasciitilde{}/.TinyTeX},
+\texttt{\textasciitilde{}}
+は\textbf{あなた自身の}ホームディレクトリを意味します)
+に書き込み権限を持つグループに登録されない限り, \texttt{tlmgr\ install}
+コマンドでパッケージをインストールすることができません. このような場合は
+TinyTeX のシステム全体に対してインストールされた TinyTeX
+を修正することができます.
+
+TinyTeX ディレクトリへの書き込み権限がない人たちには, TeX Live
+の\href{https://www.tug.org/texlive/doc/tlmgr.html\#USER-MODE}{ユーザーモード}
+があり, これはユーザーごとに texmf ツリーを管理することができます.
+例えばシステムディレクトリの代わりに,
+そのユーザーのホームディレクトリにパッケージをインストールできます.
+TinyTeX があれば, ユーザーレベルの texmf ツリーは
+\texttt{\textasciitilde{}/.TinyTeX/texmf-home} にあります (TeX Live
+の用語としては, \texttt{TEXMFHOME} 環境変数となります.
+\texttt{\textasciitilde{}}
+は\textbf{あなた自身の}ホームディレクトリを意味します).
+
+ユーザが最初にすべきことは, このツリーを初期化すること
+(\texttt{TEXMFHOME} がまだ作成されていないなら作ること) です.
+以下を一度実行するだけです.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{tlmgr}\NormalTok{ init{-}usertree}
+\end{Highlighting}
+\end{Shaded}
+
+それからパッケージをインストールする時には, ユーザは常に
+\texttt{-\/-usermode} オプションを付けなければなりません.
+例えば以下のように.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{tlmgr} \AttributeTok{{-}{-}usermode}\NormalTok{ install koma{-}script xcolor}
+\end{Highlighting}
+\end{Shaded}
+
+R ユーザなら, 上記のコマンドは以下の R の命令文と同じです.
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\NormalTok{tinytex}\SpecialCharTok{::}\FunctionTok{tlmgr}\NormalTok{(}\StringTok{"init{-}usertree"}\NormalTok{) }\CommentTok{\# これも最初に一度実行するだけです}
+\NormalTok{tinytex}\SpecialCharTok{::}\FunctionTok{tlmgr\_install}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"koma{-}script"}\NormalTok{, }\StringTok{"xcolor"}\NormalTok{), }\AttributeTok{usermode =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+しかし, TeX Live
+のユーザーモードは実際のところかなり複雑になる可能性があり,
+残念なことに私はサポートしきれません. 少しだけ注意事項を挙げておきます.
+
+\begin{itemize}
+\item
+  最悪のやり方はユーザが一切のパッケージをインストールできないことです.
+  TeX Live
+  では\textbf{再配置可能}なパッケージとそうでないものがあります.
+  例えば実行ファイルを含むパッケージは再配置できません (例:
+  \textbf{metafont} パッケージは \texttt{mf}
+  という実行ファイルを含んでいます).
+  ユーザがこれらのパッケージを使わなければならないなら,
+  システム管理者だけが頼りです. 良い知らせとして,
+  こういったパッケージは小規模なので,
+  これらを全てをシステム管理者が最初からインストールしておくという保守的な戦略がある,
+  ということがあります. R 関数の \texttt{tinytex::tl\_unrelocatable()}
+  は再配置不可能な全てのパッケージの名前を返します. これは内部で
+  \texttt{tlmgr\ info\ -\/-list\ -\/-data\ name,relocatable}
+  を呼び出しています.
+\item
+  パッケージの中にはインストール後に
+  \href{https://www.tug.org/texlive/doc/updmap.html}{\texttt{updmap}}
+  を実行することが必要なものもあります (例: \texttt{pdflatex}
+  に使用するフォントパッケージ). 良い知らせは \texttt{updmap-user}
+  を実行できることで, 悪い知らせは (私のドキュメントの理解が正しければ)
+  システム管理者が \texttt{updmap-sys} を実行するたびに, ユーザは
+  \texttt{updmap-user} を再実行せねばならないことです.
+  ユーザにとっての保守的な戦略は,
+  以前にはなかったフォントの問題に出くわすたびに, \texttt{updmap-user}
+  を実行することです (R ユーザは
+  \texttt{system2(\textquotesingle{}updmap-user\textquotesingle{})}
+  を実行できます).
+\end{itemize}
+
+\hypertarget{ux79c1ux306f-debianubuntu-ux30e6ux30fcux30b6ux3067ux3059.-tex-live-ux304cux4f9dux5b58ux3057ux3066ux3044ux308bux4ed6ux306eux30d1ux30c3ux30b1ux30fcux30b8ux3092ux30a4ux30f3ux30b9ux30c8ux30fcux30ebux3059ux308bux3053ux3068ux3092ux6b62ux3081ux308bux306bux306fux3069ux3046ux3057ux305fux3089ux3044ux3044ux3067ux3059ux304b-tinytex-ux3068ux516cux5f0fux306e-tex-live-ux306eux30d1ux30c3ux30b1ux30fcux30b8ux3092ux4e21ux65b9ux3068ux3082ux30a4ux30f3ux30b9ux30c8ux30fcux30ebux3057ux305fux304fux306aux3044-ux3042ux308bux3044ux306f-ux5fc5ux8981ux304cux306aux3044-ux3067ux3059.}{%
+\section{私は Debian/Ubuntu ユーザです. TeX Live
+が依存している他のパッケージをインストールすることを止めるにはどうしたらいいですか?
+TinyTeX と公式の TeX Live のパッケージを両方ともインストールしたくない
+(あるいは, 必要がない)
+です.}\label{ux79c1ux306f-debianubuntu-ux30e6ux30fcux30b6ux3067ux3059.-tex-live-ux304cux4f9dux5b58ux3057ux3066ux3044ux308bux4ed6ux306eux30d1ux30c3ux30b1ux30fcux30b8ux3092ux30a4ux30f3ux30b9ux30c8ux30fcux30ebux3059ux308bux3053ux3068ux3092ux6b62ux3081ux308bux306bux306fux3069ux3046ux3057ux305fux3089ux3044ux3044ux3067ux3059ux304b-tinytex-ux3068ux516cux5f0fux306e-tex-live-ux306eux30d1ux30c3ux30b1ux30fcux30b8ux3092ux4e21ux65b9ux3068ux3082ux30a4ux30f3ux30b9ux30c8ux30fcux30ebux3057ux305fux304fux306aux3044-ux3042ux308bux3044ux306f-ux5fc5ux8981ux304cux306aux3044-ux3067ux3059.}}
+
+はい, \texttt{apt-get\ install} は依存パッケージをインストールする時,
+なんらかの \texttt{texlive-*} をインストールするかもしれません (例えば,
+\texttt{apt-get\ install\ dvipng} は \texttt{texlive-base}
+もインストールするかもしれません). あなたが \texttt{apt-get}
+に「だまされて」
+\href{https://travis-bin.yihui.org/texlive-local.deb}{texlive-local.deb}
+をダウンロードしインストールしてしまう可能性があります.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{wget} \StringTok{"https://travis{-}bin.yihui.org/texlive{-}local.deb"}
+\FunctionTok{sudo}\NormalTok{ dpkg }\AttributeTok{{-}i}\NormalTok{ texlive{-}local.deb}
+\FunctionTok{rm}\NormalTok{ texlive{-}local.deb}
+\end{Highlighting}
+\end{Shaded}
+
+このパッケージは
+\href{https://github.com/scottkosty/install-tl-ubuntu/blob/master/debian-control-texlive-in.txt}{debian-control-texlive-in.txt}
+上で
+\href{http://manpages.ubuntu.com/manpages/trusty/man1/equivs-build.1.html}{\texttt{equivs-build}}
+を実行することでビルドされます (Scott Kostyshak による). 基本的に全ての
+\texttt{texlive} パッケージが (実際にはインストールされていないのに)
+インストールされているように擬態するので, あなたはどの LaTeX
+パッケージを自分で選ぶ完全な自由 (そして責任) を獲得します.
+
+個人的には LaTeX パッケージを全て \texttt{texlive-*} パッケージとして,
+そしてそれぞれに LaTeX パッケージを梱包して Linux (Debian など)
+で配布することを好みません.
+これはあなたが必要なパッケージが1つだけであっても,
+いくつかの他のパッケージをインストールしなければならないことを意味しています.
+R ユーザとして (あるいは Python なり他の言語なり) 想像してみてください,
+1万を超える R パッケージが, CRAN が 20 \textbf{組}
+のパッケージとしてビルドされていて, あなたが必要としているのが
+\textbf{ggplot2}
+パッケージだけなのに他の関連するデータ可視化パッケージが全て強制的にインストールされてしまうとき,
+あなたはどうしますか? こんなことをする明らかな利点は, (もしかすると)
+毎回毎度毎度のように不足しているパッケージをインストールする必要がなくなることですが,
+無駄を削ぎ落とした TeX Live ディストリビューションと,
+インストールするパッケージを自分で選ぶほうが私は好きです
+(私にとって全く難しいことではありません).
+
+\textbf{訳注}: equivs-build と同様のことは TeX Wiki のこのページ
+\url{https://texwiki.texjp.org/?texlive-dummy} でも紹介されています.
+
+\hypertarget{change-directory}{%
+\section{インストール先ディレクトリを変えることはできますか?}\label{change-directory}}
+
+ディレクトリのパスはインストールスクリプトにハードコードされているので,
+TinyTeX インストール時にコマンドラインから変更することはできません.
+Linux macOS, Windows ではデフォルトで隠しディレクトリになるため,
+私はこの場所を選びました. TeX Live
+はほとんどの場合でインストール場所に注意することも (要求することも)
+ありません. あなたが本当にディレクトリを変更したいなら,
+いくつかの方法があります.
+
+\begin{itemize}
+\item
+  ダウンロードとインストール用のスクリプトを自分で改造することができます
+  (スクリプトはオープンソースです)
+\item
+  R ユーザなら, R パッケージの \textbf{tinytex} をインストールし,
+  \texttt{tinytex::install\_tinytex()} の \texttt{dir}
+  引数にカスタムディレクトリを与えることができます.
+\item
+  あるいは TinyTeX を先にインストールしてから,
+  好きな場所にフォルダごと移動させます (USB
+  スティックに移動することもできます). TinyTeX が TinyTeX が TeX Live
+  の\textbf{ポータブル}版だという理由です.
+  この方法のトリッキーなところは, \texttt{PATH} 変数に対処することです.
+  \texttt{tlmgr\ path\ add} を実行する必要がありますが,
+  デフォルトのインストール場所から移動すると \texttt{tlmgr} は
+  \texttt{PATH} にはありません. そこで, \texttt{tlmgr}
+  をフルパスで実行しなければなりません. これが例です.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Linux 上で \textasciitilde{}/.TinyTeX から /opt/tinytex に移動する想定}
+\ExtensionTok{/opt/tinytex/bin/*/tlmgr}\NormalTok{ path add}
+
+\CommentTok{\# macOS 上で \textasciitilde{}/Library/TinyTeX から /opt/tinytex に移動する想定}
+\ExtensionTok{/opt/tinytex/bin/*/tlmgr}\NormalTok{ path add}
+
+\CommentTok{\# Windows 上で \%APPDATA\%\textbackslash{}TinyTeX から C:\textbackslash{}Software\textbackslash{}TinyTeX に移動する想定}
+\StringTok{"C:\textbackslash{}Software\textbackslash{}TinyTeX\textbackslash{}bin\textbackslash{}win32\textbackslash{}tlmgr"}\NormalTok{ path add}
+\end{Highlighting}
+\end{Shaded}
+
+これが必要なのは1度だけです. FAQ \ref{sys-install} の方法で TinyTeX
+をインストールしたなら, \texttt{tlmgr\ path\ add} は \texttt{sudo}
+で実行する必要があります.
+
+\hypertarget{usb-ux30c9ux30e9ux30a4ux30d6ux3084ux4ed6ux306eux30ddux30fcux30bfux30d6ux30ebux30c7ux30d0ux30a4ux30b9ux306b-tinytex-ux3092ux30a4ux30f3ux30b9ux30c8ux30fcux30ebux3059ux308bux306bux306fux3069ux3046ux3059ux308cux3070ux3044ux3044ux3067ux3059ux304b}{%
+\section{USB ドライブや他のポータブルデバイスに TinyTeX
+をインストールするにはどうすればいいですか?}\label{usb-ux30c9ux30e9ux30a4ux30d6ux3084ux4ed6ux306eux30ddux30fcux30bfux30d6ux30ebux30c7ux30d0ux30a4ux30b9ux306b-tinytex-ux3092ux30a4ux30f3ux30b9ux30c8ux30fcux30ebux3059ux308bux306bux306fux3069ux3046ux3059ux308cux3070ux3044ux3044ux3067ux3059ux304b}}
+
+すでに述べたように TinyTeX は TeX Live のポータブル版です.
+よって簡単にポータブルデバイスにコピーすることができます.
+あなたがする必要があるのは他のコンピュータにデバイスを挿してから
+\texttt{tlmgr\ path\ add} を実行することだけです.
+ここでもポータブルデバイスの \texttt{tlmgr} のフルパスが必要です (FAQ
+\ref{change-directory}を見てください).
+このコマンドを実行してアプリケーションを再起動すれば, フルパスなしで
+\texttt{tlmgr} を実行できるはずです.
+
+あなたが R ユーザなら上記のステップは以下の2つの関数でできます.
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\CommentTok{\# インストール済みの TinyTeX をどこにコピーするか}
+\NormalTok{tinytex}\SpecialCharTok{::}\FunctionTok{copy\_tinytex}\NormalTok{()}
+\CommentTok{\# TinyTeX がデバイスのどこにあるかを指定し, tlmgr path add を実行}
+\NormalTok{tinytex}\SpecialCharTok{::}\FunctionTok{use\_tinytex}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+あるプラットフォームでインストールした TinyYeX は,
+同じプラットフォーム上でのみ動作することに注意してください. 例えば
+Windows 版は Windows でしか動作しません. 例えば TinyTeX の macOS 版は
+Windows マシンにコピーすることも使うこともできません.
+
+これは情報システム担当者やシステム管理者を介さなくていいすばらしいやり方です.
+LaTeX
+パッケージをインストールしたりアップグレードしたりするよう彼らに要求する必要がありません.
+全て自分でやることができます.
+
+\textbf{訳注}: 昨今では USB
+ドライブを勝手に挿入することもセキュリティ面で問題視されそうな気がするので注意してください.
+
+\hypertarget{ux30c7ux30d5ux30a9ux30ebux30c8ux306eux30a4ux30f3ux30b9ux30c8ux30fcux30ebux30d1ux30b9ux306b-tex-live-ux306eux5e74ux5ea6ux304cux542bux307eux308cux3066ux3044ux306aux3044ux306eux306fux306aux305cux3067ux3059ux304b}{%
+\section{デフォルトのインストールパスに TeX Live
+の年度が含まれていないのはなぜですか?}\label{ux30c7ux30d5ux30a9ux30ebux30c8ux306eux30a4ux30f3ux30b9ux30c8ux30fcux30ebux30d1ux30b9ux306b-tex-live-ux306eux5e74ux5ea6ux304cux542bux307eux308cux3066ux3044ux306aux3044ux306eux306fux306aux305cux3067ux3059ux304b}}
+
+TeX Live はデフォルトでは \texttt{/usr/local/texlive/2017}
+のように年度で名付けたフォルダにインストールされます (MacTeX
+でもそうです).
+普通のユーザにとってはこれにあまり意味がないと私は思っています. TeX Live
+の開発者以外に, 同一のコンピュータに TeX Live
+の複数のバージョンをインストールしたい人がいるでしょうか? TeX Live
+の完全版は巨大であり, 毎年のようにディスク容量を食いつぶすようなことは,
+あなたもきっと望んでないでしょう.
+
+繰り返しますが, TinyTeX のインストール場所を変更したいなら,
+あなたにはそれが可能です.
+
+ある TinyTeX ユーザが, 自分はこのことに気づかずに毎年 TeX Live (MacTeX)
+をインストールしていた, と私に教えてくれました. TinyTeX
+を試しに使ってみなかったら, これらの \texttt{/usr/local/texlive/2015},
+\texttt{.../2016}, and \texttt{.../2017}, といった複数の TinyTeX
+フォルダが合計で 15GB にもなっていたことに気づかなかったことでしょう.
+このことは私の推測の裏付けになります. ユーザはしょっちゅう,
+過去のバージョンのアンインストールや上書きをせずに TeX Live
+の新バージョンをインストールしていることを知らず,
+このモンスターは毎年ごとに大きく成長しています. そう,
+今日ではディスク容量は安上がりですが,
+それは無駄遣いしてもよいということを意味しません.
+
+\hypertarget{ux6570ux5e74ux524dux306bux30a4ux30f3ux30b9ux30c8ux30fcux30ebux3057ux305ftinytexux3092ux30a2ux30c3ux30d7ux30b0ux30ecux30fcux30c9ux3059ux308bux306bux306fux3069ux3046ux3059ux308cux3070ux3044ux3044ux3067ux3059ux304b-tlmgr-remote-repository-is-newer-than-local-2017-2018-ux306eux3088ux3046ux306aux30e1ux30c3ux30bbux30fcux30b8ux304cux51faux3066ux304dux307eux3057ux305f.}{%
+\section{数年前にインストールしたTinyTeXをアップグレードするにはどうすればいいですか?
+``tlmgr: Remote repository is newer than local (2017 \textless{} 2018)''
+のようなメッセージが出てきました.}\label{ux6570ux5e74ux524dux306bux30a4ux30f3ux30b9ux30c8ux30fcux30ebux3057ux305ftinytexux3092ux30a2ux30c3ux30d7ux30b0ux30ecux30fcux30c9ux3059ux308bux306bux306fux3069ux3046ux3059ux308cux3070ux3044ux3044ux3067ux3059ux304b-tlmgr-remote-repository-is-newer-than-local-2017-2018-ux306eux3088ux3046ux306aux30e1ux30c3ux30bbux30fcux30b8ux304cux51faux3066ux304dux307eux3057ux305f.}}
+
+インストールスクリプトが常に最新版をインストールしているように, TinyTeX
+を再度インストールすることができます. しかし現在インストールされている
+LaTeX パッケージは失われます.
+これらのパッケージも再インストールしたいなら, この R
+関数を使うとよいでしょう.
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\NormalTok{tinytex}\SpecialCharTok{::}\FunctionTok{reinstall\_tinytex}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+R を使用していないなら, パッケージのリストを取得し,
+あとでインストールできます.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\VariableTok{TL\_INSTALLED\_PKGS=$(}\ExtensionTok{tlmgr}\NormalTok{ info }\AttributeTok{{-}{-}list} \AttributeTok{{-}{-}only{-}installed} \AttributeTok{{-}{-}data}\NormalTok{ name }\KeywordTok{|} \FunctionTok{tr} \StringTok{\textquotesingle{}\textbackslash{}n\textquotesingle{}} \StringTok{\textquotesingle{} \textquotesingle{}}\VariableTok{)}
+\CommentTok{\# この後ホームページに書いた方法で TinyTeX を再インストールします.}
+\CommentTok{\# TinyTeX を再インストールしたら, 以下でパッケージも再インストールします}
+\ExtensionTok{tlmgr}\NormalTok{ install }\VariableTok{$TL\_INSTALLED\_PKGS}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{faq-tikz}{%
+\section{R パッケージの tikzDevice の使用にはどの LaTeX
+パッケージが必要ですか?}\label{faq-tikz}}
+
+グラフィックデバイスの \texttt{tikzDevice::tikz()}
+を使用するにはこれらの LaTeX パッケージが必要です.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{tlmgr}\NormalTok{ install pgf preview xcolor}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{tlmgr-ux3092ux5b9fux884cux3059ux308bux305fux3073ux306b-not-verified-gpg-unavailable-ux3068ux3044ux3046ux8b66ux544aux304cux73feux308cux307eux3059.-ux3053ux306eux8b66ux544aux306fux3069ux3046ux3084ux3063ux305fux3089ux8868ux793aux3055ux308cux306aux304fux306aux308aux307eux3059ux304b}{%
+\section{\texorpdfstring{\texttt{tlmgr} を実行するたびに ``not verified:
+gpg unavailable'' という警告が現れます.
+この警告はどうやったら表示されなくなりますか?}{tlmgr を実行するたびに ``not verified: gpg unavailable'' という警告が現れます. この警告はどうやったら表示されなくなりますか?}}\label{tlmgr-ux3092ux5b9fux884cux3059ux308bux305fux3073ux306b-not-verified-gpg-unavailable-ux3068ux3044ux3046ux8b66ux544aux304cux73feux308cux307eux3059.-ux3053ux306eux8b66ux544aux306fux3069ux3046ux3084ux3063ux305fux3089ux8868ux793aux3055ux308cux306aux304fux306aux308aux307eux3059ux304b}}
+
+この文が示すように, あなたのシステムに \texttt{gpg} (GnuPG)
+がありません.
+
+\begin{verbatim}
+tlmgr: package repository http://example.org/.../tlnet (not verified: gpg unavailable)
+\end{verbatim}
+
+Windows と macOS で TeX Live を使用しているなら, \texttt{gpg}
+をインストールする最も簡単な方法は \url{http://www.preining.info/tlgpg/}
+です. ``one-time installation'' で十分です.
+
+\begin{infobox}{memo}
+\textbf{訳注}: 2021/6/24 時点に確認した限りでは, ``one-time
+installation'' は以下を実行するだけで十分らしいです. \texttt{sudo}
+をつけるべきかどうかは, これ以前の項目を参考にしてください
+(翻訳者は未確認です)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{tlmgr} \AttributeTok{{-}{-}repository}\NormalTok{ http://www.texlive.info/tlgpg/ install tlgpg}
+\end{Highlighting}
+\end{Shaded}
+
+また, Windows/macOS ユーザでないならばこれは\textbf{不要}です.
+通常の方法で GnuPG をインストールするだけで十分です.
+
+\end{infobox}
+
+\hypertarget{httphttpsftp-ux30d7ux30edux30adux30b7ux3067-tinytexlatex-ux30d1ux30c3ux30b1ux30fcux30b8ux3092ux30a4ux30f3ux30b9ux30c8ux30fcux30ebux3059ux308bux306bux306fux3069ux3046ux3059ux308cux3070ux3044ux3044ux3067ux3059ux304b}{%
+\section{HTTP/HTTPS/FTP プロキシで TinyTeX/LaTeX
+パッケージをインストールするにはどうすればいいですか?}\label{httphttpsftp-ux30d7ux30edux30adux30b7ux3067-tinytexlatex-ux30d1ux30c3ux30b1ux30fcux30b8ux3092ux30a4ux30f3ux30b9ux30c8ux30fcux30ebux3059ux308bux306bux306fux3069ux3046ux3059ux308cux3070ux3044ux3044ux3067ux3059ux304b}}
+
+\texttt{\textasciitilde{}/.wgetrc} ファイル (\texttt{\textasciitilde{}}
+はあなたのホームディレクトリを表しています) を作成し, 変数
+\texttt{http\_proxy}, \texttt{https\_proxy}, あるいは
+\texttt{ftp\_proxy} を設定するとよいでしょう. 例えばこのように.
+
+\begin{verbatim}
+http_proxy=http://user:password@proxy.example.com:8001/
+\end{verbatim}
+
+詳細は
+\href{https://www.tug.org/texlive/acquire-netinstall.html}{tug.org
+のこのページ}と
+\href{https://www.gnu.org/software/wget/manual/html_node/Proxies.html}{\texttt{wget}
+のドキュメント}を見てください.
+
+\hypertarget{macos-ux3067-homebrew-ux3092ux4f7fux3063ux3066-tinytex-ux3092ux30a4ux30f3ux30b9ux30c8ux30fcux30ebux3059ux308bux3053ux3068ux306fux3067ux304dux307eux3059ux304b}{%
+\section{macOS で Homebrew を使って TinyTeX
+をインストールすることはできますか?}\label{macos-ux3067-homebrew-ux3092ux4f7fux3063ux3066-tinytex-ux3092ux30a4ux30f3ux30b9ux30c8ux30fcux30ebux3059ux308bux3053ux3068ux306fux3067ux304dux307eux3059ux304b}}
+
+できます. ただし明確な利点はありませんから,
+私としてはこの方法はお勧めしません.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{brew}\NormalTok{ install }\AttributeTok{{-}v}\NormalTok{ yihui/tinytex/tinytex}
+\end{Highlighting}
+\end{Shaded}
+
+Formula は GitHub レポジトリ
+\href{https://github.com/yihui/homebrew-tinytex}{yihui/homebrew-tinytex}
+にあります. この方法を使わなければならないなら,
+以下2点の注意事項に留意すべきです.
+
+\begin{itemize}
+\item
+  Homebrew は TeX Live のシンボリックリンクを管理し
+  (\texttt{brew\ link\ tinytex} で), \texttt{/usr/local/bin}
+  以下にリンクを作成します. このコマンドで \texttt{tlmgr\ path\ add}
+  と同じ場所にシンボリックリンクが作られるので, インストール後に
+  \texttt{tlmgr\ path\ add} を実行しないほうがよいです.
+  (\texttt{tlmgr\ install} で) \textbf{metafont} のようなバイナリを含む
+  TeX Live パッケージ (\texttt{mf} を含んでいます)
+  をインストールしたときには, 以下を実行すべきです.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{brew}\NormalTok{ postinstall tinytex }\KeywordTok{\&\&} \ExtensionTok{brew}\NormalTok{ unlink tinytex }\KeywordTok{\&\&} \ExtensionTok{brew}\NormalTok{ link tinytex}
+\end{Highlighting}
+\end{Shaded}
+\item
+  Homebrew で \textbf{tinytex} を更新した後は
+  (\texttt{brew\ update\ \&\&\ brew\ upgrade} によって),
+  すでに自分でインストールした LaTeX パッケージはもはや使用できず,
+  再インストールする必要があります. 解決法の1つとして
+  \texttt{brew\ pin\ tinytex} でこの formula
+  を将来にわたって更新させないようにします (実際,
+  アップグレードの必要はありません). 別の解決法は, formula の HEAD
+  版を使用することです.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{brew}\NormalTok{ cleanup }\AttributeTok{{-}s}
+\ExtensionTok{brew}\NormalTok{ remove tinytex}
+\ExtensionTok{brew}\NormalTok{ install }\AttributeTok{{-}v} \AttributeTok{{-}{-}HEAD}\NormalTok{ tinytex}
+\end{Highlighting}
+\end{Shaded}
+
+  これらの問題がとても複雑だと感じたら (実際複雑です), ホームページ
+  (\ref{tinytex}節) に書いてあるような macOS に TinyTeX
+  をインストールする簡単な手順にしたがってください.
+\end{itemize}
+
+\hypertarget{ux3053ux3053ux3067ux8aacux660eux3055ux308cux3066ux3044ux308bux30b3ux30deux30f3ux30c9ux3092ux30b3ux30deux30f3ux30c9ux30a6ux30a3ux30f3ux30c9ux30a6-ux30bfux30fcux30dfux30caux30eb-ux3092ux958bux3044ux3066ux5b9fux884cux3059ux308bux306bux306fux3069ux3046ux3059ux308cux3070ux3044ux3044ux3067ux3059ux304b}{%
+\section{ここで説明されているコマンドをコマンドウィンドウ (ターミナル)
+を開いて実行するにはどうすればいいですか?}\label{ux3053ux3053ux3067ux8aacux660eux3055ux308cux3066ux3044ux308bux30b3ux30deux30f3ux30c9ux3092ux30b3ux30deux30f3ux30c9ux30a6ux30a3ux30f3ux30c9ux30a6-ux30bfux30fcux30dfux30caux30eb-ux3092ux958bux3044ux3066ux5b9fux884cux3059ux308bux306bux306fux3069ux3046ux3059ux308cux3070ux3044ux3044ux3067ux3059ux304b}}
+
+Linux ユーザに対してはこの質問の回答をしません.\footnote{\textbf{訳注}:
+  ディストリビューションによって異なりますし,
+  デスクトップ環境ならばおそらく自明でしょう.} macOS ユーザに対しては
+\texttt{Command\ +\ Space} で Spotlight 検索を立ち上げ,
+\texttt{Terminal} とタイプしてください. 結果の最初が
+\texttt{Terminal.app} となっているはずです. それだけです. Windows
+ユーザの場合, タスクバー上の Windows のアイコンを右クリックして
+\texttt{Widnwos\ PowerShell} を選んでください
+
+あなたが\href{https://www.rstudio.com}{RStudio} ユーザならば,
+より簡単です. v1.1 以降の RStudio
+には\href{https://blog.rstudio.com/2017/08/11/rstudio-v1-1-preview-terminal/}{ターミナルのビルトインサポート}
+があるので, RStudio 内でターミナルを開くことができます.
+
+\hypertarget{pain}{%
+\chapter{Half of Pain}\label{pain}}
+
+「なぜ TinyTeX か \textasciitilde LaTeX
+ディストリビューションの何が苦痛か?\textasciitilde」
+
+オリジナルのページ: \url{https://yihui.org/tinytex/pain/}
+
+オリジナルの更新日: 2017/12/15
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+私がしているのが車輪の再発明にすぎないと考えている開発者もいるかもしれません.
+私は理由もなく車輪の再発明などしたくありません.
+ホームページで述べたように, 既存の LaTeX
+ディストリビューションを使うことによる苦痛は,
+ファイルとドキュメントが巨大であり, 包括的で有用な一方で,
+私にとって最も有用が部分がどこなのか (つまり,
+足りないパッケージをインストールする方法) が強調されないことです.
+
+これを嫌うまた別の理由として, LaTeX パッケージの管理のために
+(UNIX系OSで) \texttt{sudo} がしょっちゅう必要であることもあります. TeX
+Live
+はコンピュータのどこに配置することもできる自己完結的なフォルダ構成であることを考えると,
+\texttt{sudo} が必要な理由が見当たりません. 数年間も待って
+\texttt{tlmgr} がとうとう Debian/Ubuntu
+で利用可能になると私は\href{https://twitter.com/xieyihui/status/397238590523973632}{とても喜びました}が,
+それが使い物にならないとわかると私はすぐに失望しました (\texttt{sudo}
+なしでは何もできません). 今年再確認すると,
+まだ使い物にならないままでした. きっと私はこれを正しく使えません
+(なにをやろうとしてもエラーになります) が, \texttt{tlmgr}
+のユーザーモードを使うときだけ許可されますが,
+その機能は私にとって制約が多すぎました.
+
+私が普段使っているのは macOS で, 公式に TeX Live
+ディストリビューションとして MacTeX が推奨されています.
+これには私にとって不要ないくつかの追加パッケージ, たとえば TeX Live
+Utility (私は \texttt{tlmgr} コマンドの使い方を知っています), TeXShop (R
+Markdown を使っていますし, 可能な限り生の LaTeX を編集することも,
+読むことすらしたくないです), LaTeXiT などが含まれています.
+
+実際 Window 上での MiKTeX
+(現在はこれはクロスプラットフォームになったようです)
+のよい機能の1つを私は評価しています. 不足している LaTeX
+パッケージの自動インストールのことです. これはとても便利だと思うので,
+私はこの機能を R パッケージの \textbf{tinytex} でも借用し, R ユーザは
+TeX Live または TinyTeX 使用時にこの機能を活用することができます.
+つまり, 基本的な MiKTeX ですらまだ大きすぎ, そして私を腹立たせたのは
+MiKTeX の \texttt{bbitex.exe} です. これはいつも \texttt{.aux}
+ファイル内の文献データベースファイルに \texttt{.bib}
+拡張子を付け足します. 例えば \texttt{bar.tex} 内に
+\texttt{\textbackslash{}bibliography\{foo.bib\}} があったとして,
+\texttt{bibtex.exe} は \texttt{bar.aux} 内に
+\texttt{\textbackslash{}bibdata\{foo.bib.bib\}} を生成してしまいます.
+なんであれ, Rパッケージの \textbf{tinytex} においては MiKTeX
+を使うウィンドウズユーザに対しては\href{https://github.com/yihui/tinytex/blob/4275a375c6/R/latex.R\#L189-L196}{パッチを当てました}.
+TeX Live ユーザはこの問題に苦しむことはありません.
+
+このページでは LaTeX のインストールと管理の話を共有したいと思います.
+まずは私の発見した辛い場面を紹介しようと思います.
+
+\begin{infobox}{important}
+\textbf{訳注}: 以降は既存の LaTeX
+ディストリビューションの不便さを嘆く声を集めた内容となっており, TinyTeX
+の使用法とは直接関係ないため翻訳を省略します.
+
+\end{infobox}
+
+\begin{itemize}
+\item
+  \href{https://ubuntuforums.org/showthread.php?t=395863}{Why LaTeX is
+  such a bloated system?}
+\item
+  \href{https://tex.stackexchange.com/q/43862/9128}{Is there a
+  lightweight implementation/distribution of TeX for Mac OSX?}
+\item
+  \href{https://tex.stackexchange.com/q/81802/9128}{Installing (a
+  lightweight version of) latex on an external hard drive}
+\item
+  texlive-full is
+  \href{https://github.com/rstudio/rticles/pull/130\#issuecomment-313732003}{too
+  big}, \href{https://github.com/rocker-org/rocker/issues/266}{too big},
+  and \href{https://github.com/road2stat/liftr/issues/25}{just too big}
+  for Docker images
+\item
+  \href{https://tex.stackexchange.com/q/18939/9128}{Which LaTeX to
+  install on Linux?}
+\item
+  Missing LaTeX packages confuse users
+  \href{https://github.com/rstudio/rmarkdown/issues/359}{forever},
+  \href{https://github.com/rstudio/rmarkdown/issues/1076}{forever},
+  \href{https://github.com/rstudio/rmarkdown/issues/1393}{forever}, and
+  it takes
+  \href{https://twitter.com/xieyihui/status/763805846807547904}{forever}
+  to figure them out and install.
+  \href{https://stackoverflow.com/q/47400936/559676}{Error messages} can
+  also be confusing. Sometimes we just
+  \href{https://github.com/rstudio/bookdown/issues/507}{don't have a
+  clue}.
+\item
+  When all you need is a LaTeX package, \textbf{upquote}, of which the
+  size is 5K,
+  \href{https://github.com/jgm/pandoc/issues/2439\#issuecomment-326518438}{you
+  have to install 500MB of additional software on Ubuntu/Debian}.
+\item
+  You may suffer from
+  \href{https://github.com/rstudio/rmarkdown/issues/1505}{old bugs} that
+  have been fixed in certain LaTeX packages.
+\item
+  MiKTeX \href{https://github.com/rstudio/bookdown/issues/531}{might
+  fail} and we don't know what the error message ``GUI framework cannot
+  be initialized'' means. Sometimes we have
+  \href{https://stackoverflow.com/questions/48892499/compile-rmarkdown-document-with-render\#comment84801684_48892499}{no
+  clue} why it doesn't work.
+\end{itemize}
+
+Below are stories and experiences contributed by other users:
+
+\begin{quote}
+Removed TeX Live from my system (openSUSE): 1.5gb. Installed TinyTeX +
+the dependencies to compile my thesis: 150mb!!!! This is great!
+\end{quote}
+
+\begin{quote}
+---
+\href{https://twitter.com/brodriguesco/status/942162790587957248}{Bruno
+Rodrigues}
+\end{quote}
+
+\begin{quote}
+Really liking the simplicity of tinytex package. Easy to get up and
+running to knit PDFs. No need for slow LaTeX install.
+\end{quote}
+
+\begin{quote}
+---
+\href{https://twitter.com/lingwhatics/status/941766989424537602}{Daley
+Mikalson}
+\end{quote}
+
+\begin{quote}
+A tiny LaTeX distribution easy to install from RStudio or on Travis CI
+is just what we needed!
+\end{quote}
+
+\begin{quote}
+---
+\href{https://twitter.com/PhilGrosjean/status/941241878309232640}{Philippe
+Grosjean}
+\end{quote}
+
+\begin{quote}
+Seriously one of my only holdups teaching LaTeX in Rmarkdown (still
+taught it anyway) is now solved.
+\end{quote}
+
+\begin{quote}
+---
+\href{https://twitter.com/healthandstats/status/941169151749406720}{Tyson
+Barrett}
+\end{quote}
+
+\begin{quote}
+Tried TinyTeX with rmarkdown and both English and Chinese rendering. The
+most smooth experience ever using LaTeX!
+\end{quote}
+
+\begin{quote}
+--- \href{https://twitter.com/renkun_ken/status/941352666730455041}{Kun
+Ren}
+\end{quote}
+
+\begin{quote}
+TinyTeX is awesome, if it had existed before I would have saved hours of
+my life spent dealing with LaTeX packages and failed R Markdown
+knits\ldots{}
+\end{quote}
+
+\begin{quote}
+---
+\href{https://github.com/rstudio/bookdown/issues/292\#issuecomment-356480809}{Antonio
+Vazquez Brust}
+\end{quote}
+
+\begin{quote}
+Many people don't realize that Texlive on some Linux systems (say you
+need a rstudio server) doesn't come with the TeX package manager. If the
+package you need is not in their system, you are basically screwed as
+you can't even install it. TinyTeX solves this problem and makes
+everything sweet and easy. Also, after using it for more than a month, I
+found the messages of tinytex are very helpful, comparing with basically
+NULL in texlive.
+\end{quote}
+
+\begin{quote}
+---
+\href{https://community.rstudio.com/t/texlive-distribution-on-centos-for-rstudio-server-and-connect/2916}{Hao
+Zhu}
+\end{quote}
+
+\begin{quote}
+I'm a novice with R and I found the entire process of installing
+rmarkdown, knitr, MiKTeX, and pandoc and then reconciling all their
+directories very difficult. {[}\ldots{]} The 3-4 hour detour into MiKTeX
+etc and how to produce PDFs was a frustration experience to say the
+least. (Up and running with TinyTeX five minutes later\ldots)
+\end{quote}
+
+\begin{quote}
+--- Justin Shapiro
+\end{quote}
+
+\begin{quote}
+If you work in a locked down windows corporate enviroment and spent
+countless hours with MiKTeX or portable MiKTeX, you'll want to buy
+@xieyihui lunch.
+\end{quote}
+
+\begin{quote}
+---
+\href{https://twitter.com/ThomasSpeidel/status/957856056108920835}{Thomas
+Speidel}
+\end{quote}
+
+\begin{quote}
+Too bad, this computer had a good month of TeX-free.
+\end{quote}
+
+\begin{quote}
+---
+\href{https://twitter.com/romain_francois/status/979022989634174976}{Romain
+François}
+\end{quote}
+
+\begin{quote}
+I'd been avoiding installing LaTeX on my macOS and Windows machines b/c
+it's always such a hassle. Just learned about about TinyTeX today and
+easily got setup on both machines.
+\end{quote}
+
+\begin{quote}
+--- \href{https://twitter.com/jdblischak/status/974066342780461056}{John
+Blischak}
+\end{quote}
+
+\begin{quote}
+Like 2 hours later, I'm not sure I want to know, but there \emph{must}
+be a faster way of updating all my TeX packages than the ftp in TeX Live
+Utility\ldots{}
+\end{quote}
+
+\begin{quote}
+--- \href{https://twitter.com/dataandme/status/994531189217259521}{Mara
+Averick}
+\end{quote}
+
+\begin{quote}
+Installing a complete version of MiKTeX is a freaking nightmare though.
+Don't know if it's my internet connection or what but I just can't get
+it all installed in one go. I finally just did the basic install and am
+selecting batches of pkgs at a time to add.
+\end{quote}
+
+\begin{quote}
+{[}\ldots{]} I just installed this (TinyTeX) and it was SO EASY and I'm
+kind of upset that I didn't know about it before. Gonna be shouting this
+one \href{https://twitter.com/swmpkim/status/1014546819085369344}{from
+the rooftops}.
+\end{quote}
+
+\begin{quote}
+--- \href{https://twitter.com/swmpkim/status/1014514680088399874}{Kim
+Cressman}
+\end{quote}
+
+\begin{quote}
+Siri, how much of my life have I spent
+\href{https://twitter.com/djnavarro/status/1112674242523361281}{installing
+TeX distributions}?
+\end{quote}
+
+\begin{quote}
+I have discovered that the tinytex package has handy tools for analysing
+the .log files, which solved my problems for me. That is, after I wasted
+half an hour trying to install MiKTeX for no good reason
+\end{quote}
+
+\begin{quote}
+---
+\href{https://twitter.com/djnavarro/status/1112687238196822016}{Danielle
+Navarro}
+\end{quote}
+
+\begin{quote}
+I used tinytex to upgrade TeX Live and install a package and it \ldots{}
+worked. @xieyihui may have ended some of my LaTeX torment.
+\end{quote}
+
+\begin{quote}
+---
+\href{https://twitter.com/FanninQED/status/1146857305285242880}{PirateGrunt}
+\end{quote}
+
+\begin{quote}
+literally took me longer to remove all traces of MacTeX than to install
+TinyTeX and all the packages needed to build my thesis, and i saved
+about 10gb of disk space.
+\end{quote}
+
+\begin{quote}
+--- \href{https://twitter.com/tjohnhos/status/1175575859748638720}{Tim
+Hosgood}
+\end{quote}
+
+\begin{quote}
+I've always had a problem knitting to pdf with windows. I followed
+instruction for tinytex and it works great now!
+\end{quote}
+
+\begin{quote}
+---
+\href{https://twitter.com/TexanDhillon/status/1183831526485712897}{Dilsher
+Dhillon}
+\end{quote}
+
+\begin{quote}
+Learning to write a LaTeX manuscript in R Markdown and was having
+problems loading new packages: tlmgr wasn't updating the packages. So,
+found the ``tinytex'' package that fixed everything.
+\end{quote}
+
+\begin{quote}
+---
+\href{https://twitter.com/dynamic_choice/status/1203389695419224064}{Akash}
+\end{quote}
+
+\begin{quote}
+Just had to reinstall texlive on my Mac and once again, @xieyihui's
+tinytex package saves the day with tinytex::reinstall\_tinytex().
+\end{quote}
+
+\begin{quote}
+--- \href{https://twitter.com/ZKamvar/status/1202525888031657984}{Zhian
+N Kamvar}
+\end{quote}
+
+\begin{quote}
+Having just for fun installed R on my new Raspberry pi 4, I thought to
+myself now it would be nice to have latex, but really, all of texlive,
+probably not, so this was exactly what was needed. It installed for me
+immediately and ``just worked.''
+\end{quote}
+
+\begin{quote}
+--- \href{/tinytex/\#comment-4720783918}{Roger Koenker}
+\end{quote}
+
+\begin{quote}
+I've always had problems knitting to pdf on Windows until I came across
+tinytex package.
+\end{quote}
+
+\begin{quote}
+---
+\href{https://twitter.com/dhillon_stats/status/1214204113359179779}{Dilsher
+Dhillon}
+\end{quote}
+
+\begin{quote}
+{[}\ldots{]} uninstall MacTeX and install TinyTeX was the ticket! It
+FINALLY knit to pdf!!!!
+\end{quote}
+
+\begin{quote}
+---
+\href{https://twitter.com/TiffanyTimbers/status/1214344978769403905}{Tiffany
+Timbers}
+\end{quote}
+
+\begin{quote}
+{[}\ldots{]} Why install 3GB of languages you don't know when all you
+want are beautiful tables?
+\end{quote}
+
+\begin{quote}
+---
+\href{https://twitter.com/RomanMLink/status/1227496566157524992}{Roman
+Link}
+\end{quote}
+
+\begin{quote}
+{[}\ldots{]} Have you tried \{tinytex\}? It installs only what you need
+from LaTeX so you can knit to pdf! Changed my life!
+\end{quote}
+
+\begin{quote}
+--- \href{https://twitter.com/swmpkim/status/1234517924028784640}{Kim
+Cressman}
+\end{quote}
+
+\begin{quote}
+{[}\ldots{]} R Markdown + library(tinytex) basically unlock all of the
+power of LaTeX without any of the headaches.
+\end{quote}
+
+\begin{quote}
+---
+\href{https://twitter.com/awunderground/status/1234665396654837761}{Aaron
+R. Williams}
+\end{quote}
+
+\begin{quote}
+A nice, ultra light, LaTeX distribution, I used TinyTeX on my chromebook
+for a while.
+\end{quote}
+
+\begin{quote}
+---
+\href{https://twitter.com/onebellboy/status/1374345267256905729}{@onebellboy}
+\end{quote}
+
+\begin{quote}
+But also LaTeX took 6 hours to download and now I'm struggling to set
+the path variable for it so maybe I'll just give up for today and try
+tomorrow.
+\end{quote}
+
+\begin{quote}
+---
+\href{https://twitter.com/JadeMasterMath/status/1384672233499643905}{jade
+eden}
+\end{quote}
+
+\hypertarget{tinytex-ux4e2dux6587ux6587ux6863-ux672aux7ffbux8a33}{%
+\chapter{TinyTeX 中文文档
+(未翻訳)}\label{tinytex-ux4e2dux6587ux6587ux6863-ux672aux7ffbux8a33}}
+
+オリジナルのページ: \url{https://yihui.org/tinytex/cn/}
+
+オリジナルの更新日: 2017/12/03
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{infobox}{memo}
+このページは (機械翻訳で確認して)
+英語の解説ページとほぼ同じ内容だと判断したので翻訳していません.
+
+\end{infobox}
+
+
+\end{document}

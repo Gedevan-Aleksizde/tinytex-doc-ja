@@ -11,7 +11,7 @@ link-citations: yes
 linkcolor: blue
 citecolor: blue
 urlcolor: magenta
-github-repo: Gedevan-Aleksizde/knitr-doc-ja
+github-repo: Gedevan-Aleksizde/tinytex-doc-ja
 ---
 
 ```{r include=F}
@@ -43,7 +43,7 @@ original_time <- format(as.POSIXct(system('cd ../yihui && git log -1 --pretty=fo
 ```
 
 ---
-date: "ver. 1.2.1 (`r updated_time`, 本家の更新確認時刻: [`r original_time`](https://github.com/rbind/yihui/tree/master/content/tinytex))"
+date: "ver. 1.2.2 (`r updated_time`, 本家の更新確認時刻: [`r original_time`](https://github.com/rbind/yihui/tree/master/content/tinytex))"
 ---
 
 # TinyTeX {#tinytex}
@@ -64,7 +64,7 @@ This is an unofficial Japanese translation of Yihui’s TinyTeX documentation, w
 
 \newpage
 
-TinyTeX は TeX Live を元にした軽量 (macOS/Linux ではおよそ 61 Mb, Windows では(g)zip圧縮して 94 Mb) なカスタム LaTeX ディストリビューションですが, ほとんどの場面, 特にRユーザーにとってよく機能します. LaTeX パッケージが足りないという問題に直面しても, あなたが何をすべきかはとても明快です (実際Rユーザは何もする必要がありません). **あなたが実際に必要な LaTeX パッケージをインスールするだけです**.
+TinyTeX は TeX Live を元にした軽量 (macOS/Linux ではおよそ 61 Mb, Windows では(g)zip圧縮して 94 Mb) なカスタム LaTeX ディストリビューションですが, ほとんどの場面, 特にRユーザーにとってよく機能します. LaTeX パッケージが足りないという問題に直面しても, あなたが何をすべきかはとても明快です (実際Rユーザは何もする必要がありません). **あなたが実際に必要な LaTeX パッケージをインストールするだけです**.
 
 <center>
 
