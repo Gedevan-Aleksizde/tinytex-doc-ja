@@ -22,7 +22,7 @@
   
 
 <meta name="author" content="Xie, Yihui (Author)" />
-<meta name="author" content="Katagiri, Satoshi (Translator)" />
+<meta name="author" content="Katagiri, Satoshi (片桐 智志) (Translator)" />
 
 
 
@@ -33,7 +33,7 @@
   
 
 <link rel="next" href="r.html"/>
-<script src="libs/header-attrs-2.9.2/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -209,8 +209,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">TinyTeX 非公式日本語版ドキュメント</h1>
 <h2 class="subtitle"><em>軽量・クロスプラットフォーム・ポータブル・メンテナンスも容易な TeX Live ベースの LaTeX ディストリビューション</em></h2>
 <p class="author"><em>Xie, Yihui (Author)</em></p>
-<p class="author"><em>Katagiri, Satoshi<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> (Translator)</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>ver. 1.2.2 (2021/07/16 18:02:45 JST, 本家の更新確認時刻: <a href="https://github.com/rbind/yihui/tree/master/content/tinytex">2021/06/06 22:28:33 JST</a>)</em></p>
+<p class="author"><em>Katagiri, Satoshi (片桐 智志)<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> (Translator)</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>ver. 1.2.2 (2021/08/09 13:40:30 JST, 本家の更新確認時刻: <a href="https://github.com/rbind/yihui/tree/master/content/tinytex">2021/06/06 22:28:33 JST</a>)</em></p>
 </div>
 <div id="tinytex" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> TinyTeX</h1>
@@ -234,16 +234,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="r-ユーザへ" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> R ユーザへ</h2>
 <p>R パッケージの <strong>tinytex</strong> (<a href="r.html#r">2</a>節) がラッパ関数を提供しているので R ユーザにとって TinyTeX のインストールと保守は簡単です (備考: 太い小文字で <strong>tinytex</strong> といえば R パッケージをさし, キャメルケースで TinyTeX といえば LaTeX ディストリビューションを意味することとします). <strong>tinytex</strong> を使って TinyTeX をインストールできます.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tinytex&#39;</span>)</span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tinytex&quot;</span>)</span>
 <span id="cb1-2"><a href="index.html#cb1-2"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()</span>
-<span id="cb1-3"><a href="index.html#cb1-3"></a><span class="co"># アンインストールするときは tinytex::uninstall_tinytex() を実行</span></span></code></pre></div>
+<span id="cb1-3"><a href="index.html#cb1-3"></a><span class="co"># アンインストールするときは tinytex::uninstall_tinytex()</span></span>
+<span id="cb1-4"><a href="index.html#cb1-4"></a><span class="co"># を実行</span></span></code></pre></div>
 <p>R Markdown 文書を PDF にコンパイルするために, 以下の他に知るべきことは何もありません.</p>
 <p>R Markdown 文書を PDF にコンパイルするためには, 使用したい LaTeX エンジンに応じて, <strong>tinytex</strong> の <code>pdflatex()</code>, <code>xelatex()</code>, <code>lualatex()</code> のいずれかの関数を呼び出します. これらの関数が, 必要なのにインストールされていない LaTeX パッケージを検出すると, デフォルトでは自動的に欠落したパッケージをインストールします.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1"></a><span class="fu">writeLines</span>(<span class="fu">c</span>(</span>
-<span id="cb2-2"><a href="index.html#cb2-2"></a> <span class="st">&#39;</span><span class="sc">\\</span><span class="st">documentclass[lualatex,ja=standard,haranoaji]{bxjsarticle}&#39;</span>,</span>
-<span id="cb2-3"><a href="index.html#cb2-3"></a> <span class="st">&#39;</span><span class="sc">\\</span><span class="st">begin{document}&#39;</span>, <span class="st">&#39;ハロー日本語文書!&#39;</span>, <span class="st">&#39;</span><span class="sc">\\</span><span class="st">end{document}&#39;</span></span>
-<span id="cb2-4"><a href="index.html#cb2-4"></a>), <span class="st">&#39;test.tex&#39;</span>)</span>
-<span id="cb2-5"><a href="index.html#cb2-5"></a>tinytex<span class="sc">::</span><span class="fu">lualatex</span>(<span class="st">&#39;test.tex&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1"></a><span class="fu">writeLines</span>(<span class="fu">c</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">documentclass[lualatex,ja=standard,haranoaji]{bxjsarticle}&quot;</span>,</span>
+<span id="cb2-2"><a href="index.html#cb2-2"></a>  <span class="st">&quot;</span><span class="sc">\\</span><span class="st">begin{document}&quot;</span>, <span class="st">&quot;ハロー日本語文書!&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">end{document}&quot;</span>),</span>
+<span id="cb2-3"><a href="index.html#cb2-3"></a>  <span class="st">&quot;test.tex&quot;</span>)</span>
+<span id="cb2-4"><a href="index.html#cb2-4"></a>tinytex<span class="sc">::</span><span class="fu">lualatex</span>(<span class="st">&quot;test.tex&quot;</span>)</span></code></pre></div>
 <p>普通の R ユーザーが知るべきことは以上です. あなたが開発者なら, <code>tinytex:::install_yihui_pkgs()</code> で<a href="https://github.com/yihui/tinytex/blob/master/tools/pkgs-yihui.txt">いくつかのパッケージ</a>をインストールしたいと思うかもしれません. この関数は CRAN のパッケージの多くの PDF ビネットをビルドするのに必要な関数をインストールすることで, あなたがパッケージを探す手間を<a href="https://github.com/yihui/tinytex/issues/135">省いてくれます</a>.</p>
 <p>R を使用していないなら, 知る必要があることがもう1つあります. <code>tlmgr</code> コマンドです.</p>
 </div>

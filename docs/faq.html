@@ -22,7 +22,7 @@
   
 
 <meta name="author" content="Xie, Yihui (Author)" />
-<meta name="author" content="Katagiri, Satoshi (Translator)" />
+<meta name="author" content="Katagiri, Satoshi (片桐 智志) (Translator)" />
 
 
 
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="addendum-ja.html"/>
 <link rel="next" href="pain.html"/>
-<script src="libs/header-attrs-2.9.2/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -227,7 +227,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>macOS と Linux では gzip 圧縮で 61 MB, Windows では zip 圧縮で 94 MBです. これでもまだ大きすぎると思うかもしれませんが, <a href="https://www.tug.org/mactex/morepackages.html">Basic TeX インストーラ</a> のサイズが macOS ではおよそ 80 MB に, Windows では <a href="https://miktex.org/download">MiKTeX インストーラ</a> がおよそ 235 MB になることを考えてみてください.</p>
 <p>TinyTeX の軽量さはクラウド上で (たとえば Travis CI で意図的にテストするとき) インストールするときにとても便利でしょう. ダウンロードとインストールはほんの数秒しかかかりません.</p>
 <p>もちろん, TinyTeX のサイズは追加で LaTeX パッケージをインストールするたびに増加します. 極端な話, 全てのパッケージをインストールしたいかもしれません (どのパッケージが足りないのかを把握する必要を排除してしまうために). そうしたい場合でも, R ではこのように実行します.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb22-1"><a href="faq.html#cb22-1"></a>tinytex<span class="sc">::</span><span class="fu">tlmgr_install</span>(<span class="st">&#39;scheme-full&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb22-1"><a href="faq.html#cb22-1"></a>tinytex<span class="sc">::</span><span class="fu">tlmgr_install</span>(<span class="st">&quot;scheme-full&quot;</span>)</span></code></pre></div>
 <p>コマンドラインで同様の操作はこうなります</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb23-1"><a href="faq.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tlmgr</span> install scheme-full</span>
 <span id="cb23-2"><a href="faq.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">tlmgr</span> path add</span></code></pre></div>
@@ -267,8 +267,8 @@ option_src 0</code></pre>
 <p>それからパッケージをインストールする時には, ユーザは常に <code>--usermode</code> オプションを付けなければなりません. 例えば以下のように.</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb29-1"><a href="faq.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tlmgr</span> <span class="at">--usermode</span> install koma-script xcolor</span></code></pre></div>
 <p>R ユーザなら, 上記のコマンドは以下の R の命令文と同じです.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb30-1"><a href="faq.html#cb30-1"></a>tinytex<span class="sc">::</span><span class="fu">tlmgr</span>(<span class="st">&#39;init-usertree&#39;</span>)  <span class="co"># これも最初に一度実行するだけです</span></span>
-<span id="cb30-2"><a href="faq.html#cb30-2"></a>tinytex<span class="sc">::</span><span class="fu">tlmgr_install</span>(<span class="fu">c</span>(<span class="st">&#39;koma-script&#39;</span>, <span class="st">&#39;xcolor&#39;</span>), <span class="at">usermode =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb30-1"><a href="faq.html#cb30-1"></a>tinytex<span class="sc">::</span><span class="fu">tlmgr</span>(<span class="st">&quot;init-usertree&quot;</span>)  <span class="co"># これも最初に一度実行するだけです</span></span>
+<span id="cb30-2"><a href="faq.html#cb30-2"></a>tinytex<span class="sc">::</span><span class="fu">tlmgr_install</span>(<span class="fu">c</span>(<span class="st">&quot;koma-script&quot;</span>, <span class="st">&quot;xcolor&quot;</span>), <span class="at">usermode =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>しかし, TeX Live のユーザーモードは実際のところかなり複雑になる可能性があり, 残念なことに私はサポートしきれません. 少しだけ注意事項を挙げておきます.</p>
 <ul>
 <li><p>最悪のやり方はユーザが一切のパッケージをインストールできないことです. TeX Live では<strong>再配置可能</strong>なパッケージとそうでないものがあります. 例えば実行ファイルを含むパッケージは再配置できません (例: <strong>metafont</strong> パッケージは <code>mf</code> という実行ファイルを含んでいます). ユーザがこれらのパッケージを使わなければならないなら, システム管理者だけが頼りです. 良い知らせとして, こういったパッケージは小規模なので, これらを全てをシステム管理者が最初からインストールしておくという保守的な戦略がある, ということがあります. R 関数の <code>tinytex::tl_unrelocatable()</code> は再配置不可能な全てのパッケージの名前を返します. これは内部で <code>tlmgr info --list --data name,relocatable</code> を呼び出しています.</p></li>
@@ -309,8 +309,9 @@ option_src 0</code></pre>
 <p>あなたが R ユーザなら上記のステップは以下の2つの関数でできます.</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb33-1"><a href="faq.html#cb33-1"></a><span class="co"># インストール済みの TinyTeX をどこにコピーするか</span></span>
 <span id="cb33-2"><a href="faq.html#cb33-2"></a>tinytex<span class="sc">::</span><span class="fu">copy_tinytex</span>()</span>
-<span id="cb33-3"><a href="faq.html#cb33-3"></a><span class="co"># TinyTeX がデバイスのどこにあるかを指定し, tlmgr path add を実行</span></span>
-<span id="cb33-4"><a href="faq.html#cb33-4"></a>tinytex<span class="sc">::</span><span class="fu">use_tinytex</span>()</span></code></pre></div>
+<span id="cb33-3"><a href="faq.html#cb33-3"></a><span class="co"># TinyTeX がデバイスのどこにあるかを指定し, tlmgr path add</span></span>
+<span id="cb33-4"><a href="faq.html#cb33-4"></a><span class="co"># を実行</span></span>
+<span id="cb33-5"><a href="faq.html#cb33-5"></a>tinytex<span class="sc">::</span><span class="fu">use_tinytex</span>()</span></code></pre></div>
 <p>あるプラットフォームでインストールした TinyYeX は, 同じプラットフォーム上でのみ動作することに注意してください. 例えば Windows 版は Windows でしか動作しません. 例えば TinyTeX の macOS 版は Windows マシンにコピーすることも使うこともできません.</p>
 <p>これは情報システム担当者やシステム管理者を介さなくていいすばらしいやり方です. LaTeX パッケージをインストールしたりアップグレードしたりするよう彼らに要求する必要がありません. 全て自分でやることができます.</p>
 <p><strong>訳注</strong>: 昨今では USB ドライブを勝手に挿入することもセキュリティ面で問題視されそうな気がするので注意してください.</p>

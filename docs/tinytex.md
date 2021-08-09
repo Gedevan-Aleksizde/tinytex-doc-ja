@@ -1,10 +1,10 @@
 ---
 title: "TinyTeX 非公式日本語版ドキュメント"
-date: "2021/07/16"
+date: "2021/08/09"
 site: bookdown::bookdown_site
 author: 
   - Xie, Yihui (Author)
-  - "Katagiri, Satoshi^[twitter id: ill_identified] (Translator)"
+  - "Katagiri, Satoshi (片桐 智志)^[twitter id: ill_identified] (Translator)"
 subtitle: 軽量・クロスプラットフォーム・ポータブル・メンテナンスも容易な TeX Live ベースの LaTeX ディストリビューション
 documentclass: bxjsreport
 link-citations: yes
@@ -19,7 +19,7 @@ github-repo: Gedevan-Aleksizde/tinytex-doc-ja
 
 
 ---
-date: "ver. 1.2.2 (2021/07/16 18:02:49 JST, 本家の更新確認時刻: [2021/06/06 22:28:33 JST](https://github.com/rbind/yihui/tree/master/content/tinytex))"
+date: "ver. 1.2.2 (2021/08/09 13:40:32 JST, 本家の更新確認時刻: [2021/06/06 22:28:33 JST](https://github.com/rbind/yihui/tree/master/content/tinytex))"
 ---
 
 # TinyTeX {#tinytex}

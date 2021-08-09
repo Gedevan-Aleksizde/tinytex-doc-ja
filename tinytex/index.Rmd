@@ -4,7 +4,7 @@ date: "`r format(Sys.Date(), '%Y/%m/%d')`"
 site: bookdown::bookdown_site
 author: 
   - Xie, Yihui (Author)
-  - "Katagiri, Satoshi^[twitter id: ill_identified] (Translator)"
+  - "Katagiri, Satoshi (片桐 智志)^[twitter id: ill_identified] (Translator)"
 subtitle: 軽量・クロスプラットフォーム・ポータブル・メンテナンスも容易な TeX Live ベースの LaTeX ディストリビューション
 documentclass: bxjsreport
 link-citations: yes
