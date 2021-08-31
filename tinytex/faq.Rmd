@@ -47,7 +47,7 @@ tlmgr path add
 
 ## TinyTeX はどうやって作られたのですか? 巨大な TeX Live のサイズをどうやって削減したのですか? {#faq-size}
 
-TinyTeX を理解する最善の方法は TUGBoat の "[TinyTeX: A lightweight, cross-platform, and easy-to-maintain LaTeX distribution based on TeX Live](https://tug.org/TUGboat/Contents/contents40-1.html)" を読むことです. あるいは代わりに `tools` ディレクトリにある[ソースを読む](https://github.com/yihui/tinytex/)こともできます. 基本的に TinyTeX は, [tinytex.profile](https://github.com/yihui/tinytex/blob/master/tools/tinytex.profile) (`./install-tl -profile=tinytex.profile`) というプロファイルで TeX Live のインストールを自動化しています. このファイルは最初にインストールされる `infraonly` スキームを指定しているだけです. このスキームがあるので LaTeX のドキュメントは一切コンパイルできませんが, 最も重要なユーティリティである `tlmgr` (TeX Live マネージャ) だけは含まれます. この時点での全体のサイズは (UNIX系では) 1 MB 未満です.
+TinyTeX を理解する最善の方法は TUGBoat の "[TinyTeX: A lightweight, cross-platform, and easy-to-maintain LaTeX distribution based on TeX Live](https://tug.org/TUGboat/Contents/contents40-1.html)" を読むことです. あるいは代わりに `tools` フォルダにある[ソースを読む](https://github.com/yihui/tinytex/)こともできます. 基本的に TinyTeX は, [tinytex.profile](https://github.com/yihui/tinytex/blob/master/tools/tinytex.profile) (`./install-tl -profile=tinytex.profile`) というプロファイルで TeX Live のインストールを自動化しています. このファイルは最初にインストールされる `infraonly` スキームを指定しているだけです. このスキームがあるので LaTeX のドキュメントは一切コンパイルできませんが, 最も重要なユーティリティである `tlmgr` (TeX Live マネージャ) だけは含まれます. この時点での全体のサイズは (UNIX系では) 1 MB 未満です.
 
 それから `tlmgr` で基本的なパッケージをさらにいくつかインストールします (これは [pkgs-custom.txt](https://github.com/yihui/tinytex/blob/master/tools/pkgs-custom.txt) で定義されています). これらのパッケージがあればほとんどの R Markdown 文書を PDF にコンパイルすることができます. 全体のサイズはおよそ 61 MB になります.
 
@@ -88,7 +88,7 @@ wget -qO- "https://yihui.org/tinytex/install-unx.sh" | sh -s - --admin --no-path
 sudo ~/.TinyTeX/bin/*/tlmgr path add
 ```
 
-`~/.TinyTex` にデフォルトで `700` のパーミッションが設定される[システムも中にはあります](https://github.com/yihui/tinytex/issues/37). これは他のユーザは TinyTeX を使用できないことを意味します (このディレクトリ内では読み込み・書き込み・実行いずれの権限もありません). `chown` を使用してこのディレクトリのオーナやグループを変更し, 書き込み権限 (さらに `bin` への実行権限) を付与するとよいでしょう. これが例です.
+`~/.TinyTex` にデフォルトで `700` のパーミッションが設定される[システムも中にはあります](https://github.com/yihui/tinytex/issues/37). これは他のユーザは TinyTeX を使用できないことを意味します (このフォルダ内では読み込み・書き込み・実行いずれの権限もありません). `chown` を使用してこのフォルダのオーナやグループを変更し, 書き込み権限 (さらに `bin` への実行権限) を付与するとよいでしょう. これが例です.
 
 ```sh
 chown -R root:staff ~/.TinyTeX
@@ -101,9 +101,9 @@ chmod -R g+wx ~/.TinyTeX/bin
 
 ## 私は Linux 管理者です. 上記のアプローチで TinyTeX をインストールし `/usr/local/bin` にシンボリックリンクを追加しました. root 権限のないユーザーに自分で LaTeX パッケージをインストールしてもらうにはどうしたよいですか? {#non-root-package-installation}
 
-root 権限のないユーザは通常の方法では, TinyTeX のルートディレクトリ (デフォルトでは `~/.TinyTeX`, `~` は**あなた自身の**ホームディレクトリを意味します) に書き込み権限を持つグループに登録されない限り, `tlmgr install` コマンドでパッケージをインストールすることができません. このような場合は TinyTeX のシステム全体に対してインストールされた TinyTeX を修正することができます.
+root 権限のないユーザは通常の方法では, TinyTeX のルートフォルダ (デフォルトでは `~/.TinyTeX`, `~` は**あなた自身の**ホームフォルダを意味します) に書き込み権限を持つグループに登録されない限り, `tlmgr install` コマンドでパッケージをインストールすることができません. このような場合は TinyTeX のシステム全体に対してインストールされた TinyTeX を修正することができます.
 
-TinyTeX ディレクトリへの書き込み権限がない人たちには, TeX Live の[ユーザーモード](https://www.tug.org/texlive/doc/tlmgr.html#USER-MODE) があり, これはユーザーごとに texmf ツリーを管理することができます. 例えばシステムディレクトリの代わりに, そのユーザーのホームディレクトリにパッケージをインストールできます. TinyTeX があれば, ユーザーレベルの texmf ツリーは `~/.TinyTeX/texmf-home` にあります (TeX Live の用語としては, `TEXMFHOME` 環境変数となります. `~` は**あなた自身の**ホームディレクトリを意味します).
+TinyTeX フォルダへの書き込み権限がない人たちには, TeX Live の[ユーザーモード](https://www.tug.org/texlive/doc/tlmgr.html#USER-MODE) があり, これはユーザーごとに texmf ツリーを管理することができます. 例えばシステムフォルダの代わりに, そのユーザーのホームフォルダにパッケージをインストールできます. TinyTeX があれば, ユーザーレベルの texmf ツリーは `~/.TinyTeX/texmf-home` にあります (TeX Live の用語としては, `TEXMFHOME` 環境変数となります. `~` は**あなた自身の**ホームフォルダを意味します).
 
 ユーザが最初にすべきことは, このツリーを初期化すること (`TEXMFHOME` がまだ作成されていないなら作ること) です. 以下を一度実行するだけです.
     
@@ -146,13 +146,13 @@ rm texlive-local.deb
 
 **訳注**: equivs-build と同様のことは TeX Wiki のこのページ https://texwiki.texjp.org/?texlive-dummy でも紹介されています.
 
-## インストール先ディレクトリを変えることはできますか? {#change-directory}
+## インストール先フォルダを変えることはできますか? {#change-directory}
 
-ディレクトリのパスはインストールスクリプトにハードコードされているので, TinyTeX インストール時にコマンドラインから変更することはできません. Linux macOS, Windows ではデフォルトで隠しディレクトリになるため, 私はこの場所を選びました. TeX Live はほとんどの場合でインストール場所に注意することも (要求することも) ありません. あなたが本当にディレクトリを変更したいなら, いくつかの方法があります.
+フォルダのパスはインストールスクリプトにハードコードされているので, TinyTeX インストール時にコマンドラインから変更することはできません. Linux macOS, Windows ではデフォルトで隠しフォルダになるため, 私はこの場所を選びました. TeX Live はほとんどの場合でインストール場所に注意することも (要求することも) ありません. あなたが本当にフォルダを変更したいなら, いくつかの方法があります.
 
 * ダウンロードとインストール用のスクリプトを自分で改造することができます (スクリプトはオープンソースです)
 
-* R ユーザなら, R パッケージの **tinytex** をインストールし,  `tinytex::install_tinytex()` の `dir` 引数にカスタムディレクトリを与えることができます.
+* R ユーザなら, R パッケージの **tinytex** をインストールし,  `tinytex::install_tinytex()` の `dir` 引数にカスタムフォルダを与えることができます.
 
 * あるいは TinyTeX を先にインストールしてから, 好きな場所にフォルダごと移動させます (USB スティックに移動することもできます). TinyTeX が TinyTeX が TeX Live の**ポータブル**版だという理由です. この方法のトリッキーなところは, `PATH` 変数に対処することです. `tlmgr path add` を実行する必要がありますが, デフォルトのインストール場所から移動すると `tlmgr` は `PATH` にはありません. そこで, `tlmgr` をフルパスで実行しなければなりません. これが例です.
 
@@ -247,7 +247,7 @@ tlmgr --repository http://www.texlive.info/tlgpg/ install tlgpg
 
 ## HTTP/HTTPS/FTP プロキシで TinyTeX/LaTeX パッケージをインストールするにはどうすればいいですか?
 
-`~/.wgetrc` ファイル (`~` はあなたのホームディレクトリを表しています) を作成し, 変数 `http_proxy`, `https_proxy`, あるいは `ftp_proxy` を設定するとよいでしょう. 例えばこのように.
+`~/.wgetrc` ファイル (`~` はあなたのユーザーフォルダ (ホームディレクトリ) を表しています) を作成し, 変数 `http_proxy`, `https_proxy`, あるいは `ftp_proxy` を設定するとよいでしょう. 例えばこのように.
     
 ```config
 http_proxy=http://user:password@proxy.example.com:8001/

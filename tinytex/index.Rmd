@@ -131,7 +131,7 @@ TinyTeX は macOS では `~/Library/TinyTeX` にインストールされます.
 curl -sL "https://yihui.org/tinytex/install-bin-unix.sh" | sh
 ```
 
-Windows ユーザの場合, バッチファイル [install-bin-windows.bat](https://yihui.org/tinytex/install-bin-windows.bat) を保存し (リンクを開いて `Ctrl + S`), ファイルをダブルクリックしてください.^[アンチウィルスソフトがいずれかの `*.dll` ファイルに対して警告を発するかもしれませんが, 私は Windows の専門家ではありません. 決断はあなたに委ねます.] PowerShell ([少なくともバージョン 3.0 以降](https://docs.microsoft.com/en-us/powershell/scripting/setup/starting-windows-powershell-on-earlier-versions-of-windows)) であることに注意してください. あなたの Windows のバージョンが古すぎてパワーシェルをインストールできない場合, [この記事](https://docs.microsoft.com/en-us/powershell/scripting/setup/starting-windows-powershell-on-earlier-versions-of-windows)に従ってインストールしてください. インストールディレクトリは `%APPDATA%/TinyTeX` で, `APPDATA` は典型的には `C:\Users\Your Name\AppData\Roaming` を指す環境変数です.^[興味があるなら, スタートメニューをクリックし, `cmd` とタイプして実行してコマンドウィンドウを開き, `echo %APPDATA%` とタイプして実行すれば実際のファイルパスが分かります.]
+Windows ユーザの場合, バッチファイル [install-bin-windows.bat](https://yihui.org/tinytex/install-bin-windows.bat) を保存し (リンクを開いて `Ctrl + S`), ファイルをダブルクリックしてください.^[アンチウィルスソフトがいずれかの `*.dll` ファイルに対して警告を発するかもしれませんが, 私は Windows の専門家ではありません. 決断はあなたに委ねます.] PowerShell ([少なくともバージョン 3.0 以降](https://docs.microsoft.com/en-us/powershell/scripting/setup/starting-windows-powershell-on-earlier-versions-of-windows)) であることに注意してください. あなたの Windows のバージョンが古すぎてパワーシェルをインストールできない場合, [この記事](https://docs.microsoft.com/en-us/powershell/scripting/setup/starting-windows-powershell-on-earlier-versions-of-windows)に従ってインストールしてください. インストールフォルダは `%APPDATA%/TinyTeX` で, `APPDATA` は典型的には `C:\Users\Your Name\AppData\Roaming` を指す環境変数です.^[興味があるなら, スタートメニューをクリックし, `cmd` とタイプして実行してコマンドウィンドウを開き, `echo %APPDATA%` とタイプして実行すれば実際のファイルパスが分かります.]
 
 :::{.infobox .memo data-latex="{memo}"}
 
