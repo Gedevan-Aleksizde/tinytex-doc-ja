@@ -45,7 +45,7 @@ tlmgr path add
 
 数ギガバイトぶんのパッケージをダウンロードしインストールする必要があるため, これはかなり時間がかかります
 
-## TinyTeX はどうやって作られたのですか? 巨大な TeX Live のサイズをどうやって削減したのですか?
+## TinyTeX はどうやって作られたのですか? 巨大な TeX Live のサイズをどうやって削減したのですか? (#faq-size)
 
 TinyTeX を理解する最善の方法は TUGBoat の "[TinyTeX: A lightweight, cross-platform, and easy-to-maintain LaTeX distribution based on TeX Live](https://tug.org/TUGboat/Contents/contents40-1.html)" を読むことです. あるいは代わりに `tools` ディレクトリにある[ソースを読む](https://github.com/yihui/tinytex/)こともできます. 基本的に TinyTeX は, [tinytex.profile](https://github.com/yihui/tinytex/blob/master/tools/tinytex.profile) (`./install-tl -profile=tinytex.profile`) というプロファイルで TeX Live のインストールを自動化しています. このファイルは最初にインストールされる `infraonly` スキームを指定しているだけです. このスキームがあるので LaTeX のドキュメントは一切コンパイルできませんが, 最も重要なユーティリティである `tlmgr` (TeX Live マネージャ) だけは含まれます. この時点での全体のサイズは (UNIX系では) 1 MB 未満です.
 
@@ -64,9 +64,15 @@ option_src 0
 
 パッケージのソースとドキュメントを本当に欲しているのなら, [CTAN](https://ctan.org) で見つけることができます. あるいは `tlmgr installl --reinstall --with-doc --with-src <パッケージ名>` というコマンドでソースとドキュメントを再インストールできます. ([Norbert Preining の指摘](https://github.com/yihui/tinytex/pull/236#issuecomment-690789472) に感謝します)
 
-TeX Live のサイズに影響するそれ以外の主な要因として, フォントパッケージがあります. フォントパッケージは大抵の場合は他の LaTeX パッケージよりずっと大きいのですが, `pdflatex` を使わない限り役に立つことがありません. こういった場合では, サイズの小さな TeX Live ディストリビューションをさらに削減することができます.
+TeX Live のサイズに影響する他の主な要因としてフォントパッケージがあります. フォントパッケージは大抵の場合は他の LaTeX パッケージよりずっと大きいのですが, ほとんど使うことがありません. あなたが `pdflatex` を使わないというのなら話は別ですが. こういった場合では, サイズの小さな TeX Live ディストリビューションをさらに削減することができます.
 
 インストールされたパッケージ全てのサイズを `tlmgr info --list --only-installed --data name,size` というコマンドで得ることができます. R パッケージの **tinytex** をインストールしているなら, `tinytex::tl_sizes()` を使うこともできます. 例えばフォントパッケージの **lm** (Latin modern) はおよそ 42 MB もあります!
+
+```{.infobox .note data-latex="note"}
+
+**訳注**: 日本語ユーザの場合, `pdflatex` で日本語文書を作成するのは大変なので, ほとんどの日本語ユーザはフォントパッケージが必要であり, また xelatex, lualatex といった多言語に対応した処理系を使うことになるため, ここで書かれているよりもサイズが大きくなります. しかしそれでも, 典型的な日本語文書を作成するのに必要なサイズは, 例えば Linux 系では 500 MB 程度に収まると思います.
+
+```
 
 ## 私は Linux システムの管理者です. システム使用者全員が使えるように TinyTeX をインストールするにはどうしたらいいですか? {#sys-install}
 

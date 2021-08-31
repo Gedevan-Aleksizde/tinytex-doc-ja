@@ -14,7 +14,7 @@ https://www.tug.org/texlive/doc/texlive-ja/texlive-ja.pdf
 
 ## TinyTeX の軽量さについて
 
-日本語文書作成には独自のパッケージをそれなりに必要とするため, 残念ながら意外とファイルサイズが大きくなることがあります. しかしそれでも1GBを超えることはあまりないと思いますし, TeX Live のように過年度版が不要であることに気づかないでいると年々肥大化する, ということもありません.
+日本語文書作成には独自のパッケージをそれなりに必要とするため, 残念ながら意外とファイルサイズが大きくなることがあります. しかし\@ref(faq-size) でも注記したように, せいぜい 500 MB 前後にとどまることが多いと思いますし, TeX Live のように過年度版が不要であることに気づかないでいると年々占有領域が肥大化する, ということもありません. 
 
 ## (u)pLaTeX や (u)pBibTeX 使用者へ
 
@@ -77,15 +77,17 @@ tinytex::tlmgr_install(c("pgf", "preview", "xcolor"))
 
 ## CTAN や TeX Live に登録されていないパッケージのインストール方法について
 
-TeX Live に登録されていないパッケージは `tlmgr` コマンドでも **tinytex** の関数でも検索対象ではないため, ダウンロードおよびインストールすることもできません. 例えば [**BXcoloremoji**](https://github.com/zr-tex8r/BXcoloremoji) パッケージ, あるいは日本国内の学会発表・学術論文用フォーマットなどが該当します. また, 登録されているものと, GitHub などでダウンロードできる開発版とでバージョンが異なることもありえます.
+TeX Live に登録されていないパッケージは `tlmgr` コマンドでも **tinytex** の関数でも検索対象ではないため, ダウンロードおよびインストールすることもできません. 例えば [**BXcoloremoji**](https://github.com/zr-tex8r/BXcoloremoji) パッケージ, [**pxrubrica**](https://github.com/zr-tex8r/PXrubrica) パッケージ, あるいは日本国内の学会発表・学術論文用フォーマットなどが該当します. また, 登録されているものと, GitHub などでダウンロードできる開発版とでバージョンが異なることもありえます.
 
-このような場合, `.sty` や `.cls` といったファイルを手動でダウンロードし, 適切な場所に置く必要があります.
+このような場合, `.sty` や `.cls` といったファイルを手動でダウンロードし, 適切な場所に置く必要があります. プロジェクトのフォルダに直接置いても良いですが, それだと新たに文書を作成するたびにファイルをコピーする必要があります.
 
-TeX Live の仕様として, ファイルを配置する場所はある程度自由ですが, 管理のしやすさを考慮して FAQ \@ref(non-root-package-installation) にあるような, `texmf-home` ディレクトリまたは, `texmf-local` 以下に配置することをお勧めします^[参考: https://tex.stackexchange.com/questions/583006/where-do-i-place-my-own-sty-or-cls-files-to-get-them-working-with-tinytex] (システム管理者の方は適当に工夫してください). root でインストールしていない場合は `texmf-local` になると思います.
+TinyTeX および TeX Live の仕様として, ファイルを配置する場所はある程度自由ですが, 管理のしやすさを考慮して FAQ \@ref(non-root-package-installation) にあるような, `texmf-home` フォルダまたは, `texmf-local` 以下に配置することをお勧めします.^[https://tex.stackexchange.com/questions/583006/where-do-i-place-my-own-sty-or-cls-files-to-get-them-working-with-tinytex では 2021/3/3 以降は `texmf-home` に配置すべきという回答が書かれていますが, v0.33 で確認したところ `texmf-home` はデフォルトでは認識されず, `texmf-local` 以下に置く必要があります.] ターミナルで `kpsewhich --var-value=TEXMFHOME` を実行し出力されたフォルダに配置します. このフォルダ以下に配置したファイルであれば認識されますが, 慣例的に `.sty`/`.cls` ファイルは主に `tex/latex/` 以下に, `.bst` ファイルは `bibtex/bst` 以下に置かれます.
+
+ (システム管理者の方は適当に工夫してください). root でインストールしていない場合は `texmf-local` になると思います.
 
 TinyTeX は ls-R を使用しているため[^ls-r] その後 `mktexlsr` を実行します. R上では `system()` で呼び出すことができます.
 
-[^ls-r]: ls-R不要論を唱える方もいますが, TinyTeX では残念ながら使用しているので必要です.
+[^ls-r]: ls-R 不要論を唱える方もいますし私もその主張には一理あると思いますが, TinyTeX では残念ながら使用しているので必要です.
 
 ```{r eval=F}
 system("mktexlsr")
