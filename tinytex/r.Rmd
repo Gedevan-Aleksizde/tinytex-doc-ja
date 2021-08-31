@@ -63,8 +63,8 @@ LaTeX を PDF にコンパイルするときにエラーが起こったなら, �
 
     これで問題のデバッグをする助けになる追加のメッセージが表示されます. R Markdown と RStudio の `knit` ボタンを使用しているなら R Markdown 文書のコードチャンク内でこのオプションを設定すべきです.
     
-    ````md
-    ```{r, include=FALSE}
+    ````
+    ```{r, include=FALSE}`r ''`
     options(tinytex.verbose = TRUE)
     ```
     ````

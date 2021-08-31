@@ -7,6 +7,8 @@ author:
   - "Katagiri, Satoshi (片桐 智志)^[twitter id: ill_identified] (Translator)"
 subtitle: 軽量・クロスプラットフォーム・ポータブル・メンテナンスも容易な TeX Live ベースの LaTeX ディストリビューション
 documentclass: bxjsreport
+monofont: Ricty Discord
+jmonofont: Ricty Discord
 link-citations: yes
 linkcolor: blue
 citecolor: blue
@@ -19,7 +21,7 @@ github-repo: Gedevan-Aleksizde/tinytex-doc-ja
 
 
 ---
-date: "ver. 1.2.3 (2021/08/31 21:49:45 JST, 本家の更新確認時刻: [2021/06/06 22:28:33 JST](https://github.com/rbind/yihui/tree/master/content/tinytex))"
+date: "ver. 1.2.3 (2021/08/31 21:55:22 JST, 本家の更新確認時刻: [2021/06/06 22:28:33 JST](https://github.com/rbind/yihui/tree/master/content/tinytex))"
 ---
 
 # TinyTeX {#tinytex}
@@ -290,8 +292,10 @@ LaTeX を PDF にコンパイルするときにエラーが起こったなら, �
 
     これで問題のデバッグをする助けになる追加のメッセージが表示されます. R Markdown と RStudio の `knit` ボタンを使用しているなら R Markdown 文書のコードチャンク内でこのオプションを設定すべきです.
     
-    ````md
-    
+    ````
+    ```{r, include=FALSE}
+    options(tinytex.verbose = TRUE)
+    ```
     ````
 
     あなたができること, そしてもしかするとすべきことなのは, デバッグを終えたあとにこのオプションを削除することです (もはや完全なログを読む必要はなく, LaTeX を静かにさせるため

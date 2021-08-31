@@ -7,6 +7,8 @@ author:
   - "Katagiri, Satoshi (片桐 智志)^[twitter id: ill_identified] (Translator)"
 subtitle: 軽量・クロスプラットフォーム・ポータブル・メンテナンスも容易な TeX Live ベースの LaTeX ディストリビューション
 documentclass: bxjsreport
+monofont: Ricty Discord
+jmonofont: Ricty Discord
 link-citations: yes
 linkcolor: blue
 citecolor: blue

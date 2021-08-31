@@ -16,6 +16,7 @@
   \usepackage{unicode-math}
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+  \setmonofont[]{Ricty Discord}
 \fi
 
 % japanese font setting
@@ -266,7 +267,7 @@
 TeX Live ベースの LaTeX ディストリビューション}
 \author{Xie, Yihui (Author) \and Katagiri, Satoshi (片桐
 智志)\footnote{twitter id: ill\_identified} (Translator)}
-\date{ver. 1.2.3 (2021/08/31 21:49:45 JST, 本家の更新確認時刻:
+\date{ver. 1.2.3 (2021/08/31 21:55:22 JST, 本家の更新確認時刻:
 \href{https://github.com/rbind/yihui/tree/master/content/tinytex}{2021/06/06
 22:28:33 JST})}
 \usepackage{bxtexlogo}
@@ -782,11 +783,11 @@ LaTeX を PDF にコンパイルするときにエラーが起こったなら,
   Markdown と RStudio の \texttt{knit} ボタンを使用しているなら R
   Markdown 文書のコードチャンク内でこのオプションを設定すべきです.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+```{r, include=FALSE}
+options(tinytex.verbose = TRUE)
+```
+\end{verbatim}
 
   あなたができること, そしてもしかするとすべきことなのは,
   デバッグを終えたあとにこのオプションを削除することです

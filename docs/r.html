@@ -243,7 +243,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>更新でも再インストールでも問題を解決できないなら, 文書をコンパイルする前に以下のように R のオプションを設定してください:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb16-1"><a href="r.html#cb16-1"></a><span class="fu">options</span>(<span class="at">tinytex.verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>これで問題のデバッグをする助けになる追加のメッセージが表示されます. R Markdown と RStudio の <code>knit</code> ボタンを使用しているなら R Markdown 文書のコードチャンク内でこのオプションを設定すべきです.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode md"><code class="sourceCode markdown"></code></pre></div>
+<pre><code>```{r, include=FALSE}
+options(tinytex.verbose = TRUE)
+```</code></pre>
 <p>あなたができること, そしてもしかするとすべきことなのは, デバッグを終えたあとにこのオプションを削除することです (もはや完全なログを読む必要はなく, LaTeX を静かにさせるため</p></li>
 <li><p>上記いずれも効果がなかったら, <a href="https://yihui.org/issue/">このガイド</a>に従って問題を報告してください.<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a> あなたがとても忙しい場合, 問題の報告に際してもっとも重要なもの, 「<strong>必要最小限の再現例</strong>」を忘れないでください.</p></li>
 </ol>
