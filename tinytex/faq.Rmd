@@ -62,7 +62,7 @@ option_src 0
 
 なぜドキュメントを排除したのか? 正直に答えてください, あなたは [StackExchange](https://tex.stackexchange.com) で答えを探したことが何度ありますか, パッケージのドキュメントを読んだことが何度ありますか? 完全なドキュメントがあっても, あなたはコンピュータのどこにそのファイルがあるのかすら知らないでしょう. ドキュメントのファイルはディスクの容量を多く占有し, 平均レベルのユーザはほとんど読まないと私は思っています. ゆえに同梱しません. web ブラウザのアドレスバーが最も便利なドキュメントです. キーワードをタイプし, 検索してください.
 
-パッケージのソースとドキュメントを本当に欲しいのなら, [CTAN](https://ctan.org) で見つけることができます. あるいは `tlmgr installl --reinstall --with-doc --with-src <パッケージ名>` というコマンドでソースとドキュメントを再インストールできます. ([Norbert Preining の指摘](https://github.com/yihui/tinytex/pull/236#issuecomment-690789472) に感謝します)
+パッケージのソースとドキュメントを本当に欲しているのなら, [CTAN](https://ctan.org) で見つけることができます. あるいは `tlmgr installl --reinstall --with-doc --with-src <パッケージ名>` というコマンドでソースとドキュメントを再インストールできます. ([Norbert Preining の指摘](https://github.com/yihui/tinytex/pull/236#issuecomment-690789472) に感謝します)
 
 TeX Live のサイズに影響するそれ以外の主な要因として, フォントパッケージがあります. フォントパッケージは大抵の場合は他の LaTeX パッケージよりずっと大きいのですが, `pdflatex` を使わない限り役に立つことがありません. こういった場合では, サイズの小さな TeX Live ディストリビューションをさらに削減することができます.
 
@@ -90,7 +90,7 @@ chmod -R g+w ~/.TinyTeX
 chmod -R g+wx ~/.TinyTeX/bin
 ```
 
-`~/.TinyTeX` を他の場所に移動したいなら, FAQ\@ref(change-directory)にあるを見てください. そしてフォルダを移動したあとに,  `/usr/local/bin` にあるシンボリックリンクが新しい場所を正しく参照するように `sudo` で `tlmgr path add` を実行することを忘れないでください.
+`~/.TinyTeX` を他の場所に移動したいなら, FAQ\@ref(change-directory) を見てください. そしてフォルダを移動したあとに,  `/usr/local/bin` にあるシンボリックリンクが新しい場所を正しく参照するように `sudo` で `tlmgr path add` を実行することを忘れないでください.
 
 
 ## 私は Linux 管理者です. 上記のアプローチで TinyTeX をインストールし `/usr/local/bin` にシンボリックリンクを追加しました. root 権限のないユーザーに自分で LaTeX パッケージをインストールしてもらうにはどうしたよいですか? {#non-root-package-installation}
