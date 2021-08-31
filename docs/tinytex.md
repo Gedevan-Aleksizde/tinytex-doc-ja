@@ -19,7 +19,7 @@ github-repo: Gedevan-Aleksizde/tinytex-doc-ja
 
 
 ---
-date: "ver. 1.2.2 (2021/08/31 21:36:29 JST, 本家の更新確認時刻: [2021/06/06 22:28:33 JST](https://github.com/rbind/yihui/tree/master/content/tinytex))"
+date: "ver. 1.2.3 (2021/08/31 21:49:45 JST, 本家の更新確認時刻: [2021/06/06 22:28:33 JST](https://github.com/rbind/yihui/tree/master/content/tinytex))"
 ---
 
 # TinyTeX {#tinytex}
@@ -300,7 +300,7 @@ LaTeX を PDF にコンパイルするときにエラーが起こったなら, �
 
 ## その他の LaTeX ディストリビューション
 
-(当然ながら) **tinyte** パッケージは TinyTeX との組み合わせで最もよく動いてくれるはずですが, TinyTeX と完全に不可分なわけではありません. 特に以下に注意してください.
+(当然ながら) **tinytex** パッケージは TinyTeX との組み合わせで最もよく動いてくれるはずですが, TinyTeX と完全に不可分なわけではありません. 特に以下に注意してください.
 
 1. LaTeX 文書の相互参照が解決するまで数回にわたって自動コンパイルする機能はどの LaTeX ディストリビューションでも有効です. お望みなら Windows 上で MiKTeX を使うこともできます.^[**訳注**: 日本語コミュニティでは Windows に対しては従来 [W32TeX](http://w32tex.org/) がよく使われていると思います. これも最近のバージョンは TeX Live をベースにしているため, 概ねうまく動作するはずです. Windows 上での従来の TeX 事情はこちらを参考に: https://texwiki.texjp.org/?Microsoft%20Windows]
 
