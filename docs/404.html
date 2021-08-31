@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5 Half of Pain | TinyTeX 非公式日本語版ドキュメント</title>
-  <meta name="description" content="5 Half of Pain | TinyTeX 非公式日本語版ドキュメント" />
+  <title>Page not found | TinyTeX 非公式日本語版ドキュメント</title>
+  <meta name="description" content="Page not found | TinyTeX 非公式日本語版ドキュメント" />
   <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5 Half of Pain | TinyTeX 非公式日本語版ドキュメント" />
+  <meta property="og:title" content="Page not found | TinyTeX 非公式日本語版ドキュメント" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="Gedevan-Aleksizde/tinytex-doc-ja" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5 Half of Pain | TinyTeX 非公式日本語版ドキュメント" />
+  <meta name="twitter:title" content="Page not found | TinyTeX 非公式日本語版ドキュメント" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="faq.html"/>
-<link rel="next" href="tinytex-中文文档-未翻訳.html"/>
+
+
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -205,235 +205,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="pain" class="section level1" number="5">
-<h1><span class="header-section-number">5</span> Half of Pain</h1>
-<p>「なぜ TinyTeX か ~LaTeX ディストリビューションの何が苦痛か?~」</p>
-<p>オリジナルのページ: <a href="https://yihui.org/tinytex/pain/" class="uri">https://yihui.org/tinytex/pain/</a></p>
-<p>オリジナルの更新日: 2017/12/15</p>
-<hr />
-<p>私がしているのが車輪の再発明にすぎないと考えている開発者もいるかもしれません. 私は理由もなく車輪の再発明などしたくありません. ホームページで述べたように, 既存の LaTeX ディストリビューションを使うことによる苦痛は, ファイルとドキュメントが巨大であり, 包括的で有用な一方で, 私にとって最も有用が部分がどこなのか (つまり, 足りないパッケージをインストールする方法) が強調されないことです.</p>
-<p>これを嫌うまた別の理由として, LaTeX パッケージの管理のために (UNIX系OSで) <code>sudo</code> がしょっちゅう必要であることもあります. TeX Live はコンピュータのどこに配置することもできる自己完結的なフォルダ構成であることを考えると, <code>sudo</code> が必要な理由が見当たりません. 数年間も待って <code>tlmgr</code> がとうとう Debian/Ubuntu で利用可能になると私は<a href="https://twitter.com/xieyihui/status/397238590523973632">とても喜びました</a>が, それが使い物にならないとわかると私はすぐに失望しました (<code>sudo</code> なしでは何もできません). 今年再確認すると, まだ使い物にならないままでした. きっと私はこれを正しく使えません (なにをやろうとしてもエラーになります) が, <code>tlmgr</code> のユーザーモードを使うときだけ許可されますが, その機能は私にとって制約が多すぎました.</p>
-<p>私が普段使っているのは macOS で, 公式に TeX Live ディストリビューションとして MacTeX が推奨されています. これには私にとって不要ないくつかの追加パッケージ, たとえば TeX Live Utility (私は <code>tlmgr</code> コマンドの使い方を知っています), TeXShop (R Markdown を使っていますし, 可能な限り生の LaTeX を編集することも, 読むことすらしたくないです), LaTeXiT などが含まれています.</p>
-<p>実際 Window 上での MiKTeX (現在はこれはクロスプラットフォームになったようです) のよい機能の1つを私は評価しています. 不足している LaTeX パッケージの自動インストールのことです. これはとても便利だと思うので, 私はこの機能を R パッケージの <strong>tinytex</strong> でも借用し, R ユーザは TeX Live または TinyTeX 使用時にこの機能を活用することができます. つまり, 基本的な MiKTeX ですらまだ大きすぎ, そして私を腹立たせたのは MiKTeX の <code>bbitex.exe</code> です. これはいつも <code>.aux</code> ファイル内の文献データベースファイルに <code>.bib</code> 拡張子を付け足します. 例えば <code>bar.tex</code> 内に <code>\bibliography{foo.bib}</code> があったとして, <code>bibtex.exe</code> は <code>bar.aux</code> 内に <code>\bibdata{foo.bib.bib}</code> を生成してしまいます. なんであれ, Rパッケージの <strong>tinytex</strong> においては MiKTeX を使うウィンドウズユーザに対しては<a href="https://github.com/yihui/tinytex/blob/4275a375c6/R/latex.R#L189-L196">パッチを当てました</a>. TeX Live ユーザはこの問題に苦しむことはありません.</p>
-<p>このページでは LaTeX のインストールと管理の話を共有したいと思います. まずは私の発見した辛い場面を紹介しようと思います.</p>
-<div class="infobox important">
-<p><strong>訳注</strong>: 以降は既存の LaTeX ディストリビューションの不便さを嘆く声を集めた内容となっており, TinyTeX の使用法とは直接関係ないため翻訳を省略します.</p>
-</div>
-<ul>
-<li><p><a href="https://ubuntuforums.org/showthread.php?t=395863">Why LaTeX is such a bloated system?</a></p></li>
-<li><p><a href="https://tex.stackexchange.com/q/43862/9128">Is there a lightweight implementation/distribution of TeX for Mac OSX?</a></p></li>
-<li><p><a href="https://tex.stackexchange.com/q/81802/9128">Installing (a lightweight version of) latex on an external hard drive</a></p></li>
-<li><p>texlive-full is <a href="https://github.com/rstudio/rticles/pull/130#issuecomment-313732003">too big</a>, <a href="https://github.com/rocker-org/rocker/issues/266">too big</a>, and <a href="https://github.com/road2stat/liftr/issues/25">just too big</a> for Docker images</p></li>
-<li><p><a href="https://tex.stackexchange.com/q/18939/9128">Which LaTeX to install on Linux?</a></p></li>
-<li><p>Missing LaTeX packages confuse users <a href="https://github.com/rstudio/rmarkdown/issues/359">forever</a>, <a href="https://github.com/rstudio/rmarkdown/issues/1076">forever</a>, <a href="https://github.com/rstudio/rmarkdown/issues/1393">forever</a>, and it takes <a href="https://twitter.com/xieyihui/status/763805846807547904">forever</a> to figure them out and install. <a href="https://stackoverflow.com/q/47400936/559676">Error messages</a> can also be confusing. Sometimes we just <a href="https://github.com/rstudio/bookdown/issues/507">don’t have a clue</a>.</p></li>
-<li><p>When all you need is a LaTeX package, <strong>upquote</strong>, of which the size is 5K, <a href="https://github.com/jgm/pandoc/issues/2439#issuecomment-326518438">you have to install 500MB of additional software on Ubuntu/Debian</a>.</p></li>
-<li><p>You may suffer from <a href="https://github.com/rstudio/rmarkdown/issues/1505">old bugs</a> that have been fixed in certain LaTeX packages.</p></li>
-<li><p>MiKTeX <a href="https://github.com/rstudio/bookdown/issues/531">might fail</a> and we don’t know what the error message “GUI framework cannot be initialized” means. Sometimes we have <a href="https://stackoverflow.com/questions/48892499/compile-rmarkdown-document-with-render#comment84801684_48892499">no clue</a> why it doesn’t work.</p></li>
-</ul>
-<p>Below are stories and experiences contributed by other users:</p>
-<blockquote>
-<p>Removed TeX Live from my system (openSUSE): 1.5gb. Installed TinyTeX + the dependencies to compile my thesis: 150mb!!!! This is great!</p>
-</blockquote>
-<blockquote>
-<p>— <a href="https://twitter.com/brodriguesco/status/942162790587957248">Bruno Rodrigues</a></p>
-</blockquote>
-<!-- -->
-<blockquote>
-<p>Really liking the simplicity of tinytex package. Easy to get up and running to knit PDFs. No need for slow LaTeX install.</p>
-</blockquote>
-<blockquote>
-<p>— <a href="https://twitter.com/lingwhatics/status/941766989424537602">Daley Mikalson</a></p>
-</blockquote>
-<!-- -->
-<blockquote>
-<p>A tiny LaTeX distribution easy to install from RStudio or on Travis CI is just what we needed!</p>
-</blockquote>
-<blockquote>
-<p>— <a href="https://twitter.com/PhilGrosjean/status/941241878309232640">Philippe Grosjean</a></p>
-</blockquote>
-<!-- -->
-<blockquote>
-<p>Seriously one of my only holdups teaching LaTeX in Rmarkdown (still taught it anyway) is now solved.</p>
-</blockquote>
-<blockquote>
-<p>— <a href="https://twitter.com/healthandstats/status/941169151749406720">Tyson Barrett</a></p>
-</blockquote>
-<!-- -->
-<blockquote>
-<p>Tried TinyTeX with rmarkdown and both English and Chinese rendering. The most smooth experience ever using LaTeX!</p>
-</blockquote>
-<blockquote>
-<p>— <a href="https://twitter.com/renkun_ken/status/941352666730455041">Kun Ren</a></p>
-</blockquote>
-<!-- -->
-<blockquote>
-<p>TinyTeX is awesome, if it had existed before I would have saved hours of my life spent dealing with LaTeX packages and failed R Markdown knits…</p>
-</blockquote>
-<blockquote>
-<p>— <a href="https://github.com/rstudio/bookdown/issues/292#issuecomment-356480809">Antonio Vazquez Brust</a></p>
-</blockquote>
-<!-- -->
-<blockquote>
-<p>Many people don’t realize that Texlive on some Linux systems (say you need a rstudio server) doesn’t come with the TeX package manager. If the package you need is not in their system, you are basically screwed as you can’t even install it. TinyTeX solves this problem and makes everything sweet and easy. Also, after using it for more than a month, I found the messages of tinytex are very helpful, comparing with basically NULL in texlive.</p>
-</blockquote>
-<blockquote>
-<p>— <a href="https://community.rstudio.com/t/texlive-distribution-on-centos-for-rstudio-server-and-connect/2916">Hao Zhu</a></p>
-</blockquote>
-<!-- -->
-<blockquote>
-<p>I’m a novice with R and I found the entire process of installing rmarkdown, knitr, MiKTeX, and pandoc and then reconciling all their directories very difficult. […] The 3-4 hour detour into MiKTeX etc and how to produce PDFs was a frustration experience to say the least. (Up and running with TinyTeX five minutes later…)</p>
-</blockquote>
-<blockquote>
-<p>— Justin Shapiro</p>
-</blockquote>
-<!-- -->
-<blockquote>
-<p>If you work in a locked down windows corporate enviroment and spent countless hours with MiKTeX or portable MiKTeX, you’ll want to buy @xieyihui lunch.</p>
-</blockquote>
-<blockquote>
-<p>— <a href="https://twitter.com/ThomasSpeidel/status/957856056108920835">Thomas Speidel</a></p>
-</blockquote>
-<!-- -->
-<blockquote>
-<p>Too bad, this computer had a good month of TeX-free.</p>
-</blockquote>
-<blockquote>
-<p>— <a href="https://twitter.com/romain_francois/status/979022989634174976">Romain François</a></p>
-</blockquote>
-<!-- -->
-<blockquote>
-<p>I’d been avoiding installing LaTeX on my macOS and Windows machines b/c it’s always such a hassle. Just learned about about TinyTeX today and easily got setup on both machines.</p>
-</blockquote>
-<blockquote>
-<p>— <a href="https://twitter.com/jdblischak/status/974066342780461056">John Blischak</a></p>
-</blockquote>
-<!-- -->
-<blockquote>
-<p>Like 2 hours later, I’m not sure I want to know, but there <em>must</em> be a faster way of updating all my TeX packages than the ftp in TeX Live Utility…</p>
-</blockquote>
-<blockquote>
-<p>— <a href="https://twitter.com/dataandme/status/994531189217259521">Mara Averick</a></p>
-</blockquote>
-<!-- -->
-<blockquote>
-<p>Installing a complete version of MiKTeX is a freaking nightmare though. Don’t know if it’s my internet connection or what but I just can’t get it all installed in one go. I finally just did the basic install and am selecting batches of pkgs at a time to add.</p>
-</blockquote>
-<blockquote>
-<p>[…] I just installed this (TinyTeX) and it was SO EASY and I’m kind of upset that I didn’t know about it before. Gonna be shouting this one <a href="https://twitter.com/swmpkim/status/1014546819085369344">from the rooftops</a>.</p>
-</blockquote>
-<blockquote>
-<p>— <a href="https://twitter.com/swmpkim/status/1014514680088399874">Kim Cressman</a></p>
-</blockquote>
-<!-- -->
-<blockquote>
-<p>Siri, how much of my life have I spent <a href="https://twitter.com/djnavarro/status/1112674242523361281">installing TeX distributions</a>?</p>
-</blockquote>
-<blockquote>
-<p>I have discovered that the tinytex package has handy tools for analysing the .log files, which solved my problems for me. That is, after I wasted half an hour trying to install MiKTeX for no good reason</p>
-</blockquote>
-<blockquote>
-<p>— <a href="https://twitter.com/djnavarro/status/1112687238196822016">Danielle Navarro</a></p>
-</blockquote>
-<!-- -->
-<blockquote>
-<p>I used tinytex to upgrade TeX Live and install a package and it … worked. @xieyihui may have ended some of my LaTeX torment.</p>
-</blockquote>
-<blockquote>
-<p>— <a href="https://twitter.com/FanninQED/status/1146857305285242880">PirateGrunt</a></p>
-</blockquote>
-<!-- -->
-<blockquote>
-<p>literally took me longer to remove all traces of MacTeX than to install TinyTeX and all the packages needed to build my thesis, and i saved about 10gb of disk space.</p>
-</blockquote>
-<blockquote>
-<p>— <a href="https://twitter.com/tjohnhos/status/1175575859748638720">Tim Hosgood</a></p>
-</blockquote>
-<!-- -->
-<blockquote>
-<p>I’ve always had a problem knitting to pdf with windows. I followed instruction for tinytex and it works great now!</p>
-</blockquote>
-<blockquote>
-<p>— <a href="https://twitter.com/TexanDhillon/status/1183831526485712897">Dilsher Dhillon</a></p>
-</blockquote>
-<!-- -->
-<blockquote>
-<p>Learning to write a LaTeX manuscript in R Markdown and was having problems loading new packages: tlmgr wasn’t updating the packages. So, found the “tinytex” package that fixed everything.</p>
-</blockquote>
-<blockquote>
-<p>— <a href="https://twitter.com/dynamic_choice/status/1203389695419224064">Akash</a></p>
-</blockquote>
-<!-- -->
-<blockquote>
-<p>Just had to reinstall texlive on my Mac and once again, @xieyihui’s tinytex package saves the day with tinytex::reinstall_tinytex().</p>
-</blockquote>
-<blockquote>
-<p>— <a href="https://twitter.com/ZKamvar/status/1202525888031657984">Zhian N Kamvar</a></p>
-</blockquote>
-<!-- -->
-<blockquote>
-<p>Having just for fun installed R on my new Raspberry pi 4, I thought to myself now it would be nice to have latex, but really, all of texlive, probably not, so this was exactly what was needed. It installed for me immediately and “just worked.”</p>
-</blockquote>
-<blockquote>
-<p>— <a href="/tinytex/#comment-4720783918">Roger Koenker</a></p>
-</blockquote>
-<!-- -->
-<blockquote>
-<p>I’ve always had problems knitting to pdf on Windows until I came across tinytex package.</p>
-</blockquote>
-<blockquote>
-<p>— <a href="https://twitter.com/dhillon_stats/status/1214204113359179779">Dilsher Dhillon</a></p>
-</blockquote>
-<!-- -->
-<blockquote>
-<p>[…] uninstall MacTeX and install TinyTeX was the ticket! It FINALLY knit to pdf!!!!</p>
-</blockquote>
-<blockquote>
-<p>— <a href="https://twitter.com/TiffanyTimbers/status/1214344978769403905">Tiffany Timbers</a></p>
-</blockquote>
-<!-- -->
-<blockquote>
-<p>[…] Why install 3GB of languages you don’t know when all you want are beautiful tables?</p>
-</blockquote>
-<blockquote>
-<p>— <a href="https://twitter.com/RomanMLink/status/1227496566157524992">Roman Link</a></p>
-</blockquote>
-<!-- -->
-<blockquote>
-<p>[…] Have you tried {tinytex}? It installs only what you need from LaTeX so you can knit to pdf! Changed my life!</p>
-</blockquote>
-<blockquote>
-<p>— <a href="https://twitter.com/swmpkim/status/1234517924028784640">Kim Cressman</a></p>
-</blockquote>
-<!-- -->
-<blockquote>
-<p>[…] R Markdown + library(tinytex) basically unlock all of the power of LaTeX without any of the headaches.</p>
-</blockquote>
-<blockquote>
-<p>— <a href="https://twitter.com/awunderground/status/1234665396654837761">Aaron R. Williams</a></p>
-</blockquote>
-<!-- -->
-<blockquote>
-<p>A nice, ultra light, LaTeX distribution, I used TinyTeX on my chromebook for a while.</p>
-</blockquote>
-<blockquote>
-<p>— <a href="https://twitter.com/onebellboy/status/1374345267256905729">@onebellboy</a></p>
-</blockquote>
-<!-- -->
-<blockquote>
-<p>But also LaTeX took 6 hours to download and now I’m struggling to set the path variable for it so maybe I’ll just give up for today and try tomorrow.</p>
-</blockquote>
-<blockquote>
-<p>— <a href="https://twitter.com/JadeMasterMath/status/1384672233499643905">jade eden</a></p>
-</blockquote>
-
+<div id="page-not-found" class="section level1">
+<h1>Page not found</h1>
+<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
+<p>You may want to try searching to find the page's new location, or use
+the table of contents to find the page you are looking for.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="faq.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="tinytex-中文文档-未翻訳.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -465,11 +249,11 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/Gedevan-Aleksizde/tinytex-doc-ja/edit/master/source/pain.Rmd",
+"link": "https://github.com/Gedevan-Aleksizde/tinytex-doc-ja/edit/master/source/%s",
 "text": "Edit"
 },
 "history": {
-"link": "https://github.com/Gedevan-Aleksizde/tinytex-doc-ja/commits/master/source/pain.Rmd",
+"link": "https://github.com/Gedevan-Aleksizde/tinytex-doc-ja/commits/master/source/%s",
 "text": null
 },
 "view": {
