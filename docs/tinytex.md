@@ -1,6 +1,6 @@
 ---
 title: "TinyTeX 非公式日本語版ドキュメント"
-date: "2021/08/31"
+date: "2021/09/15"
 site: bookdown::bookdown_site
 author: 
   - Xie, Yihui (Author)
@@ -21,7 +21,7 @@ github-repo: Gedevan-Aleksizde/tinytex-doc-ja
 
 
 ---
-date: "ver. 1.2.3 (2021/08/31 21:55:22 JST, 本家の更新確認時刻: [2021/06/06 22:28:33 JST](https://github.com/rbind/yihui/tree/master/content/tinytex))"
+date: "ver. 1.2.4 (2021/09/15 20:00:22 JST, 本家の更新確認時刻: [2021/06/06 22:28:33 JST](https://github.com/rbind/yihui/tree/master/content/tinytex))"
 ---
 
 # TinyTeX {#tinytex}

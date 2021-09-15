@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4 FAQ | TinyTeX 非公式日本語版ドキュメント</title>
   <meta name="description" content="4 FAQ | TinyTeX 非公式日本語版ドキュメント" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4 FAQ | TinyTeX 非公式日本語版ドキュメント" />
   <meta property="og:type" content="book" />
@@ -35,6 +35,7 @@
 <link rel="next" href="pain.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -42,7 +43,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -329,7 +329,7 @@ option_src 0</code></pre>
 <p>インストールスクリプトが常に最新版をインストールしているように, TinyTeX を再度インストールすることができます. しかし現在インストールされている LaTeX パッケージは失われます. これらのパッケージも再インストールしたいなら, この R 関数を使うとよいでしょう.</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb34-1"><a href="faq.html#cb34-1"></a>tinytex<span class="sc">::</span><span class="fu">reinstall_tinytex</span>()</span></code></pre></div>
 <p>R を使用していないなら, パッケージのリストを取得し, あとでインストールできます.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb35-1"><a href="faq.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="va">TL_INSTALLED_PKGS=$(</span><span class="ex">tlmgr</span> info <span class="at">--list</span> <span class="at">--only-installed</span> <span class="at">--data</span> name <span class="kw">|</span> <span class="fu">tr</span> <span class="st">&#39;\n&#39;</span> <span class="st">&#39; &#39;</span><span class="va">)</span></span>
+<div class="sourceCode" id="cb35"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb35-1"><a href="faq.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="va">TL_INSTALLED_PKGS</span><span class="op">=</span><span class="va">$(</span><span class="ex">tlmgr</span> info <span class="at">--list</span> <span class="at">--only-installed</span> <span class="at">--data</span> name <span class="kw">|</span> <span class="fu">tr</span> <span class="st">&#39;\n&#39;</span> <span class="st">&#39; &#39;</span><span class="va">)</span></span>
 <span id="cb35-2"><a href="faq.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co"># この後ホームページに書いた方法で TinyTeX を再インストールします.</span></span>
 <span id="cb35-3"><a href="faq.html#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co"># TinyTeX を再インストールしたら, 以下でパッケージも再インストールします</span></span>
 <span id="cb35-4"><a href="faq.html#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="ex">tlmgr</span> install <span class="va">$TL_INSTALLED_PKGS</span></span></code></pre></div>
@@ -394,7 +394,6 @@ option_src 0</code></pre>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -435,7 +434,7 @@ gitbook.start({
 },
 "download": ["tinytex.pdf"],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {
