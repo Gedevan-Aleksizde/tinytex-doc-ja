@@ -104,6 +104,12 @@ tinytex::lualatex('test.tex')
 
 普通の R ユーザーが知るべきことは以上です. あなたが開発者なら, `tinytex:::install_yihui_pkgs()` で[いくつかのパッケージ](https://github.com/yihui/tinytex/blob/master/tools/pkgs-yihui.txt)をインストールしたいと思うかもしれません. この関数は CRAN のパッケージの多くの PDF ビネットをビルドするのに必要な関数をインストールすることで, あなたがパッケージを探す手間を[省いてくれます](https://github.com/yihui/tinytex/issues/135).
 
+:::{.infobox .memo data-latex="{memo}"}
+
+**訳注**: 日本語ユーザを想定した, 最低限の補足説明つきのチュートリアルを \@ref(tutorial-ja) 節に用意しました.
+
+:::
+
 R を使用していないなら, 知る必要があることがもう1つあります. `tlmgr` コマンドです.
 
 ## Rユーザ以外へ
