@@ -33,7 +33,7 @@
   
 
 <link rel="next" href="r.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -160,10 +160,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="3.1" data-path="addendum-ja.html"><a href="addendum-ja.html#tex-live-について"><i class="fa fa-check"></i><b>3.1</b> TeX Live について</a></li>
 <li class="chapter" data-level="3.2" data-path="addendum-ja.html"><a href="addendum-ja.html#tinytex-の軽量さについて"><i class="fa fa-check"></i><b>3.2</b> TinyTeX の軽量さについて</a></li>
-<li class="chapter" data-level="3.3" data-path="addendum-ja.html"><a href="addendum-ja.html#uplatex-や-upbibtex-使用者へ"><i class="fa fa-check"></i><b>3.3</b> (u)pLaTeX や (u)pBibTeX 使用者へ</a></li>
-<li class="chapter" data-level="3.4" data-path="addendum-ja.html"><a href="addendum-ja.html#既存の-tex-live-使用者と後方互換性について"><i class="fa fa-check"></i><b>3.4</b> 既存の TeX Live 使用者と後方互換性について</a></li>
-<li class="chapter" data-level="3.5" data-path="addendum-ja.html"><a href="addendum-ja.html#パッケージの自動インストール機能の限界について"><i class="fa fa-check"></i><b>3.5</b> パッケージの自動インストール機能の限界について</a></li>
-<li class="chapter" data-level="3.6" data-path="addendum-ja.html"><a href="addendum-ja.html#ctan-や-tex-live-に登録されていないパッケージのインストール方法について"><i class="fa fa-check"></i><b>3.6</b> CTAN や TeX Live に登録されていないパッケージのインストール方法について</a></li>
+<li class="chapter" data-level="3.3" data-path="addendum-ja.html"><a href="addendum-ja.html#tutorial-ja"><i class="fa fa-check"></i><b>3.3</b> 最低限のPDF作成チュートリアル (Rmarkdown 併用)</a></li>
+<li class="chapter" data-level="3.4" data-path="addendum-ja.html"><a href="addendum-ja.html#uplatex-や-upbibtex-使用者への注意"><i class="fa fa-check"></i><b>3.4</b> (u)pLaTeX や (u)pBibTeX 使用者への注意</a></li>
+<li class="chapter" data-level="3.5" data-path="addendum-ja.html"><a href="addendum-ja.html#既存の-tex-live-使用者と後方互換性について"><i class="fa fa-check"></i><b>3.5</b> 既存の TeX Live 使用者と後方互換性について</a></li>
+<li class="chapter" data-level="3.6" data-path="addendum-ja.html"><a href="addendum-ja.html#パッケージの自動インストール機能の限界について"><i class="fa fa-check"></i><b>3.6</b> パッケージの自動インストール機能の限界について</a></li>
+<li class="chapter" data-level="3.7" data-path="addendum-ja.html"><a href="addendum-ja.html#ctan-や-tex-live-に登録されていないパッケージのインストール方法について"><i class="fa fa-check"></i><b>3.7</b> CTAN や TeX Live に登録されていないパッケージのインストール方法について</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="faq.html"><a href="faq.html"><i class="fa fa-check"></i><b>4</b> FAQ</a>
 <ul>
@@ -210,7 +211,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="subtitle"><em>軽量・クロスプラットフォーム・ポータブル・メンテナンスも容易な TeX Live ベースの LaTeX ディストリビューション</em></h2>
 <p class="author"><em>Xie, Yihui (Author)</em></p>
 <p class="author"><em>Katagiri, Satoshi (片桐 智志)<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> (Translator)</em></p>
-<p class="date"><em>ver. 1.2.4 (2021/09/15 20:00:21 JST, 本家の更新確認時刻: <a href="https://github.com/rbind/yihui/tree/master/content/tinytex">2021/06/06 22:28:33 JST</a>)</em></p>
+<p class="date"><em>ver. 1.3 (2022/02/18 23:37:13 JST, 本家の更新確認時刻: <a href="https://github.com/rbind/yihui/tree/master/content/tinytex">2022/01/26 09:36:46 JST</a>)</em></p>
 </div>
 <div id="tinytex" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> TinyTeX</h1>
@@ -245,6 +246,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-4"><a href="index.html#cb2-4"></a>), <span class="st">&#39;test.tex&#39;</span>)</span>
 <span id="cb2-5"><a href="index.html#cb2-5"></a>tinytex<span class="sc">::</span><span class="fu">lualatex</span>(<span class="st">&#39;test.tex&#39;</span>)</span></code></pre></div>
 <p>普通の R ユーザーが知るべきことは以上です. あなたが開発者なら, <code>tinytex:::install_yihui_pkgs()</code> で<a href="https://github.com/yihui/tinytex/blob/master/tools/pkgs-yihui.txt">いくつかのパッケージ</a>をインストールしたいと思うかもしれません. この関数は CRAN のパッケージの多くの PDF ビネットをビルドするのに必要な関数をインストールすることで, あなたがパッケージを探す手間を<a href="https://github.com/yihui/tinytex/issues/135">省いてくれます</a>.</p>
+<div class="infobox memo">
+<p><strong>訳注</strong>: 日本語ユーザを想定した, 最低限の補足説明つきのチュートリアルを <a href="addendum-ja.html#tutorial-ja">3.3</a> 節に用意しました.</p>
+</div>
 <p>R を使用していないなら, 知る必要があることがもう1つあります. <code>tlmgr</code> コマンドです.</p>
 </div>
 <div id="rユーザ以外へ" class="section level2" number="1.2">
@@ -292,7 +296,9 @@ or enter new name. (Default extension: sty)</code></pre>
 <span id="cb8-3"><a href="index.html#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="ex">texmf-dist/tex/latex/psnfss/times.sty</span></span>
 <span id="cb8-4"><a href="index.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code></pre></div>
 <p>上記のエラーログに現れた名前のファイルを含むパッケージを見つけてください. 今回は足りないパッケージは <code>psnfss</code> で, <code>tlmgr install</code> でインストールすることができます.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="index.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tlmgr</span> install psnfss</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="index.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tlmgr</span> install psnfss</span>
+<span id="cb9-2"><a href="index.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># パッケージが実行ファイル (例: dvisvgm) を含む場合は更に以下を実行</span></span>
+<span id="cb9-3"><a href="index.html#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">tlmgr</span> path add</span></code></pre></div>
 <p>代わりの方法として, GitHub レポジトリの <a href="https://github.com/yihui/latex-pass">yihui/latex-pass</a> にエラーログをアップロードするだけで, クラウド上で <code>tlmgr search</code> が実行され不足しているパッケージを教えてくれます.</p>
 <p>理解するのが難しいエラーメッセージを見つけたなら, 全てアップデートしてしまうとよいかもしれません.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="index.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tlmgr</span> update <span class="at">--self</span> <span class="at">--all</span></span>

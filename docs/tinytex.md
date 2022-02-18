@@ -1,6 +1,6 @@
 ---
 title: "TinyTeX 非公式日本語版ドキュメント"
-date: "2021/09/15"
+date: "2022/02/18"
 site: bookdown::bookdown_site
 author: 
   - Xie, Yihui (Author)
@@ -21,7 +21,7 @@ github-repo: Gedevan-Aleksizde/tinytex-doc-ja
 
 
 ---
-date: "ver. 1.2.4 (2021/09/15 20:00:22 JST, 本家の更新確認時刻: [2021/06/06 22:28:33 JST](https://github.com/rbind/yihui/tree/master/content/tinytex))"
+date: "ver. 1.3 (2022/02/18 23:37:15 JST, 本家の更新確認時刻: [2022/01/26 09:36:46 JST](https://github.com/rbind/yihui/tree/master/content/tinytex))"
 ---
 
 # TinyTeX {#tinytex}
@@ -81,6 +81,12 @@ tinytex::lualatex("test.tex")
 ```
 
 普通の R ユーザーが知るべきことは以上です. あなたが開発者なら, `tinytex:::install_yihui_pkgs()` で[いくつかのパッケージ](https://github.com/yihui/tinytex/blob/master/tools/pkgs-yihui.txt)をインストールしたいと思うかもしれません. この関数は CRAN のパッケージの多くの PDF ビネットをビルドするのに必要な関数をインストールすることで, あなたがパッケージを探す手間を[省いてくれます](https://github.com/yihui/tinytex/issues/135).
+
+:::{.infobox .memo data-latex="{memo}"}
+
+**訳注**: 日本語ユーザを想定した, 最低限の補足説明つきのチュートリアルを \@ref(tutorial-ja) 節に用意しました.
+
+:::
 
 R を使用していないなら, 知る必要があることがもう1つあります. `tlmgr` コマンドです.
 
@@ -167,6 +173,8 @@ psnfss:
 
 ```sh
 tlmgr install psnfss
+# パッケージが実行ファイル (例: dvisvgm) を含む場合は更に以下を実行
+tlmgr path add
 ```
 
 代わりの方法として, GitHub レポジトリの [yihui/latex-pass](https://github.com/yihui/latex-pass) にエラーログをアップロードするだけで, クラウド上で `tlmgr search` が実行され不足しているパッケージを教えてくれます.
@@ -322,7 +330,7 @@ LaTeX を PDF にコンパイルするときにエラーが起こったなら, �
 
 ## TeX Live について
 
-公式ガイドの和訳版をご覧ください.
+TeX Live は TeX の代表的な配布パッケージです. 詳細は公式ガイドの和訳版をご覧ください.
 
 https://www.tug.org/texlive/doc/texlive-ja/texlive-ja.pdf
 
@@ -330,9 +338,103 @@ https://www.tug.org/texlive/doc/texlive-ja/texlive-ja.pdf
 
 日本語文書作成には独自のパッケージをそれなりに必要とするため, 残念ながら意外とファイルサイズが大きくなることがあります. しかし\@ref(faq-size) でも注記したように, せいぜい 500 MB 前後にとどまることが多いと思いますし, TeX Live のように過年度版が不要であることに気づかないでいると年々占有領域が肥大化する, ということもありません. 
 
-## (u)pLaTeX や (u)pBibTeX 使用者へ
+## 最低限のPDF作成チュートリアル (Rmarkdown 併用) {#tutorial-ja}
 
-LaTeX ディストリビューションとしては TinyTeX でも TeX Live と同様に (u)pLaTeX や (u)pBibTeX を使うことができます. しかしこれらの LaTeX エンジン (および, 頭に `up` とついているもの概ね全て) は日本で独自に開発されてきたものであるため, **tinytex** や **rmarkdown** パッケージではオプションとしてあまり考慮されていません. 
+本文でも最低限の動作例はありますが, 日本語文書には特有の設定が必要なことを考慮し, ここでは最低限の解説を書いておきます. RMarkdown の詳細な使用法については後述する RMarkdown のヘルプや関連書籍を読むことをおすすめします. 以下は **tinytex** と **rmarkdown** パッケージをインストールし, かつ R (v4.1.2 以降) と RStudio  (v2021.09.2 Build 382 以降) が使える前提でのチュートリアルです. OS は　Windows, Mac, Linux 系のどれかであればおおむね問題なく動作すると思います. また, LaTeX と R についてある程度の知識があることを前提にしています. Rmdファイルを新規作成し, 以下の内容をコピペしてください.
+
+
+```yaml
+---
+title: "TinyTeX による日本語文書"
+author: 
+  - TinyTeX 太郎
+  - TinyTeX 花子
+output: 
+  pdf_document:
+    latex_engine: lualatex
+documentclass: bxjsarticle
+classoption:
+  - pandoc
+  - jafont=haranoaji
+---
+
+# ハロー日本語文書
+
+ハロー
+```
+
+これを保存した後,  RStudio 上で "knit" ボタンを押してください. PDFが生成されるはずです. **tinytex** は不足パッケージを自動でインストールしてくれるため, 初回動作はインストールも含め時間がかかると思いますが, 気長に待ってください.
+
+:::{.infobox .memo data-latex="{memo}"}
+
+もしエラーが出た場合, 本書のFAQ等に解決のヒントがあるはずです. 典型的なエラーとして, 不足TeXパッケージの自動インストールがうまくいかなかないということがまれにあります. 特にフォントパッケージの検出失敗はありがちです. その場合は以下のコマンドで腹ノ味フォントをインストールできます. あるいは[公式リポジトリ](https://github.com/trueroad/HaranoAjiFonts) からダウンロード&インストールしてください^[TinyTeX 以外でもこのフォントを使用できるため, 後者の方法をおすすめします.]
+
+
+```{.r }
+tinytex::tlmgr_install("haranoaji")
+```
+
+日本語文書に必要で, デフォルトでインストールされないものがいくつあります. 上記で解決しないなら以下も試してみてください.
+
+
+```{.r }
+tinytex::tlmgr_install(c("bxjscls", "luatexja", "haranoaji"))
+```
+
+もしそれでもうまく行かない場合, そもそも環境構築に失敗している可能性があります. どうしても原因がわからない場合はインターネット上の質問フォーラムに頼ってください.
+
+:::
+
+
+上記ファイルの記述を解説します. まず, 最初のハイフン `---` で囲まれた範囲は, 文書全体の設定を記述しています. **rmarkdown** はこれをもとに tex ファイルを生成し, **tinytex** に渡してPDFを生成させます. つまり, TeX の場合は多くがプリアンブルの記述に対応します. 例えば `documentclass: bxjsarticle` の部分はそのまま文書クラスに `bxjsarticle` を指定していることを意味し, `classoption:` 以下の箇条書きは文書クラスのオプション引数を意味します. 一方で `latex_engine: lualatex` は LuaLaTeX を使用して tex ファイルをコンパイルすることを意味します.
+
+
+(Tiny) TeX で PDF を, それも異なる OS で同じPDFを生成する場合に一番問題になるのは日本語フォントの指定です. ここではオープンソースでかつ TeX と相性の良い「原ノ味フォント」を指定しています^[原ノ味フォントは源ノ書体/Notoフォントとほぼ同じ字形です]. それが `jafont=haranoaji` の部分です. もちろん OS ごとの標準フォントを使うこともできます. 例えば,
+
+* Windows (10以降) ならば `jafont=yu-win10` で遊書体 (Win 8 ならば `yu-win` になります)
+* Mac ならば `jafont=hiragino-pro` でヒラギノフォント
+* Ubuntu ならば `jafont=noto-otf` (インストール経路によっては `noto-otc` ?)
+
+を指定できます. これらを指定すればもちろん**フォントの追加インストールは不要**です. 指定可能なフォント名の簡易リストは[公式](https://ja.osdn.net/projects/luatex-ja/wiki/LuaTeX-ja%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9) をご覧ください.
+
+:::{.infobox .warning data-latex="{warning}"}
+
+RMarkdown の解説で「IPA フォントをインストールせよ」と書いているネット上のブログ等をよく見かけますが, このように **IPA フォントのインストールは必須ではありません**. あなた自身が IPA フォントが必須だと考えていない限り不要です. 特に今回は **tinytex** を使用しているので, 不足パッケージを自動でインストールしてくれるため, フォントパッケージに限らず手動でのインストールはほとんど不要なはずですし, 世の中には広く普及している日本語フォントは IPA 以外に多く存在します. なぜ IPA フォントをインストールさせたがる記述が多いのかは私にもよくわかりません.
+
+:::
+
+日本語環境を想定したより詳細な環境構築に関しては, 翻訳者の書いた以下を参考にしてください.
+
+https://rpubs.com/ktgrstsh/755893
+
+RMarkdown の参考資料としては, 「[R Markdown クックブック](https://gedevan-aleksizde.github.io/rmarkdown-cookbook/)」があります.
+
+
+もちろん, RMarkdown を介さず tex コマンドを直接書いた tex ファイルを作成し, **tinytex** に直接渡すこともできます. 例えば `test.tex` というファイルを作成し, 内容を以下のようにしてください.
+
+```tex
+\documentclass[lualatex,ja=standard,jafont=haranoaji]{bxjsarticle}
+\title{TinyTeX による日本語文書}
+\author{TinyTeX 太郎}
+\begin{document}
+\maketitle
+
+\section{ハロー日本語文書}
+
+ハロー
+\end{document}
+```
+
+これを LuaLaTeX でコンパイルします.
+
+
+```{.r .numberLines .lineAnchors}
+tinytex::lualatex("test.tex")
+```
+
+## (u)pLaTeX や (u)pBibTeX 使用者への注意
+
+LaTeX ディストリビューションとしては TinyTeX でも TeX Live と同様に (u)pLaTeX や (u)pBibTeX を使うことができます. しかしこれらの LaTeX エンジン (および, 頭に `up` とついているもの概ね全て) は日本で独自に開発されてきたものであるため, **tinytex** や **rmarkdown** パッケージはこれらを考慮した設計ではありません.
 
 **rmarkdown** を使用する場合, 基本的に XeLaTeX または LuaLaTeX を使用して日本語文書をコンパイルしたほうが簡単です. ただし従来の pLaTeX と異なり, bxjs/ltjs シリーズの文書クラスを使用したほうが品質の良い日本語文書を作成できます. 日本語文書のための設定に関する詳細は翻訳者の開発した [**rmdja** パッケージ](https://github.com/Gedevan-Aleksizde/rmdja)のヘルプやドキュメントや, https://rpubs.com/ktgrstsh/755893 を参考にしてください. **rmdja** には試験的ですが (u)pLaTeX を使用する機能もあります.
 
@@ -378,7 +480,7 @@ TinyTeX のパッケージ自動インストール機能は, LaTeX 文書のコ�
 
 (1, 2) はうまくいかなかったという報告が以前ありましたが, 正確な原因は特定できていません. 現在は問題なく動作するかもしれません. 最後の (3) は残念ながら根本的な解決はできませんが, エラーログファイルを `tinytex::parse_install()` に与えることで不足パッケージの自動解析および自動インストールをさせることができます.
 
-もしうまく動作しない場合のために, 以下に XeLaTeX/LuaLaTeX を使用した日本語文書作成によく使用されるパッケージをまとめてインストールするコマンドを用意しました.
+もしうまく動作しない場合のために, 以下に XeLaTeX/LuaLaTeX を使用した日本語文書作成によく使用されるパッケージをまとめてインストールするコマンドを用意しました. 先程のチュートリアルでは使わなかったパッケージも含めています.
 
 
 ```{.r .numberLines .lineAnchors}
@@ -394,7 +496,7 @@ tinytex::tlmgr_install(c("pgf", "preview", "xcolor"))
 
 ## CTAN や TeX Live に登録されていないパッケージのインストール方法について
 
-TeX Live に登録されていないパッケージは `tlmgr` コマンドでも **tinytex** の関数でも検索対象ではないため, ダウンロードおよびインストールすることもできません. 例えば [**BXcoloremoji**](https://github.com/zr-tex8r/BXcoloremoji) パッケージ, [**pxrubrica**](https://github.com/zr-tex8r/PXrubrica) パッケージ, あるいは日本国内の学会発表・学術論文用フォーマットなどが該当します. また, 登録されているものと, GitHub などでダウンロードできる開発版とでバージョンが異なることもありえます.
+TeX Live に登録されていないパッケージは `tlmgr` コマンドでも **tinytex** の関数でも検索対象ではないため, ダウンロードおよびインストールすることができません. 例えば [**BXcoloremoji**](https://github.com/zr-tex8r/BXcoloremoji) パッケージ, [**pxrubrica**](https://github.com/zr-tex8r/PXrubrica) パッケージ, あるいは日本国内の一部の学会発表・学術論文用フォーマットなどが該当します. また, 登録されているものと, GitHub などでダウンロードできる開発版とでバージョンが異なることもありえます.
 
 このような場合, `.sty` や `.cls` といったファイルを手動でダウンロードし, 適切な場所に置く必要があります. プロジェクトのフォルダに直接置いても良いですが, それだと新たに文書を作成するたびにファイルをコピーする必要があります.
 
