@@ -240,24 +240,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb18-15"><a href="addendum-ja.html#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="co"># ハロー日本語文書</span></span>
 <span id="cb18-16"><a href="addendum-ja.html#cb18-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-17"><a href="addendum-ja.html#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="at">ハロー</span></span></code></pre></div>
-<p>これを保存した後, RStudio 上で “knit” ボタンを押してください. PDFが生成されるはずです. <strong>tinytex</strong> は不足パッケージを自動でインストールしてくれるため, 初回動作はインストールも含め時間がかかると思いますが, 気長に待ってください.</p>
-<div class="infobox memo">
-<p>もしエラーが出た場合, 本書のFAQ等に解決のヒントがあるはずです. 典型的なエラーとして, 不足TeXパッケージの自動インストールがうまくいかなかないということがまれにあります. 特にフォントパッケージの検出失敗はありがちです. その場合は以下のコマンドで腹ノ味フォントをインストールできます. あるいは<a href="https://github.com/trueroad/HaranoAjiFonts">公式リポジトリ</a> からダウンロード&amp;インストールしてください<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a></p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="addendum-ja.html#cb19-1" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">tlmgr_install</span>(<span class="st">&quot;haranoaji&quot;</span>)</span></code></pre></div>
-<p>日本語文書に必要で, デフォルトでインストールされないものがいくつあります. 上記で解決しないなら以下も試してみてください.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="addendum-ja.html#cb20-1" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">tlmgr_install</span>(<span class="fu">c</span>(<span class="st">&quot;bxjscls&quot;</span>, <span class="st">&quot;luatexja&quot;</span>, <span class="st">&quot;haranoaji&quot;</span>))</span></code></pre></div>
-<p>もしそれでもうまく行かない場合, そもそも環境構築に失敗している可能性があります. どうしても原因がわからない場合はインターネット上の質問フォーラムに頼ってください.</p>
-</div>
-<p>上記ファイルの記述を解説します. まず, 最初のハイフン <code>---</code> で囲まれた範囲は, 文書全体の設定を記述しています. <strong>rmarkdown</strong> はこれをもとに tex ファイルを生成し, <strong>tinytex</strong> に渡してPDFを生成させます. つまり, TeX の場合は多くがプリアンブルの記述に対応します. 例えば <code>documentclass: bxjsarticle</code> の部分はそのまま文書クラスに <code>bxjsarticle</code> を指定していることを意味し, <code>classoption:</code> 以下の箇条書きは文書クラスのオプション引数を意味します. 一方で <code>latex_engine: lualatex</code> は LuaLaTeX を使用して tex ファイルをコンパイルすることを意味します.</p>
-<p>(Tiny) TeX で PDF を, それも異なる OS で同じPDFを生成する場合に一番問題になるのは日本語フォントの指定です. ここではオープンソースでかつ TeX と相性の良い「原ノ味フォント」を指定しています<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a>. それが <code>jafont=haranoaji</code> の部分です. もちろん OS ごとの標準フォントを使うこともできます. 例えば,</p>
+<p>ここから PDF を生成する前に, 一点だけ確認してください. (Tiny) TeX で PDF を, それも Windows や Mac など異なる OS で同じPDFを生成する場合に一番問題になるのは日本語フォントの指定です. ここではオープンソースでかつ TeX と相性の良い「原ノ味フォント」を指定しています<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a>. それが <code>jafont=haranoaji</code> の部分です. もちろん OS ごとの標準フォントを使うこともできます. 例えば,</p>
 <ul>
 <li>Windows (10以降) ならば <code>jafont=yu-win10</code> で遊書体 (Win 8 ならば <code>yu-win</code> になります)</li>
 <li>Mac ならば <code>jafont=hiragino-pro</code> でヒラギノフォント</li>
 <li>Ubuntu ならば <code>jafont=noto-otf</code> (インストール経路によっては <code>noto-otc</code> ?)</li>
 </ul>
-<p>を指定できます. これらを指定すればもちろん<strong>フォントの追加インストールは不要</strong>です. 指定可能なフォント名の簡易リストは<a href="https://ja.osdn.net/projects/luatex-ja/wiki/LuaTeX-ja%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9">公式</a> をご覧ください.</p>
+<p>を指定できます. これらに書き換えれば (行頭のスペースも必要なので誤って消さないでください), <strong>フォントの追加インストールは不要</strong>です. 指定可能なフォント名の簡易リストは<a href="https://ja.osdn.net/projects/luatex-ja/wiki/LuaTeX-ja%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9">公式</a> をご覧ください.</p>
+<p>しかし, 原ノ味フォントはこれまで TeX を一度も使用していない方の PC にはインストールされていない可能性があります. 原ノ味フォントは <strong>tinytex</strong> で以下の R コマンドを使用してインストールできますが, TeX 以外でも使用したい場合 (例: PDF に R で作成した画像ファイルを埋め込む際に, 画像内の文字も原ノ味フォントで統一したい)はこの方法はおすすめしません.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="addendum-ja.html#cb19-1" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">tlmgr_install</span>(<span class="st">&quot;haranoaji&quot;</span>)</span></code></pre></div>
+<p>TeX 以外でも使用したい場合, 各 OS の標準的な方法でインストールするとよいです. <a href="https://github.com/trueroad/HaranoAjiFonts/tags">公式リポジトリ</a> からダウンロード&amp;インストールしてください</p>
+<p>これを保存した後, RStudio 上で “knit” ボタンを押してください. PDFが生成されるはずです. <strong>tinytex</strong> は不足パッケージを自動でインストールしてくれるため, 初回動作はインストールも含め時間がかかると思いますが, 気長に待ってください.</p>
+<div class="infobox memo">
+<p>もしエラーが出た場合, 本書のFAQ等に解決のヒントがあるはずです. 典型的なエラーとして, 不足TeXパッケージの自動インストールがうまくいかなかないということがまれにあります.</p>
+<p>日本語文書に必要で, デフォルトでインストールされないものがいくつあります. 今回のサンプル文書に最低限必要な LaTeX パッケージは以下の R コマンドでインストールできます.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="addendum-ja.html#cb20-1" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">tlmgr_install</span>(<span class="fu">c</span>(<span class="st">&quot;bxjscls&quot;</span>, <span class="st">&quot;luatexja&quot;</span>, <span class="st">&quot;haranoaji&quot;</span>))</span></code></pre></div>
+<p>もしそれでもうまく行かない場合, そもそも環境構築に失敗している可能性があります. どうしても原因がわからない場合はインターネット上の質問フォーラムに頼ってください.</p>
+</div>
+<p>上記ファイルの記述を解説します. まず, 最初のハイフン <code>---</code> で囲まれた範囲は, 文書全体の設定を記述しています. <strong>rmarkdown</strong> はこれをもとに tex ファイルを生成し, <strong>tinytex</strong> に渡してPDFを生成させます. つまり, TeX の場合は多くがプリアンブルの記述に対応します. 例えば <code>documentclass: bxjsarticle</code> の部分はそのまま文書クラスに <code>bxjsarticle</code> を指定していることを意味し, <code>classoption:</code> 以下の箇条書きは文書クラスのオプション引数を意味します. つまり, PDF 生成前に <code>jafont=</code> で指定してもらったフォントは, bxjsarticle という文書クラスの機能を使用して読み込まれています. 一方で <code>latex_engine: lualatex</code> は LuaLaTeX を使用して tex ファイルをコンパイルすることを意味します.</p>
 <div class="infobox warning">
-<p>RMarkdown の解説で「IPA フォントをインストールせよ」と書いているネット上のブログ等をよく見かけますが, このように <strong>IPA フォントのインストールは必須ではありません</strong>. あなた自身が IPA フォントが必須だと考えていない限り不要です. 特に今回は <strong>tinytex</strong> を使用しているので, 不足パッケージを自動でインストールしてくれるため, フォントパッケージに限らず手動でのインストールはほとんど不要なはずですし, 世の中には広く普及している日本語フォントは IPA 以外に多く存在します. なぜ IPA フォントをインストールさせたがる記述が多いのかは私にもよくわかりません.</p>
+<p>RMarkdown の解説で「IPA フォントをインストールせよ」と書いているネット上のブログ等をよく見かけますが, このように <strong>IPA フォントのインストールは必須ではありません</strong>. あなた自身が IPA フォントが必須だと考えていない限り不要です. 特に今回は <strong>tinytex</strong> を使用しているので, 不足パッケージを自動でインストールしてくれるため, フォントパッケージに限らず手動でのインストールはほとんど不要なはずですし, 世の中には広く普及している日本語フォントは IPA 以外に多く存在します. なぜ IPA フォントをインストールさせたがる記述がこのように多いのかは私にもよくわかりません.</p>
 </div>
 <p>日本語環境を想定したより詳細な環境構築に関しては, 翻訳者の書いた以下を参考にしてください.</p>
 <p><a href="https://rpubs.com/ktgrstsh/755893" class="uri">https://rpubs.com/ktgrstsh/755893</a></p>
@@ -273,14 +275,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb21-8"><a href="addendum-ja.html#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-9"><a href="addendum-ja.html#cb21-9" aria-hidden="true" tabindex="-1"></a>ハロー</span>
 <span id="cb21-10"><a href="addendum-ja.html#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span></code></pre></div>
-<p>これを LuaLaTeX でコンパイルします.</p>
+<p>ここでも, 1行目の <code>jafont=haranoaji</code> でフォントを指定していることを忘れないでください. 名称は Rmd ファイルの場合と同じです.
+これを LuaLaTeX でコンパイルし, <code>test.pdf</code> という PDF を生成します.</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb22-1"><a href="addendum-ja.html#cb22-1"></a>tinytex<span class="sc">::</span><span class="fu">lualatex</span>(<span class="st">&#39;test.tex&#39;</span>)</span></code></pre></div>
 </div>
 <div id="uplatex-や-upbibtex-使用者への注意" class="section level2" number="3.4">
 <h2><span class="header-section-number">3.4</span> (u)pLaTeX や (u)pBibTeX 使用者への注意</h2>
 <p>LaTeX ディストリビューションとしては TinyTeX でも TeX Live と同様に (u)pLaTeX や (u)pBibTeX を使うことができます. しかしこれらの LaTeX エンジン (および, 頭に <code>up</code> とついているもの概ね全て) は日本で独自に開発されてきたものであるため, <strong>tinytex</strong> や <strong>rmarkdown</strong> パッケージはこれらを考慮した設計ではありません.</p>
 <p><strong>rmarkdown</strong> を使用する場合, 基本的に XeLaTeX または LuaLaTeX を使用して日本語文書をコンパイルしたほうが簡単です. ただし従来の pLaTeX と異なり, bxjs/ltjs シリーズの文書クラスを使用したほうが品質の良い日本語文書を作成できます. 日本語文書のための設定に関する詳細は翻訳者の開発した <a href="https://github.com/Gedevan-Aleksizde/rmdja"><strong>rmdja</strong> パッケージ</a>のヘルプやドキュメントや, <a href="https://rpubs.com/ktgrstsh/755893" class="uri">https://rpubs.com/ktgrstsh/755893</a> を参考にしてください. <strong>rmdja</strong> には試験的ですが (u)pLaTeX を使用する機能もあります.</p>
-<p>一方で, 以降は <strong>rmarkdown</strong> ではなく従来の LaTeX ディストリビューションの代わりとして <strong>tinytex</strong> を使いたい場合の解説をします. まず, 日本語環境を想定していないため文献引用もデフォルトでは BibTeX が呼び出されるため, (u)pBibTeX を想定したファイルを使用しているとハングアップの原因となります. <strong>tinytex</strong> パッケージで (u)pLaTeX/(u)pBibTeX による処理を <code>xelatex()</code> や <code>pdflatex()</code> のように呼び出したい場合, <code>latexmk()</code> を使用します. TeX Wiki の<a href="https://texwiki.texjp.org/?Latexmk">このページ</a> に掲載されている <code>.latexmkrc</code> ファイルを作成し<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a>, 作業フォルダに置いた上で, 以下のようなコマンドを実行します.</p>
+<p>一方で, 以降は <strong>rmarkdown</strong> ではなく従来の LaTeX ディストリビューションの代わりとして <strong>tinytex</strong> を使いたい場合の解説をします. まず, 日本語環境を想定していないため文献引用もデフォルトでは BibTeX が呼び出されるため, (u)pBibTeX を想定したファイルを使用しているとハングアップの原因となります. <strong>tinytex</strong> パッケージで (u)pLaTeX/(u)pBibTeX による処理を <code>xelatex()</code> や <code>pdflatex()</code> のように呼び出したい場合, <code>latexmk()</code> を使用します. TeX Wiki の<a href="https://texwiki.texjp.org/?Latexmk">このページ</a> に掲載されている <code>.latexmkrc</code> ファイルを作成し<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a>, 作業フォルダに置いた上で, 以下のようなコマンドを実行します.</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb23-1"><a href="addendum-ja.html#cb23-1"></a>tinytex<span class="sc">::</span><span class="fu">latexmk</span>(</span>
 <span id="cb23-2"><a href="addendum-ja.html#cb23-2"></a>  <span class="st">&quot;&lt;あなたのファイル&gt;.tex&quot;</span>,</span>
 <span id="cb23-3"><a href="addendum-ja.html#cb23-3"></a>  <span class="at">engine =</span> <span class="st">&quot;latex&quot;</span>,</span>
@@ -319,9 +322,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">3.7</span> CTAN や TeX Live に登録されていないパッケージのインストール方法について</h2>
 <p>TeX Live に登録されていないパッケージは <code>tlmgr</code> コマンドでも <strong>tinytex</strong> の関数でも検索対象ではないため, ダウンロードおよびインストールすることができません. 例えば <a href="https://github.com/zr-tex8r/BXcoloremoji"><strong>BXcoloremoji</strong></a> パッケージ, <a href="https://github.com/zr-tex8r/PXrubrica"><strong>pxrubrica</strong></a> パッケージ, あるいは日本国内の一部の学会発表・学術論文用フォーマットなどが該当します. また, 登録されているものと, GitHub などでダウンロードできる開発版とでバージョンが異なることもありえます.</p>
 <p>このような場合, <code>.sty</code> や <code>.cls</code> といったファイルを手動でダウンロードし, 適切な場所に置く必要があります. プロジェクトのフォルダに直接置いても良いですが, それだと新たに文書を作成するたびにファイルをコピーする必要があります.</p>
-<p>TinyTeX および TeX Live の仕様として, ファイルを配置する場所はある程度自由ですが, 管理のしやすさを考慮して FAQ <a href="faq.html#non-root-package-installation">4.6</a> にあるような, <code>texmf-home</code> フォルダまたは, <code>texmf-local</code> 以下に配置することをお勧めします.<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a> ターミナルで <code>kpsewhich --var-value=TEXMFHOME</code> を実行し出力されたフォルダに配置します. このフォルダ以下に配置したファイルであれば認識されますが, 慣例的に <code>.sty</code>/<code>.cls</code> ファイルは主に <code>tex/latex/</code> 以下に, <code>.bst</code> ファイルは <code>bibtex/bst</code> 以下に置かれます.</p>
+<p>TinyTeX および TeX Live の仕様として, ファイルを配置する場所はある程度自由ですが, 管理のしやすさを考慮して FAQ <a href="faq.html#non-root-package-installation">4.6</a> にあるような, <code>texmf-home</code> フォルダまたは, <code>texmf-local</code> 以下に配置することをお勧めします.<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a> ターミナルで <code>kpsewhich --var-value=TEXMFHOME</code> を実行し出力されたフォルダに配置します. このフォルダ以下に配置したファイルであれば認識されますが, 慣例的に <code>.sty</code>/<code>.cls</code> ファイルは主に <code>tex/latex/</code> 以下に, <code>.bst</code> ファイルは <code>bibtex/bst</code> 以下に置かれます.</p>
 <p>(システム管理者の方は適当に工夫してください). root でインストールしていない場合は <code>texmf-local</code> になると思います.</p>
-<p>TinyTeX は ls-R を使用しているため<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a> その後 <code>mktexlsr</code> を実行します. R上では <code>system()</code> で呼び出すことができます.</p>
+<p>TinyTeX は ls-R を使用しているため<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a> その後 <code>mktexlsr</code> を実行します. R上では <code>system()</code> で呼び出すことができます.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb26-1"><a href="addendum-ja.html#cb26-1"></a><span class="fu">system</span>(<span class="st">&quot;mktexlsr&quot;</span>)</span></code></pre></div>
 <p>ただし, 例に挙げた <strong>BXcoloremoji</strong> パッケージは, <code>$TEXMF/tex/latex/BXcoloremoji</code> 以下に配置するように指示があります. 今回は <code>$TEXMF</code> は <code>texmf-home</code>/<code>texmf-local</code> に対応させることができます. このように, パッケージによってはフォルダ構造に制約があるため, 手動インストール時には注意してください.</p>
 <p>TeX のフォルダ構造の仕組みについては TeX Wiki の『<a href="https://texwiki.texjp.org/?LaTeX%E5%85%A5%E9%96%80%2F%E5%90%84%E7%A8%AE%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AE%E5%88%A9%E7%94%A8">LaTeX入門/各種パッケージの利用</a>』と『<a href="https://texwiki.texjp.org/?TeX%20%E3%81%AE%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E6%A7%8B%E6%88%90">TeX のフォルダ構成</a>』も参考になります.</p>
@@ -332,11 +335,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="footnotes">
 <hr />
 <ol start="13">
-<li id="fn13"><p>TinyTeX 以外でもこのフォントを使用できるため, 後者の方法をおすすめします.<a href="addendum-ja.html#fnref13" class="footnote-back">↩︎</a></p></li>
-<li id="fn14"><p>原ノ味フォントは源ノ書体/Notoフォントとほぼ同じ字形です<a href="addendum-ja.html#fnref14" class="footnote-back">↩︎</a></p></li>
-<li id="fn15"><p>もしうまく動作しない場合は <strong>rmdja</strong> パッケージに内蔵してある<a href="https://github.com/Gedevan-Aleksizde/rmdja/blob/master/inst/resources/latexmk/.latexmkrc">ファイル</a> をコピーしてください.<a href="addendum-ja.html#fnref15" class="footnote-back">↩︎</a></p></li>
-<li id="fn16"><p><a href="https://tex.stackexchange.com/questions/583006/where-do-i-place-my-own-sty-or-cls-files-to-get-them-working-with-tinytex" class="uri">https://tex.stackexchange.com/questions/583006/where-do-i-place-my-own-sty-or-cls-files-to-get-them-working-with-tinytex</a> では 2021/3/3 以降は <code>texmf-home</code> に配置すべきという回答が書かれていますが, v0.33 で確認したところ <code>texmf-home</code> はデフォルトでは認識されず, <code>texmf-local</code> 以下に置く必要があります.<a href="addendum-ja.html#fnref16" class="footnote-back">↩︎</a></p></li>
-<li id="fn17"><p>ls-R 不要論を唱える方もいますし私もその主張には一理あると思いますが, TinyTeX では残念ながら使用しているので必要です.<a href="addendum-ja.html#fnref17" class="footnote-back">↩︎</a></p></li>
+<li id="fn13"><p>原ノ味フォントは源ノ書体/Notoフォントとほぼ同じ字形です<a href="addendum-ja.html#fnref13" class="footnote-back">↩︎</a></p></li>
+<li id="fn14"><p>もしうまく動作しない場合は <strong>rmdja</strong> パッケージに内蔵してある<a href="https://github.com/Gedevan-Aleksizde/rmdja/blob/master/inst/resources/latexmk/.latexmkrc">ファイル</a> をコピーしてください.<a href="addendum-ja.html#fnref14" class="footnote-back">↩︎</a></p></li>
+<li id="fn15"><p><a href="https://tex.stackexchange.com/questions/583006/where-do-i-place-my-own-sty-or-cls-files-to-get-them-working-with-tinytex" class="uri">https://tex.stackexchange.com/questions/583006/where-do-i-place-my-own-sty-or-cls-files-to-get-them-working-with-tinytex</a> では 2021/3/3 以降は <code>texmf-home</code> に配置すべきという回答が書かれていますが, v0.33 で確認したところ <code>texmf-home</code> はデフォルトでは認識されず, <code>texmf-local</code> 以下に置く必要があります.<a href="addendum-ja.html#fnref15" class="footnote-back">↩︎</a></p></li>
+<li id="fn16"><p>ls-R 不要論を唱える方もいますし私もその主張には一理あると思いますが, TinyTeX では残念ながら使用しているので必要です.<a href="addendum-ja.html#fnref16" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

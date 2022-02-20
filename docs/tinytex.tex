@@ -267,7 +267,7 @@
 TeX Live ベースの LaTeX ディストリビューション}
 \author{Xie, Yihui (Author) \and Katagiri, Satoshi (片桐
 智志)\footnote{twitter id: ill\_identified} (Translator)}
-\date{ver. 1.3 (2022/02/18 23:37:15 JST, 本家の更新確認時刻:
+\date{ver. 1.3 (2022/02/20 23:16:26 JST, 本家の更新確認時刻:
 \href{https://github.com/rbind/yihui/tree/master/content/tinytex}{2022/01/26
 09:36:46 JST})}
 \usepackage{bxtexlogo}
@@ -915,6 +915,50 @@ Rmdファイルを新規作成し, 以下の内容をコピペしてください
 \end{Highlighting}
 \end{Shaded}
 
+ここから PDF を生成する前に, 一点だけ確認してください. (Tiny) TeX で PDF
+を, それも Windows や Mac など異なる OS
+で同じPDFを生成する場合に一番問題になるのは日本語フォントの指定です.
+ここではオープンソースでかつ TeX
+と相性の良い「原ノ味フォント」を指定しています\footnote{原ノ味フォントは源ノ書体/Notoフォントとほぼ同じ字形です}.
+それが \texttt{jafont=haranoaji} の部分です. もちろん OS
+ごとの標準フォントを使うこともできます. 例えば,
+
+\begin{itemize}
+\tightlist
+\item
+  Windows (10以降) ならば \texttt{jafont=yu-win10} で遊書体 (Win 8
+  ならば \texttt{yu-win} になります)
+\item
+  Mac ならば \texttt{jafont=hiragino-pro} でヒラギノフォント
+\item
+  Ubuntu ならば \texttt{jafont=noto-otf} (インストール経路によっては
+  \texttt{noto-otc} ?)
+\end{itemize}
+
+を指定できます. これらに書き換えれば
+(行頭のスペースも必要なので誤って消さないでください),
+\textbf{フォントの追加インストールは不要}です.
+指定可能なフォント名の簡易リストは\href{https://ja.osdn.net/projects/luatex-ja/wiki/LuaTeX-ja\%E3\%81\%AE\%E4\%BD\%BF\%E3\%81\%84\%E6\%96\%B9}{公式}
+をご覧ください.
+
+しかし, 原ノ味フォントはこれまで TeX を一度も使用していない方の PC
+にはインストールされていない可能性があります. 原ノ味フォントは
+\textbf{tinytex} で以下の R コマンドを使用してインストールできますが,
+TeX 以外でも使用したい場合 (例: PDF に R
+で作成した画像ファイルを埋め込む際に,
+画像内の文字も原ノ味フォントで統一したい)はこの方法はおすすめしません.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tinytex}\SpecialCharTok{::}\FunctionTok{tlmgr\_install}\NormalTok{(}\StringTok{"haranoaji"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+TeX 以外でも使用したい場合, 各 OS
+の標準的な方法でインストールするとよいです.
+\href{https://github.com/trueroad/HaranoAjiFonts/tags}{公式リポジトリ}
+からダウンロード\&インストールしてください
+
 これを保存した後, RStudio 上で ``knit'' ボタンを押してください.
 PDFが生成されるはずです. \textbf{tinytex}
 は不足パッケージを自動でインストールしてくれるため,
@@ -925,21 +969,11 @@ PDFが生成されるはずです. \textbf{tinytex}
 もしエラーが出た場合, 本書のFAQ等に解決のヒントがあるはずです.
 典型的なエラーとして,
 不足TeXパッケージの自動インストールがうまくいかなかないということがまれにあります.
-特にフォントパッケージの検出失敗はありがちです.
-その場合は以下のコマンドで腹ノ味フォントをインストールできます.
-あるいは\href{https://github.com/trueroad/HaranoAjiFonts}{公式リポジトリ}
-からダウンロード\&インストールしてください\footnote{TinyTeX
-  以外でもこのフォントを使用できるため, 後者の方法をおすすめします.}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{tinytex}\SpecialCharTok{::}\FunctionTok{tlmgr\_install}\NormalTok{(}\StringTok{"haranoaji"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
 
 日本語文書に必要で,
 デフォルトでインストールされないものがいくつあります.
-上記で解決しないなら以下も試してみてください.
+今回のサンプル文書に最低限必要な LaTeX パッケージは以下の R
+コマンドでインストールできます.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -960,33 +994,11 @@ PDFが生成されるはずです. \textbf{tinytex}
 の場合は多くがプリアンブルの記述に対応します. 例えば
 \texttt{documentclass:\ bxjsarticle} の部分はそのまま文書クラスに
 \texttt{bxjsarticle} を指定していることを意味し, \texttt{classoption:}
-以下の箇条書きは文書クラスのオプション引数を意味します. 一方で
+以下の箇条書きは文書クラスのオプション引数を意味します. つまり, PDF
+生成前に \texttt{jafont=} で指定してもらったフォントは, bxjsarticle
+という文書クラスの機能を使用して読み込まれています. 一方で
 \texttt{latex\_engine:\ lualatex} は LuaLaTeX を使用して tex
 ファイルをコンパイルすることを意味します.
-
-(Tiny) TeX で PDF を, それも異なる OS
-で同じPDFを生成する場合に一番問題になるのは日本語フォントの指定です.
-ここではオープンソースでかつ TeX
-と相性の良い「原ノ味フォント」を指定しています\footnote{原ノ味フォントは源ノ書体/Notoフォントとほぼ同じ字形です}.
-それが \texttt{jafont=haranoaji} の部分です. もちろん OS
-ごとの標準フォントを使うこともできます. 例えば,
-
-\begin{itemize}
-\tightlist
-\item
-  Windows (10以降) ならば \texttt{jafont=yu-win10} で遊書体 (Win 8
-  ならば \texttt{yu-win} になります)
-\item
-  Mac ならば \texttt{jafont=hiragino-pro} でヒラギノフォント
-\item
-  Ubuntu ならば \texttt{jafont=noto-otf} (インストール経路によっては
-  \texttt{noto-otc} ?)
-\end{itemize}
-
-を指定できます.
-これらを指定すればもちろん\textbf{フォントの追加インストールは不要}です.
-指定可能なフォント名の簡易リストは\href{https://ja.osdn.net/projects/luatex-ja/wiki/LuaTeX-ja\%E3\%81\%AE\%E4\%BD\%BF\%E3\%81\%84\%E6\%96\%B9}{公式}
-をご覧ください.
 
 \begin{infobox}{warning}
 RMarkdown の解説で「IPA
@@ -998,7 +1010,7 @@ RMarkdown の解説で「IPA
 フォントパッケージに限らず手動でのインストールはほとんど不要なはずですし,
 世の中には広く普及している日本語フォントは IPA 以外に多く存在します.
 なぜ IPA
-フォントをインストールさせたがる記述が多いのかは私にもよくわかりません.
+フォントをインストールさせたがる記述がこのように多いのかは私にもよくわかりません.
 
 \end{infobox}
 
@@ -1031,7 +1043,10 @@ Markdown クックブック}」があります.
 \end{Highlighting}
 \end{Shaded}
 
-これを LuaLaTeX でコンパイルします.
+ここでも, 1行目の \texttt{jafont=haranoaji}
+でフォントを指定していることを忘れないでください. 名称は Rmd
+ファイルの場合と同じです. これを LuaLaTeX でコンパイルし,
+\texttt{test.pdf} という PDF を生成します.
 
 \begin{Shaded}
 \begin{Highlighting}[numbers=left,,]
